@@ -31,20 +31,38 @@ const InteractivePhoneDemo = () => {
       <motion.div
         layout
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={`relative overflow-hidden rounded-[2.5rem] border-[3px] border-[hsl(213,25%,20%)] shadow-[var(--shadow-card)] ${
-          expanded ? "w-[360px] sm:w-[400px]" : "w-[280px] sm:w-[300px]"
-        }`}
+        className="relative overflow-hidden rounded-[2.5rem] border-[3px] border-[hsl(213,25%,20%)] shadow-[var(--shadow-card)]"
+        style={{
+          width: expanded ? "min(400px, 90vw)" : "min(300px, 80vw)",
+          transformOrigin: "top center",
+        }}
       >
         {/* Notch */}
         <div className="absolute left-1/2 top-0 z-10 h-5 w-24 -translate-x-1/2 rounded-b-xl bg-[hsl(213,40%,12%)]" />
 
-        <iframe
-          src="https://mybudgetnerd.com"
-          title="MyBudgetNerd Demo"
-          className={`w-full border-0 bg-white ${expanded ? "h-[700px]" : "h-[540px]"}`}
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-          loading="lazy"
-        />
+        <div
+          style={{
+            width: expanded ? "100%" : "400px",
+            height: expanded ? "700px" : "700px",
+            transform: expanded ? "none" : "scale(0.75)",
+            transformOrigin: "top left",
+          }}
+        >
+          <iframe
+            src="https://mybudgetnerd.com"
+            title="MyBudgetNerd Demo"
+            className="h-full w-full border-0 bg-white"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Clip overflow from scaled iframe */}
+        {!expanded && (
+          <style>{`
+            .phone-compact-clip { height: 525px; overflow: hidden; }
+          `}</style>
+        )}
       </motion.div>
 
       <p className="text-xs text-muted-foreground">
