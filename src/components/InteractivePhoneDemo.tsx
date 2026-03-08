@@ -2,8 +2,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Maximize2, Minimize2, ExternalLink } from "lucide-react";
 
+const FULL_W = 400;
+const FULL_H = 700;
+const SCALE = 0.75;
+
 const InteractivePhoneDemo = () => {
   const [expanded, setExpanded] = useState(false);
+
+  const w = expanded ? FULL_W : FULL_W * SCALE;
+  const h = expanded ? FULL_H : FULL_H * SCALE;
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -29,22 +36,30 @@ const InteractivePhoneDemo = () => {
 
       {/* Phone frame */}
       <motion.div
-        layout
+        animate={{ width: w, height: h }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={`relative overflow-hidden rounded-[2.5rem] border-[3px] border-[hsl(213,25%,20%)] shadow-[var(--shadow-card)] ${
-          expanded ? "w-[360px] sm:w-[400px]" : "w-[280px] sm:w-[300px]"
-        }`}
+        className="relative overflow-hidden rounded-[2.5rem] border-[3px] border-[hsl(213,25%,20%)] shadow-[var(--shadow-card)]"
       >
         {/* Notch */}
         <div className="absolute left-1/2 top-0 z-10 h-5 w-24 -translate-x-1/2 rounded-b-xl bg-[hsl(213,40%,12%)]" />
 
-        <iframe
-          src="https://mybudgetnerd.com"
-          title="MyBudgetNerd Demo"
-          className={`w-full border-0 bg-white ${expanded ? "h-[700px]" : "h-[540px]"}`}
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-          loading="lazy"
-        />
+        {/* Scaled iframe container — always renders at full size, CSS-scaled down in compact */}
+        <div
+          style={{
+            width: FULL_W,
+            height: FULL_H,
+            transform: expanded ? "none" : `scale(${SCALE})`,
+            transformOrigin: "top left",
+          }}
+        >
+          <iframe
+            src="https://mybudgetnerd.com"
+            title="MyBudgetNerd Demo"
+            className="h-full w-full border-0 bg-white"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+            loading="lazy"
+          />
+        </div>
       </motion.div>
 
       <p className="text-xs text-muted-foreground">
