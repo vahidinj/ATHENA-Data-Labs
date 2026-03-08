@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   Brain,
   ArrowRight,
-  Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import InteractivePhoneDemo from "@/components/InteractivePhoneDemo";
