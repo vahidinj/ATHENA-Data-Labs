@@ -6,9 +6,10 @@ const Footer = () => {
           <span className="text-gradient text-sm font-bold tracking-widest">ATHENA</span>
           <span className="text-gradient text-[0.5rem] font-bold tracking-widest">DATA LABS</span>
         </p>
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Athena Data Labs. All rights reserved.
-        </p>
+        <div className="text-center text-xs text-muted-foreground md:text-right">
+          <p>© 2026 Athena Data Labs,</p>
+          <p>A division of Athena Analytics LLC.</p>
+        </div>
       </div>
     </footer>
   );
