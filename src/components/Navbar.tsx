@@ -25,7 +25,7 @@ const Navbar = () => {
           <img src={logo} alt="Athena Data Labs logo" className="h-9 w-9 object-contain" />
           <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-widest">ATHENA</span>
-            <span className="text-foreground text-[0.6rem] font-semibold uppercase tracking-[0.25em]">Data Labs</span>
+            <span className="text-gradient text-xs font-bold tracking-widest">DATA LABS</span>
           </span>
         </a>
 
