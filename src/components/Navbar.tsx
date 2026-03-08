@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,8 +12,48 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
+/** Eased scroll — cubic ease-in-out over ~800ms */
+function smoothScrollTo(targetY: number, duration = 800) {
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  let startTime: number | null = null;
+
+  function step(timestamp: number) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const t = Math.min(elapsed / duration, 1);
+    // cubic ease-in-out
+    const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    window.scrollTo(0, startY + diff * ease);
+    if (t < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  e.preventDefault();
+  if (href === "#") {
+    smoothScrollTo(0);
+    return;
+  }
+  const el = document.querySelector(href);
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.scrollY - 72; // 72px offset for navbar
+    smoothScrollTo(top);
+  }
+}
+
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      scrollToSection(e, href);
+      setMobileOpen(false);
+    },
+    [],
+  );
 
   return (
     <motion.nav
@@ -23,7 +63,11 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-3 font-display tracking-tight">
+        <a
+          href="#"
+          onClick={(e) => scrollToSection(e, "#")}
+          className="flex items-center gap-3 font-display tracking-tight"
+        >
           <img src={logo} alt="Athena Data Labs logo" className="h-12 w-12 object-contain" />
           <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
@@ -37,13 +81,16 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
+              onClick={(e) => scrollToSection(e, link.href)}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
           ))}
           <Button variant="hero" size="sm" asChild>
-            <a href="#contact">Get Started</a>
+            <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
+              Get Started
+            </a>
           </Button>
         </div>
 
@@ -70,13 +117,15 @@ const Navbar = () => {
                 key={link.label}
                 href={link.href}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => handleClick(e, link.href)}
               >
                 {link.label}
               </a>
             ))}
             <Button variant="hero" size="sm" asChild>
-              <a href="#contact" onClick={() => setMobileOpen(false)}>Get Started</a>
+              <a href="#contact" onClick={(e) => handleClick(e, "#contact")}>
+                Get Started
+              </a>
             </Button>
           </div>
         </motion.div>
