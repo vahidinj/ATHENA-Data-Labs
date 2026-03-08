@@ -78,7 +78,7 @@ const Navbar = () => {
           />
           <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
-            <span className="text-gradient text-[0.7rem] font-bold tracking-[0.42em] opacity-80">DATA LABS</span>
+            <span className="text-gradient text-[0.7rem] font-bold tracking-[0.54em] opacity-80">DATA LABS</span>
           </span>
         </a>
 
