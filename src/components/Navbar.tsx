@@ -21,10 +21,12 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight">
+        <a href="#" className="flex items-center gap-2 font-display tracking-tight">
           <img src={logo} alt="Athena Data Labs logo" className="h-9 w-9 object-contain" />
-          <span><span className="text-gradient">Athena</span>{" "}
-          <span className="text-foreground">Data Labs</span></span>
+          <span className="flex flex-col leading-none">
+            <span className="text-gradient text-xl font-bold tracking-widest">ATHENA</span>
+            <span className="text-foreground text-[0.6rem] font-semibold uppercase tracking-[0.25em]">Data Labs</span>
+          </span>
         </a>
 
         {/* Desktop */}
