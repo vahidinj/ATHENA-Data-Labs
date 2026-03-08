@@ -28,9 +28,9 @@ const features = [
   },
   {
     icon: Brain,
-    title: "AI Refinement & ML",
+    title: "AI, Forecasting & Anomaly Detection",
     description:
-      "Opt-in OpenAI refinement for categorization accuracy, plus Prophet-powered forecasting and anomaly detection for spending trends.",
+      "Opt-in OpenAI refinement for categorization accuracy. Prophet-powered time series forecasting predicts spending patterns and flags unusual transactions.",
   },
   {
     icon: BarChart3,
@@ -43,12 +43,6 @@ const features = [
     title: "Export & Reporting",
     description:
       "Export transactions and summaries to CSV or Excel. Compatible with custom spreadsheets and workflows.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Forecasting & Anomaly Detection",
-    description:
-      "Prophet-based time series forecasting predicts future spending patterns. Anomaly detection flags unusual transactions automatically.",
   },
   {
     icon: ShieldCheck,
