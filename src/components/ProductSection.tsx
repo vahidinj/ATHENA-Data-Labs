@@ -139,7 +139,7 @@ const ProductSection = () => {
               </div>
             </div>
             <div className="flex items-center justify-center py-8 md:py-12">
-              <AppScreenshots />
+              <InteractivePhoneDemo />
             </div>
           </div>
         </motion.div>
