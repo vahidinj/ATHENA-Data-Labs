@@ -11,7 +11,7 @@ import {
   Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AppScreenshots from "@/components/AppScreenshots";
+import InteractivePhoneDemo from "@/components/InteractivePhoneDemo";
 
 const features = [
   {
