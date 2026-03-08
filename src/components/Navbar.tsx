@@ -21,11 +21,11 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2 font-display tracking-tight">
-          <img src={logo} alt="Athena Data Labs logo" className="h-9 w-9 object-contain" />
+        <a href="#" className="flex items-center gap-3 font-display tracking-tight">
+          <img src={logo} alt="Athena Data Labs logo" className="h-12 w-12 object-contain" />
           <span className="flex flex-col leading-none">
-            <span className="text-gradient text-xl font-bold tracking-widest">ATHENA</span>
-            <span className="text-gradient text-xs font-bold tracking-widest">DATA LABS</span>
+            <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
+            <span className="text-gradient text-[0.7rem] font-bold tracking-[0.54em]">DATA LABS</span>
           </span>
         </a>
 
