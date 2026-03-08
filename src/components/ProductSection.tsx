@@ -45,6 +45,12 @@ const features = [
       "Export transactions and summaries to CSV or Excel. Compatible with custom spreadsheets and workflows.",
   },
   {
+    icon: TrendingUp,
+    title: "Forecasting & Anomaly Detection",
+    description:
+      "Prophet-based time series forecasting predicts future spending patterns. Anomaly detection flags unusual transactions automatically.",
+  },
+  {
     icon: ShieldCheck,
     title: "Privacy First",
     description:
