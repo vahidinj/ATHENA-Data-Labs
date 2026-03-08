@@ -183,29 +183,6 @@ const ProductSection = () => {
           ))}
         </div>
 
-        {/* Security note */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto mt-16 flex max-w-3xl items-start gap-4 rounded-xl border border-primary/20 card-gradient p-6"
-        >
-          <div className="flex-shrink-0 rounded-lg bg-primary/10 p-2 text-primary">
-            <Lock size={20} />
-          </div>
-          <div>
-            <h4 className="mb-1 font-display text-sm font-semibold">
-              Security & Data Handling
-            </h4>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              PDF uploads are streamed into memory using a spooled buffer — no
-              data written to disk. HTTPS is enforced end-to-end with ACM
-              certificates. Host validation is active for all production
-              endpoints. No secrets are ever committed to the repository.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
