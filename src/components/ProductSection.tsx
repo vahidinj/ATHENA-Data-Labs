@@ -45,9 +45,9 @@ const features = [
   },
   {
     icon: ShieldCheck,
-    title: "Privacy First",
+    title: "Privacy & Security",
     description:
-      "PDFs processed in memory, never stored. No tracking cookies or analytics. AI refinement is opt-in and sends only sanitized descriptions.",
+      "PDFs streamed in memory via spooled buffer — never written to disk. HTTPS enforced end-to-end with ACM certificates. No tracking cookies, no analytics. AI refinement is opt-in and sends only sanitized descriptions.",
   },
 ];
 
