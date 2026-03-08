@@ -68,15 +68,8 @@ const Navbar = () => {
           onClick={(e) => scrollToSection(e, "#")}
           className="flex items-center gap-3 font-display tracking-tight"
         >
-          <img src={logo} alt="Athena Data Labs logo" className="h-12 w-12 object-contain" />
-          <span className="relative flex flex-col leading-none">
-            <span className="absolute -left-5 top-1/2 -translate-y-1/2 h-10 w-20 pointer-events-none"
-              style={{
-                background: 'conic-gradient(from -15deg at 0% 50%, hsl(38 45% 60% / 0.3) 0deg, hsl(38 45% 60% / 0.08) 30deg, transparent 45deg, transparent 315deg, hsl(38 45% 60% / 0.08) 330deg, hsl(38 45% 60% / 0.3) 360deg)',
-                maskImage: 'linear-gradient(to right, white, transparent)',
-                WebkitMaskImage: 'linear-gradient(to right, white, transparent)',
-              }}
-            />
+          <img src={logo} alt="Athena Data Labs logo" className="h-12 w-12 object-contain drop-shadow-[0_0_6px_hsl(38,45%,60%,0.3)]" />
+          <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
             <span className="text-gradient text-[0.7rem] font-bold tracking-[0.42em] opacity-80">DATA LABS</span>
           </span>
