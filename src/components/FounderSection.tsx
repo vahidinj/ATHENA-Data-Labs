@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, TrendingUp, DollarSign, Clock, Shield, Brain, BarChart3, Code2 } from "lucide-react";
+import { Award, TrendingUp, DollarSign, Clock, Brain, BarChart3, GraduationCap, FileText, BadgeCheck, Github } from "lucide-react";
 
 const stats = [
   { icon: DollarSign, value: "$1.5B", label: "Cost estimate support for major contract decisions" },
@@ -11,22 +11,44 @@ const stats = [
 const career = [
   {
     title: "Department of Defense",
-    role: "Senior Data Scientist / OR Analyst • 2016–Present",
+    role: "Senior Data Scientist / Operations Research Analyst · 2016–Present",
     description:
-      "Developed cost models, budget forecasts, and acquisition analyses impacting multi-billion-dollar programs while leading validation and process-improvement initiatives.",
+      "Developed cost models and budget forecasts impacting multi-billion-dollar Army programs including the Stryker combat system. Led data validation processes for contract deliverables, earning the Achievement Medal for Civilian Service. Identified $31M in long-term savings through alternative system analysis. Created software for spent plan analysis and congressional review visualizations.",
+  },
+  {
+    title: "NeuralNetwork App",
+    role: "Personal Project · Streamlit + Python",
+    description:
+      "Designed an interactive Streamlit application for building and training artificial neural networks — featuring data exploration, hyperparameter tuning, model evaluation, and prediction export.",
   },
   {
     title: "Wayne State University",
-    role: "MS Physics",
+    role: "Mathematics Tutor · 2015–2016",
     description:
-      "Applied mathematical modeling and simulation research; published work in relativistic heavy-ion collision dynamics.",
+      "Tutored students across foundational to advanced mathematics including differential equations, linear algebra, and quantum mechanics while participating in weekly research seminars.",
   },
   {
     title: "U.S. Marine Corps",
-    role: "Leadership and Operations",
+    role: "Platoon Sergeant · 2006–2015",
     description:
-      "Led teams, managed mission-critical logistics, and executed operational planning in high-accountability environments.",
+      "Led platoons of 15+ Marines across active duty and reserves. Managed a 200+ vehicle fleet, oversaw a $4.7M runway project in Alaska, and coordinated supply chain logistics in high-accountability environments.",
   },
+];
+
+const education = [
+  { degree: "M.S. Physics", school: "Wayne State University", year: "2016–2019" },
+  { degree: "B.S. Criminal Justice", school: "Wayne State University", year: "2010–2013" },
+];
+
+const certifications = [
+  "IBM Data Science Professional (2025)",
+  "Python for Data Science & Machine Learning (2024)",
+  "Python Data Analysis: NumPy & Pandas",
+];
+
+const publications = [
+  "Probing Early-time Longitudinal Dynamics with the Λ Hyperon's Spin Polarization in Relativistic Heavy-ion Collisions",
+  "Orbital Angular Momentum and Fluid Vorticity in Relativistic Heavy Ion Collisions",
 ];
 
 const FounderSection = () => {
@@ -50,6 +72,16 @@ const FounderSection = () => {
           <p className="mt-2 text-lg text-muted-foreground">
             Founder, Athena Data Labs
           </p>
+          <div className="mt-4 flex justify-center">
+            <a
+              href="https://github.com/vahidinj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+            >
+              <Github size={16} /> GitHub
+            </a>
+          </div>
         </motion.div>
 
         {/* Bio */}
@@ -65,19 +97,17 @@ const FounderSection = () => {
             that prioritize precision, transparency, and user control.
           </p>
           <p className="leading-relaxed text-muted-foreground">
-            With 10+ years in operations research and advanced analytics supporting defense programs,
-            his work has informed multi-billion-dollar decisions, uncovered substantial cost
-            efficiencies, and delivered systems used in high-accountability environments.
+            A war refugee who enlisted in the Marine Corps to serve the nation that gave him a second
+            chance, Vahidin brings over a decade of operations research and advanced analytics
+            experience supporting defense programs. His work has informed multi-billion-dollar
+            decisions, uncovered substantial cost efficiencies, and earned the Achievement Medal for
+            Civilian Service.
           </p>
           <p className="leading-relaxed text-muted-foreground">
             He holds a Master of Science in Physics from Wayne State University, where he conducted
-            research in relativistic heavy-ion collisions and applied mathematical modeling. His
-            engineering work spans forecasting, statistical modeling, machine learning, and
-            cloud-deployed analytics platforms.
-          </p>
-          <p className="leading-relaxed text-muted-foreground">
-            A United States Marine Corps veteran, Vahidin brings a disciplined, security-minded
-            approach to every Athena product.
+            published research in relativistic heavy-ion collision dynamics using advanced
+            mathematical modeling and Python simulations. His engineering work spans forecasting,
+            statistical modeling, machine learning, and cloud-deployed analytics platforms.
           </p>
         </motion.div>
 
@@ -142,6 +172,69 @@ const FounderSection = () => {
             ))}
           </div>
         </motion.div>
+
+        {/* Education, Certifications, Publications */}
+        <div className="mb-20 grid gap-6 md:grid-cols-3">
+          {/* Education */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="card-gradient rounded-xl border border-border/50 p-6"
+          >
+            <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
+              <GraduationCap size={22} />
+            </div>
+            <h4 className="mb-4 font-display text-lg font-semibold">Education</h4>
+            <div className="space-y-3">
+              {education.map((ed) => (
+                <div key={ed.degree}>
+                  <p className="text-sm font-medium text-foreground">{ed.degree}</p>
+                  <p className="text-xs text-muted-foreground">{ed.school} · {ed.year}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Certifications */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="card-gradient rounded-xl border border-border/50 p-6"
+          >
+            <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
+              <BadgeCheck size={22} />
+            </div>
+            <h4 className="mb-4 font-display text-lg font-semibold">Certifications</h4>
+            <ul className="space-y-2">
+              {certifications.map((cert) => (
+                <li key={cert} className="text-sm text-muted-foreground">{cert}</li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Publications */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="card-gradient rounded-xl border border-border/50 p-6"
+          >
+            <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
+              <FileText size={22} />
+            </div>
+            <h4 className="mb-4 font-display text-lg font-semibold">Publications</h4>
+            <ul className="space-y-2">
+              {publications.map((pub) => (
+                <li key={pub} className="text-sm leading-relaxed text-muted-foreground">{pub}</li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
 
         {/* Core Expertise */}
         <motion.div
