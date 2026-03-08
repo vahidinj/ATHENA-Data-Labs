@@ -6,7 +6,7 @@ import {
   Download,
   ShieldCheck,
   Brain,
-  Cloud,
+  TrendingUp,
   ArrowRight,
   Lock,
 } from "lucide-react";
@@ -28,9 +28,9 @@ const features = [
   },
   {
     icon: Brain,
-    title: "Optional AI Refinement",
+    title: "AI Refinement & ML",
     description:
-      "Opt-in OpenAI-powered refinement analyzes transaction descriptions and account type only. Server-side cached with TTL eviction.",
+      "Opt-in OpenAI refinement for categorization accuracy, plus Prophet-powered forecasting and anomaly detection for spending trends.",
   },
   {
     icon: BarChart3,
@@ -45,6 +45,12 @@ const features = [
       "Export transactions and summaries to CSV or Excel. Compatible with custom spreadsheets and workflows.",
   },
   {
+    icon: TrendingUp,
+    title: "Forecasting & Anomaly Detection",
+    description:
+      "Prophet-based time series forecasting predicts future spending patterns. Anomaly detection flags unusual transactions automatically.",
+  },
+  {
     icon: ShieldCheck,
     title: "Privacy First",
     description:
@@ -55,7 +61,7 @@ const features = [
 const techStack = [
   { label: "Frontend", value: "React · Vite · TypeScript" },
   { label: "Backend", value: "Python · FastAPI" },
-  { label: "AI", value: "OpenAI (opt-in)" },
+  { label: "AI / ML", value: "OpenAI · Prophet" },
   { label: "Hosting", value: "AWS Amplify + Elastic Beanstalk" },
 ];
 
