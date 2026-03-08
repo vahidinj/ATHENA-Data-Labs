@@ -122,7 +122,7 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="hero" size="sm" asChild>
+            <Button variant="heroOutline" size="sm" asChild>
               <a href="#contact" onClick={(e) => handleClick(e, "#contact")}>
                 Get Started
               </a>
