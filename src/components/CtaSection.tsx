@@ -22,7 +22,7 @@ const CtaSection = () => {
             data-powered product.
           </p>
           <Button variant="hero" size="lg" asChild>
-            <a href="mailto:hello@athenadatalabs.com">
+            <a href="mailto:info@athenadatalabs.com">
               Get in Touch <ArrowRight className="ml-1" size={18} />
             </a>
           </Button>
