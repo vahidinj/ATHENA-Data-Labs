@@ -82,12 +82,12 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               {link.label}
             </a>
           ))}
-          <Button variant="hero" size="sm" asChild>
+          <Button variant="heroOutline" size="sm" asChild>
             <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
               Get Started
             </a>
@@ -116,13 +116,13 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                 onClick={(e) => handleClick(e, link.href)}
               >
                 {link.label}
               </a>
             ))}
-            <Button variant="hero" size="sm" asChild>
+            <Button variant="heroOutline" size="sm" asChild>
               <a href="#contact" onClick={(e) => handleClick(e, "#contact")}>
                 Get Started
               </a>
