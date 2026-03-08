@@ -11,7 +11,7 @@ import {
   Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import mybudgetnerdHero from "@/assets/mybudgetnerd-hero.jpg";
+import AppScreenshots from "@/components/AppScreenshots";
 
 const features = [
   {
