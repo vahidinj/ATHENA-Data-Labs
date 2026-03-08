@@ -68,7 +68,14 @@ const Navbar = () => {
           onClick={(e) => scrollToSection(e, "#")}
           className="flex items-center gap-3 font-display tracking-tight"
         >
-          <img src={logo} alt="Athena Data Labs logo" className="h-12 w-12 object-contain drop-shadow-[0_0_6px_hsl(38,45%,60%,0.3)]" />
+          <motion.img
+            src={logo}
+            alt="Athena Data Labs logo"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="h-12 w-12 object-contain drop-shadow-[0_0_6px_hsl(38,45%,60%,0.3)]"
+          />
           <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
             <span className="text-gradient text-[0.7rem] font-bold tracking-[0.42em] opacity-80">DATA LABS</span>
