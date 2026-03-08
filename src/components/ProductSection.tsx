@@ -11,7 +11,7 @@ import {
   Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import mybudgetnerdHero from "@/assets/mybudgetnerd-hero.jpg";
+import AppScreenshots from "@/components/AppScreenshots";
 
 const features = [
   {
@@ -138,13 +138,8 @@ const ProductSection = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative aspect-square md:aspect-auto md:h-full">
-              <img
-                src={mybudgetnerdHero}
-                alt="MyBudgetNerd dashboard preview"
-                className="h-full w-full object-cover opacity-80"
-              />
-              <div className="absolute inset-0 hidden bg-gradient-to-r from-card via-transparent to-transparent md:block" />
+            <div className="flex items-center justify-center py-8 md:py-12">
+              <AppScreenshots />
             </div>
           </div>
         </motion.div>
