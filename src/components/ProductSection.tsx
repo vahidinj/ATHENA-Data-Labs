@@ -6,7 +6,6 @@ import {
   Download,
   ShieldCheck,
   Brain,
-  TrendingUp,
   ArrowRight,
   Lock,
 } from "lucide-react";
