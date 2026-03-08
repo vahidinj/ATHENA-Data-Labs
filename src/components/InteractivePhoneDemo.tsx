@@ -2,8 +2,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Maximize2, Minimize2, ExternalLink } from "lucide-react";
 
+const FULL_W = 400;
+const FULL_H = 700;
+const SCALE = 0.75;
+
 const InteractivePhoneDemo = () => {
   const [expanded, setExpanded] = useState(false);
+
+  const w = expanded ? FULL_W : FULL_W * SCALE;
+  const h = expanded ? FULL_H : FULL_H * SCALE;
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -29,22 +36,19 @@ const InteractivePhoneDemo = () => {
 
       {/* Phone frame */}
       <motion.div
-        layout
+        animate={{ width: w, height: h }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className="relative overflow-hidden rounded-[2.5rem] border-[3px] border-[hsl(213,25%,20%)] shadow-[var(--shadow-card)]"
-        style={{
-          width: expanded ? "min(400px, 90vw)" : "min(300px, 80vw)",
-          transformOrigin: "top center",
-        }}
       >
         {/* Notch */}
         <div className="absolute left-1/2 top-0 z-10 h-5 w-24 -translate-x-1/2 rounded-b-xl bg-[hsl(213,40%,12%)]" />
 
+        {/* Scaled iframe container — always renders at full size, CSS-scaled down in compact */}
         <div
           style={{
-            width: expanded ? "100%" : "400px",
-            height: expanded ? "700px" : "700px",
-            transform: expanded ? "none" : "scale(0.75)",
+            width: FULL_W,
+            height: FULL_H,
+            transform: expanded ? "none" : `scale(${SCALE})`,
             transformOrigin: "top left",
           }}
         >
@@ -56,13 +60,6 @@ const InteractivePhoneDemo = () => {
             loading="lazy"
           />
         </div>
-
-        {/* Clip overflow from scaled iframe */}
-        {!expanded && (
-          <style>{`
-            .phone-compact-clip { height: 525px; overflow: hidden; }
-          `}</style>
-        )}
       </motion.div>
 
       <p className="text-xs text-muted-foreground">
