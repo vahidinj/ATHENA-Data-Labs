@@ -61,7 +61,7 @@ const features = [
 const techStack = [
   { label: "Frontend", value: "React · Vite · TypeScript" },
   { label: "Backend", value: "Python · FastAPI" },
-  { label: "AI", value: "OpenAI (opt-in)" },
+  { label: "AI / ML", value: "OpenAI · Prophet" },
   { label: "Hosting", value: "AWS Amplify + Elastic Beanstalk" },
 ];
 
