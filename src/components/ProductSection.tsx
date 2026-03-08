@@ -11,7 +11,7 @@ import {
   Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AppScreenshots from "@/components/AppScreenshots";
+import InteractivePhoneDemo from "@/components/InteractivePhoneDemo";
 
 const features = [
   {
@@ -139,7 +139,7 @@ const ProductSection = () => {
               </div>
             </div>
             <div className="flex items-center justify-center py-8 md:py-12">
-              <AppScreenshots />
+              <InteractivePhoneDemo />
             </div>
           </div>
         </motion.div>
