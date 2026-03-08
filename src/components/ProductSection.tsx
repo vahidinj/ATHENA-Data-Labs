@@ -28,9 +28,9 @@ const features = [
   },
   {
     icon: Brain,
-    title: "Optional AI Refinement",
+    title: "AI Refinement & ML",
     description:
-      "Opt-in OpenAI-powered refinement analyzes transaction descriptions and account type only. Server-side cached with TTL eviction.",
+      "Opt-in OpenAI refinement for categorization accuracy, plus Prophet-powered forecasting and anomaly detection for spending trends.",
   },
   {
     icon: BarChart3,
