@@ -71,7 +71,7 @@ const ServicesSection = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group card-gradient rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
+              className="group glass rounded-xl p-8 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
             >
               <div className="mb-5 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary/20">
                 <service.icon size={24} />

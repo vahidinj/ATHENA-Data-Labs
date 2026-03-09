@@ -54,7 +54,7 @@ const AboutSection = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
-                className="flex gap-5 rounded-xl border border-border/50 card-gradient p-6"
+                className="flex gap-5 rounded-xl glass p-6"
               >
                 <div className="flex-shrink-0 rounded-lg bg-primary/10 p-3 text-primary">
                   <pillar.icon size={22} />
