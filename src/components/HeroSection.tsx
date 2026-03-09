@@ -27,7 +27,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
           <p className="mb-4 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)]">
-            App Development · Data Science · Analytics
+            Data Science · Analytics · App Development
           </p>
         </motion.div>
 
