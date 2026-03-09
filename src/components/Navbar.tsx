@@ -79,6 +79,10 @@ const Navbar = () => {
             alt="Athena Data Labs logo"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ 
+              rotate: [0, -5, 5, 0],
+              filter: "drop-shadow(0 0 8px hsl(38 45% 60% / 0.6))"
+            }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="h-12 w-12 object-contain"
           />
