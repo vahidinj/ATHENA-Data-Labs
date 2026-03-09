@@ -126,10 +126,11 @@ const FounderSection = () => {
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.value}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="card-gradient rounded-xl border border-border/50 p-6 text-center"
               >
                 <div className="mx-auto mb-3 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
