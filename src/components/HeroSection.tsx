@@ -189,12 +189,9 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right: All graphics contained here */}
-          <div className="relative hidden lg:block overflow-hidden" style={{ width: 420, height: 340 }}>
-            <NetworkGraph />
-            <div className="absolute top-[5%] right-[2%]"><FloatingScatter /></div>
-            <div className="absolute bottom-[5%] right-[8%]"><FloatingBarChart /></div>
-            <div className="absolute bottom-[2%] left-[2%]"><FloatingWave /></div>
+          {/* Right: Neural network graphic */}
+          <div className="relative hidden lg:flex items-center justify-center overflow-hidden" style={{ width: 420, height: 380 }}>
+            <NeuralNetwork />
           </div>
         </div>
       </div>
