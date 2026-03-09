@@ -153,15 +153,9 @@ const ProductSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="relative"
-              style={{ perspective: "1200px" }}
             >
-              <div
-                className="relative"
-                style={{
-                  transform: window.innerWidth >= 1024 ? "rotateY(-3deg) rotateX(2deg)" : "none",
-                  transformStyle: "preserve-3d",
-                }}
-              >
+              {/* No tilt on mobile, subtle tilt on desktop */}
+              <div className="relative lg:[transform:rotateY(-3deg)_rotateX(2deg)] lg:[transform-style:preserve-3d] lg:[perspective:1200px]">
                 <div
                   className="relative w-[280px] sm:w-[320px] lg:w-[340px] mx-auto overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
