@@ -80,9 +80,10 @@ const Navbar = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ 
-              filter: "drop-shadow(0 0 2px hsl(38 55% 50% / 0.8))"
+              rotate: [0, -5, 5, 0],
+              filter: "drop-shadow(0 0 8px hsl(38 45% 60% / 0.6))"
             }}
-            transition={{ duration: 0.3, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="h-12 w-12 object-contain"
           />
           <span className="flex flex-col leading-none">
