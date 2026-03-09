@@ -57,10 +57,10 @@ const FounderSection = () => {
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mb-16 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
@@ -86,10 +86,10 @@ const FounderSection = () => {
 
         {/* Bio */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mx-auto mb-20 max-w-3xl space-y-5 text-center"
         >
           <p className="text-lg leading-relaxed text-muted-foreground">
@@ -113,10 +113,10 @@ const FounderSection = () => {
 
         {/* Impact Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mb-20"
         >
           <h3 className="mb-10 text-center font-display text-2xl font-bold tracking-tight">
@@ -126,10 +126,11 @@ const FounderSection = () => {
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.value}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="card-gradient rounded-xl border border-border/50 p-6 text-center"
               >
                 <div className="mx-auto mb-3 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
@@ -144,10 +145,10 @@ const FounderSection = () => {
 
         {/* Career Highlights */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mb-20"
         >
           <h3 className="mb-10 text-center font-display text-2xl font-bold tracking-tight">
@@ -157,10 +158,11 @@ const FounderSection = () => {
             {career.map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                whileHover={{ x: 5, transition: { duration: 0.2 } }}
                 className="card-gradient rounded-xl border border-border/50 p-6"
               >
                 <h4 className="font-display text-lg font-semibold">{item.title}</h4>
@@ -177,10 +179,11 @@ const FounderSection = () => {
         <div className="mb-20 grid gap-6 md:grid-cols-3">
           {/* Education */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
             className="card-gradient rounded-xl border border-border/50 p-6"
           >
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
@@ -199,10 +202,11 @@ const FounderSection = () => {
 
           {/* Certifications */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
             className="card-gradient rounded-xl border border-border/50 p-6"
           >
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
@@ -218,10 +222,11 @@ const FounderSection = () => {
 
           {/* Publications */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
             className="card-gradient rounded-xl border border-border/50 p-6"
           >
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
@@ -238,10 +243,11 @@ const FounderSection = () => {
 
         {/* Core Expertise */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           className="mx-auto max-w-3xl rounded-xl border border-primary/20 card-gradient p-8 text-center"
         >
           <div className="mx-auto mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">

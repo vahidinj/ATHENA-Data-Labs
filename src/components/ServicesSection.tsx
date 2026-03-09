@@ -29,11 +29,16 @@ const services = [
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.15 },
+    scale: 1,
+    transition: { 
+      duration: 0.6, 
+      delay: i * 0.15,
+      ease: [0.21, 0.47, 0.32, 0.98] as const
+    },
   }),
 };
 
@@ -42,10 +47,10 @@ const ServicesSection = () => {
     <section id="services" className="relative py-28">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mb-16 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
@@ -64,7 +69,8 @@ const ServicesSection = () => {
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="group card-gradient rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
             >
               <div className="mb-5 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary/20">

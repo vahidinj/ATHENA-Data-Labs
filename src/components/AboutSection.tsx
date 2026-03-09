@@ -26,10 +26,10 @@ const AboutSection = () => {
       <div className="container relative mx-auto px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: -50, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
             <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
               Why Athena
@@ -49,10 +49,11 @@ const AboutSection = () => {
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
+                initial={{ opacity: 0, x: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+                whileHover={{ x: 5, transition: { duration: 0.2 } }}
                 className="flex gap-5 rounded-xl border border-border/50 card-gradient p-6"
               >
                 <div className="flex-shrink-0 rounded-lg bg-primary/10 p-3 text-primary">
