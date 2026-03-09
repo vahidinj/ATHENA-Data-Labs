@@ -9,14 +9,8 @@ const features = [
 
 const ProductSection = () => {
   return (
-    <section
-      id="products"
-      className="relative overflow-hidden"
-    >
-      {/* Seamless gradient transition from site background */}
+    <section id="products" className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-[hsl(213,40%,6%)] to-[hsl(213,40%,6%)]" />
-
-      {/* Dot grid texture */}
       <div
         className="absolute inset-0 opacity-[0.3]"
         style={{
@@ -24,8 +18,6 @@ const ProductSection = () => {
           backgroundSize: "32px 32px",
         }}
       />
-
-      {/* Large ambient glow that spans both columns — ties them together */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/3 -translate-y-1/4 w-[900px] h-[900px] pointer-events-none"
         style={{
@@ -33,14 +25,12 @@ const ProductSection = () => {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-6 pt-28 pb-0">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-0 items-stretch min-h-[700px]">
-          {/* ── Left: Text content ── */}
+      <div className="container relative z-10 mx-auto px-6 pt-16 pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-0 items-stretch min-h-[650px]">
+          {/* Left */}
           <div className="flex flex-col justify-center lg:pr-12 relative z-20">
-            {/* Connecting line from left to right — visual bridge */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary/20 to-primary/10 hidden lg:block" />
 
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -52,29 +42,26 @@ const ProductSection = () => {
               </span>
             </motion.div>
 
-            {/* Headline — overlaps toward phone */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-6 font-display text-5xl font-bold leading-[1.06] tracking-tight text-white md:text-6xl lg:text-7xl lg:mr-[-5rem] relative z-30"
+              className="mt-5 font-display text-5xl font-bold leading-[1.06] tracking-tight text-white md:text-6xl lg:text-7xl lg:mr-[-5rem] relative z-30"
             >
               Financial{" "}
               <span className="text-gradient">Intelligence</span>,{" "}
               Simplified
             </motion.h2>
 
-            {/* Gold divider */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-6 mb-5 h-px w-20 origin-left bg-gradient-to-r from-primary/60 to-transparent"
+              className="mt-5 mb-4 h-px w-20 origin-left bg-gradient-to-r from-primary/60 to-transparent"
             />
 
-            {/* Body copy */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -90,26 +77,24 @@ const ProductSection = () => {
               No bank logins, no tracking — just powerful insights you control.
             </motion.p>
 
-            {/* Secondary copy */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground/60"
+              className="mt-3 max-w-[56ch] text-sm leading-relaxed text-muted-foreground/60"
             >
               Built with React + FastAPI and deployed on AWS. Optional
               AI-powered refinement uses OpenAI to improve categorization
               accuracy — completely opt-in.
             </motion.p>
 
-            {/* Feature pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-6 flex flex-wrap gap-3"
+              className="mt-5 flex flex-wrap gap-3"
             >
               {features.map((f) => (
                 <span
@@ -122,13 +107,12 @@ const ProductSection = () => {
               ))}
             </motion.div>
 
-            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.65 }}
-              className="mt-8"
+              className="mt-7"
             >
               <a
                 href="https://mybudgetnerd.com"
@@ -144,9 +128,8 @@ const ProductSection = () => {
             </motion.div>
           </div>
 
-          {/* ── Right: Phone mockup — stretches full height ── */}
+          {/* Right: Phone mockup */}
           <div className="relative flex items-end justify-center lg:justify-end">
-            {/* Pulsing glow behind phone */}
             <motion.div
               className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[700px] pointer-events-none"
               animate={{ opacity: [0.4, 0.7, 0.4] }}
@@ -166,32 +149,17 @@ const ProductSection = () => {
             >
               <div
                 className="relative"
-                style={{
-                  transform: "rotateY(-3deg) rotateX(2deg)",
-                  transformStyle: "preserve-3d",
-                }}
+                style={{ transform: "rotateY(-3deg) rotateX(2deg)", transformStyle: "preserve-3d" }}
               >
-                {/* Phone frame — aspect-ratio driven, no fixed height */}
                 <div
                   className="relative w-[320px] sm:w-[340px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
                     aspectRatio: "9 / 19.5",
-                    boxShadow:
-                      "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
+                    boxShadow: "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
                   }}
                 >
-                  {/* Notch */}
                   <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
-
-                  {/* Iframe at iPhone 14 viewport, scaled to fit frame */}
-                  <div
-                    style={{
-                      width: 390,
-                      height: 844,
-                      transform: "scale(0.87)",
-                      transformOrigin: "top left",
-                    }}
-                  >
+                  <div style={{ width: 390, height: 844, transform: "scale(0.87)", transformOrigin: "top left" }}>
                     <iframe
                       src="https://mybudgetnerd.com"
                       title="MyBudgetNerd Demo"
@@ -204,18 +172,15 @@ const ProductSection = () => {
                 </div>
               </div>
 
-              {/* Caption below phone */}
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 1 }}
-                className="mt-5 text-center text-xs text-muted-foreground"
+                className="mt-4 text-center text-xs text-muted-foreground"
               >
                 Try the demo — tap{" "}
-                <span className="font-semibold text-primary">
-                  "View Sample"
-                </span>{" "}
+                <span className="font-semibold text-primary">"View Sample"</span>{" "}
                 to explore with sample data
               </motion.p>
             </motion.div>
@@ -223,7 +188,6 @@ const ProductSection = () => {
         </div>
       </div>
 
-      {/* Bottom gradient fade back to site background */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
     </section>
   );
