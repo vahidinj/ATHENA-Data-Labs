@@ -243,10 +243,11 @@ const FounderSection = () => {
 
         {/* Core Expertise */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           className="mx-auto max-w-3xl rounded-xl border border-primary/20 card-gradient p-8 text-center"
         >
           <div className="mx-auto mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
