@@ -84,7 +84,7 @@ const Navbar = () => {
           />
           <span className="flex items-baseline gap-1.5 leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
-            <span className="text-gradient text-[0.65rem] font-bold tracking-[0.35em] opacity-80">DATA LABS</span>
+            <span className="text-gradient text-[0.85rem] font-bold tracking-[0.35em] opacity-80">DATA LABS</span>
           </span>
         </a>
 
