@@ -291,12 +291,9 @@ const HeroSection = () => {
           {/* Right: All graphics contained here */}
           <div className="relative hidden lg:block overflow-hidden" style={{ width: 420, height: 340 }}>
             <NetworkGraph />
-            {/* Scatter — top-right area */}
-            <FloatingScatter style={{ position: "absolute", top: "5%", right: "2%" }} />
-            {/* Bar chart — bottom-right area */}
-            <FloatingBarChart style={{ position: "absolute", bottom: "5%", right: "8%" }} />
-            {/* Wave — bottom-left area */}
-            <FloatingWave style={{ position: "absolute", bottom: "2%", left: "2%" }} />
+            <div className="absolute top-[5%] right-[2%]"><FloatingScatter /></div>
+            <div className="absolute bottom-[5%] right-[8%]"><FloatingBarChart /></div>
+            <div className="absolute bottom-[2%] left-[2%]"><FloatingWave /></div>
           </div>
         </div>
       </div>
