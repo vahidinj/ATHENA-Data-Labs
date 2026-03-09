@@ -100,12 +100,12 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <ThemeToggle />
           <Button variant="heroOutline" size="sm" asChild>
             <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
               Get Started
             </a>
           </Button>
+          <ThemeToggle />
         </div>
 
         {/* Mobile toggle */}
