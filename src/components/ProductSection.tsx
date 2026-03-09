@@ -1,27 +1,35 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BrainCircuit, ScanSearch, TrendingUp } from "lucide-react";
+
+const features = [
+  { icon: ScanSearch, label: "Anomaly Detection" },
+  { icon: TrendingUp, label: "Forecasting" },
+  { icon: BrainCircuit, label: "ML Categorization" },
+];
 
 const ProductSection = () => {
   return (
     <section
       id="products"
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0d1117 0%, #0a0f14 100%)" }}
     >
-      {/* ── Dot grid texture ── */}
+      {/* Seamless gradient transition from site background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-[hsl(213,40%,6%)] to-[hsl(213,40%,6%)]" />
+
+      {/* Dot grid texture */}
       <div
-        className="absolute inset-0 opacity-[0.35]"
+        className="absolute inset-0 opacity-[0.3]"
         style={{
-          backgroundImage: `radial-gradient(circle, rgba(245,197,66,0.08) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px)`,
           backgroundSize: "32px 32px",
         }}
       />
 
-      {/* ── Ambient radial glow behind phone area ── */}
+      {/* Ambient radial glow behind phone area */}
       <div
         className="absolute top-1/2 right-[15%] -translate-y-1/3 w-[700px] h-[700px] pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, rgba(245,197,66,0.10) 0%, rgba(245,197,66,0.03) 40%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.10) 0%, hsl(var(--primary) / 0.03) 40%, transparent 70%)",
         }}
       />
 
@@ -36,14 +44,7 @@ const ProductSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <span
-                className="inline-block rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em]"
-                style={{
-                  color: "#f5c542",
-                  borderColor: "rgba(245,197,66,0.3)",
-                  background: "rgba(245,197,66,0.06)",
-                }}
-              >
+              <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
                 Web App · Coming Soon to App Store
               </span>
             </motion.div>
@@ -56,8 +57,9 @@ const ProductSection = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mt-6 font-display text-5xl font-bold leading-[1.06] tracking-tight text-white md:text-6xl lg:text-7xl lg:mr-[-4rem]"
             >
-              Budget Smarter,{" "}
-              <span style={{ color: "#f5c542" }}>Not Harder</span>
+              Financial{" "}
+              <span className="text-gradient">Intelligence</span>,{" "}
+              Simplified
             </motion.h2>
 
             {/* Gold divider */}
@@ -66,8 +68,7 @@ const ProductSection = () => {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-6 mb-5 h-px w-20 origin-left"
-              style={{ background: "linear-gradient(90deg, #f5c542 0%, transparent 100%)" }}
+              className="mt-6 mb-5 h-px w-20 origin-left bg-gradient-to-r from-primary/60 to-transparent"
             />
 
             {/* Body copy */}
@@ -76,13 +77,14 @@ const ProductSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="max-w-[56ch] text-base leading-relaxed md:text-lg"
-              style={{ color: "#a0aab4" }}
+              className="max-w-[56ch] text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              Upload your bank statements in PDF format and MyBudgetNerd
-              automatically parses and categorizes every transaction into 11
-              canonical spending groups. No bank logins, no tracking — just
-              clear financial insights you control.
+              MyBudgetNerd is a financial intelligence platform that automatically
+              parses bank statements, categorizes transactions into 11 spending
+              groups, and delivers machine learning engines for{" "}
+              <span className="text-primary font-medium">anomaly detection</span> and{" "}
+              <span className="text-primary font-medium">spending forecasts</span>.
+              No bank logins, no tracking — just powerful insights you control.
             </motion.p>
 
             {/* Secondary copy */}
@@ -92,12 +94,31 @@ const ProductSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.55 }}
               className="mt-4 max-w-[56ch] text-sm leading-relaxed"
-              style={{ color: "#6b7a88" }}
+              style={{ color: "hsl(215, 15%, 45%)" }}
             >
               Built with React + FastAPI and deployed on AWS. Optional
               AI-powered refinement uses OpenAI to improve categorization
               accuracy — completely opt-in.
             </motion.p>
+
+            {/* Feature pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="mt-6 flex flex-wrap gap-3"
+            >
+              {features.map((f) => (
+                <span
+                  key={f.label}
+                  className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-foreground"
+                >
+                  <f.icon size={14} className="text-primary" />
+                  {f.label}
+                </span>
+              ))}
+            </motion.div>
 
             {/* CTA */}
             <motion.div
@@ -111,20 +132,10 @@ const ProductSection = () => {
                 href="https://mybudgetnerd.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg px-7 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5"
-                style={{
-                  background: "#f5c542",
-                  color: "#0d1117",
-                  boxShadow: "0 4px 20px rgba(245,197,66,0.25)",
-                }}
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold tracking-wide text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-glow)]"
               >
                 {/* Shimmer overlay */}
-                <span
-                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
-                  style={{
-                    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)",
-                  }}
-                />
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                 <span className="relative z-10 flex items-center gap-2">
                   Try MyBudgetNerd <ArrowRight size={16} />
                 </span>
@@ -140,7 +151,7 @@ const ProductSection = () => {
               animate={{ opacity: [0.4, 0.7, 0.4] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               style={{
-                background: "radial-gradient(ellipse at center, rgba(245,197,66,0.12) 0%, transparent 70%)",
+                background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.12) 0%, transparent 70%)",
               }}
             />
 
@@ -150,9 +161,7 @@ const ProductSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="relative"
-              style={{
-                perspective: "1200px",
-              }}
+              style={{ perspective: "1200px" }}
             >
               <div
                 className="relative"
@@ -163,33 +172,26 @@ const ProductSection = () => {
               >
                 {/* Phone frame */}
                 <div
-                  className="relative w-[300px] sm:w-[320px] overflow-hidden rounded-[2.5rem]"
+                  className="relative w-[300px] sm:w-[320px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
-                    border: "3px solid #1e2a38",
                     boxShadow:
-                      "0 40px 100px rgba(245,197,66,0.12), 0 15px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)",
+                      "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
                   }}
                 >
                   {/* Notch */}
-                  <div
-                    className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl"
-                    style={{ background: "#0d1117" }}
-                  />
+                  <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
 
-                  {/* Iframe container */}
-                  <div
-                    style={{
-                      width: 400,
-                      height: 750,
-                      transform: "scale(0.8)",
-                      transformOrigin: "top left",
-                    }}
-                  >
+                  {/* Iframe container — fill the frame completely */}
+                  <div className="w-full" style={{ height: "600px" }}>
                     <iframe
                       src="https://mybudgetnerd.com"
                       title="MyBudgetNerd Demo"
                       className="h-full w-full border-0"
-                      style={{ background: "#0d1117" }}
+                      style={{
+                        background: "hsl(213, 40%, 8%)",
+                        transform: "scale(1)",
+                        transformOrigin: "top left",
+                      }}
                       sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                       loading="lazy"
                     />
@@ -203,11 +205,10 @@ const ProductSection = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 1 }}
-                className="mt-5 text-center text-xs"
-                style={{ color: "#6b7a88" }}
+                className="mt-5 text-center text-xs text-muted-foreground"
               >
                 Try the demo — tap{" "}
-                <span className="font-semibold" style={{ color: "#f5c542" }}>
+                <span className="font-semibold text-primary">
                   "View Sample"
                 </span>{" "}
                 to explore with sample data
@@ -216,6 +217,9 @@ const ProductSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Bottom gradient fade back to site background */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
     </section>
   );
 };

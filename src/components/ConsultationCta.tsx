@@ -19,7 +19,7 @@ const ConsultationCta = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-background to-primary/5 p-12 md:p-16 shadow-[var(--shadow-glow)]"
+          className="relative overflow-hidden rounded-2xl glass border-primary/20 p-12 md:p-16 shadow-[var(--shadow-glow)]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10 opacity-50" />
           
