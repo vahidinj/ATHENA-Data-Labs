@@ -158,12 +158,12 @@ const ProductSection = () => {
               <div
                 className="relative"
                 style={{
-                  transform: "rotateY(-3deg) rotateX(2deg)",
+                  transform: window.innerWidth >= 1024 ? "rotateY(-3deg) rotateX(2deg)" : "none",
                   transformStyle: "preserve-3d",
                 }}
               >
                 <div
-                  className="relative w-[320px] sm:w-[340px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
+                  className="relative w-[280px] sm:w-[320px] lg:w-[340px] mx-auto overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
                     aspectRatio: "9 / 19.5",
                     boxShadow:
