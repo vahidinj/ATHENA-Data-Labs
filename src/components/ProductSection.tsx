@@ -171,10 +171,11 @@ const ProductSection = () => {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* Phone frame — taller to match left side */}
+                {/* Phone frame — aspect-ratio driven, no fixed height */}
                 <div
                   className="relative w-[320px] sm:w-[340px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
+                    aspectRatio: "9 / 19.5",
                     boxShadow:
                       "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
                   }}
@@ -182,12 +183,12 @@ const ProductSection = () => {
                   {/* Notch */}
                   <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
 
-                  {/* Iframe — uses scale trick to render at larger res and fit the tall frame */}
+                  {/* Iframe at iPhone 14 viewport, scaled to fit frame */}
                   <div
                     style={{
-                      width: 430,
-                      height: 930,
-                      transform: "scale(0.79)",
+                      width: 390,
+                      height: 844,
+                      transform: "scale(0.87)",
                       transformOrigin: "top left",
                     }}
                   >
