@@ -207,7 +207,7 @@ const FloatingWave = () => {
 
 const HeroSection = () => {
   return (
-    <section className="relative flex items-center justify-center overflow-hidden pt-16" style={{ minHeight: "calc(100vh - 0px)" }}>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Layered background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
       {/* Noise texture overlay */}
@@ -221,7 +221,7 @@ const HeroSection = () => {
       />
       <GridBackground />
 
-      <div className="container relative z-10 mx-auto px-6 py-12">
+      <div className="container relative z-10 mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
           {/* Left: Text content */}
           <div className="text-center lg:text-left">
