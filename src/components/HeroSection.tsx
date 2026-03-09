@@ -94,12 +94,11 @@ const NetworkGraph = () => {
   );
 };
 
-/* ── Subtle floating bar chart (bottom-left) ── */
+/* ── Subtle floating bar chart ── */
 const FloatingBarChart = () => {
   const bars = [18, 30, 22, 38, 28, 34, 20];
   return (
     <motion.div
-      className="absolute bottom-[15%] left-[6%] hidden lg:block opacity-0"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, delay: 2.5 }}
@@ -118,7 +117,6 @@ const FloatingBarChart = () => {
             transition={{ duration: 1.2, delay: 2.8 + i * 0.1, ease: "easeOut" }}
           />
         ))}
-        {/* Trend line */}
         <motion.polyline
           points="5,38 16,26 27,32 38,18 49,24 60,20 71,28"
           stroke="hsl(var(--primary))"
