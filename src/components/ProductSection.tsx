@@ -1,187 +1,220 @@
 import { motion } from "framer-motion";
-import {
-  FileText,
-  Tags,
-  BarChart3,
-  Download,
-  ShieldCheck,
-  Brain,
-  ArrowRight,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import InteractivePhoneDemo from "@/components/InteractivePhoneDemo";
-
-const features = [
-  {
-    icon: FileText,
-    title: "Statement Ingestion",
-    description:
-      "Upload bank statements in PDF format. Backend parses transactions in memory — no files stored, no bank logins required.",
-  },
-  {
-    icon: Tags,
-    title: "Smart Categorization",
-    description:
-      "Rule-based categorization into 11 canonical spending groups with optional custom rules via JSON or runtime injection.",
-  },
-  {
-    icon: Brain,
-    title: "AI, Forecasting & Anomaly Detection",
-    description:
-      "Opt-in OpenAI refinement for categorization accuracy. Prophet-powered time series forecasting predicts spending patterns and flags unusual transactions.",
-  },
-  {
-    icon: BarChart3,
-    title: "Financial Insights",
-    description:
-      "Unified overview with totals, averages, medians, and net change. Filter by date range, category, or search.",
-  },
-  {
-    icon: Download,
-    title: "Export & Reporting",
-    description:
-      "Export transactions and summaries to CSV or Excel. Compatible with custom spreadsheets and workflows.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Privacy & Security",
-    description:
-      "PDFs streamed in memory via spooled buffer — never written to disk. HTTPS enforced end-to-end with ACM certificates. No tracking cookies, no analytics. AI refinement is opt-in and sends only sanitized descriptions.",
-  },
-];
-
-const techStack = [
-  { label: "Frontend", value: "React · Vite · TypeScript" },
-  { label: "Backend", value: "Python · FastAPI" },
-  { label: "AI / ML", value: "OpenAI · Prophet" },
-  { label: "Hosting", value: "AWS Amplify + Elastic Beanstalk" },
-];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, delay: i * 0.1 },
-  }),
-};
+import { ArrowRight } from "lucide-react";
 
 const ProductSection = () => {
   return (
-    <section id="products" className="relative py-28">
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
-        >
-          <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
-            Our Products
-          </p>
-          <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            MyBudgetNerd
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Personal finance statement parser and categorizer — upload your bank
-            statements, get instant categorization and insights, and keep full
-            control of your financial data.
-          </p>
-        </motion.div>
+    <section
+      id="products"
+      className="relative overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #0d1117 0%, #0a0f14 100%)" }}
+    >
+      {/* ── Dot grid texture ── */}
+      <div
+        className="absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage: `radial-gradient(circle, rgba(245,197,66,0.08) 1px, transparent 1px)`,
+          backgroundSize: "32px 32px",
+        }}
+      />
 
-        {/* Hero card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-16 overflow-hidden rounded-xl border border-border/50 card-gradient"
-        >
-          <div className="grid items-center gap-0 md:grid-cols-2">
-            <div className="p-8 md:p-12">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.15em] text-primary">
-                Web App · Coming Soon to App Store
-              </p>
-              <h3 className="mb-4 font-display text-2xl font-bold md:text-3xl">
-                Budget Smarter, Not Harder
-              </h3>
-              <p className="mb-4 text-muted-foreground">
-                Upload your bank statements in PDF format and MyBudgetNerd
-                automatically parses and categorizes every transaction into 11
-                canonical spending groups. No bank logins, no tracking — just
-                clear financial insights you control.
-              </p>
-              <p className="mb-6 text-sm text-muted-foreground">
-                Built with React + FastAPI and deployed on AWS. Optional
-                AI-powered refinement uses OpenAI to improve categorization
-                accuracy — completely opt-in.
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Button variant="hero" size="lg" asChild>
-                  <a
-                    href="https://mybudgetnerd.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Try MyBudgetNerd <ArrowRight className="ml-1" size={18} />
-                  </a>
-                </Button>
-              </div>
-            </div>
-            <div className="flex items-center justify-center py-8 md:py-12">
-              <InteractivePhoneDemo />
-            </div>
-          </div>
-        </motion.div>
+      {/* ── Ambient radial glow behind phone area ── */}
+      <div
+        className="absolute top-1/2 right-[15%] -translate-y-1/3 w-[700px] h-[700px] pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(245,197,66,0.10) 0%, rgba(245,197,66,0.03) 40%, transparent 70%)",
+        }}
+      />
 
-        {/* Tech stack strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mb-16 grid grid-cols-2 gap-4 md:grid-cols-4"
-        >
-          {techStack.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-lg border border-border/50 card-gradient px-5 py-4 text-center"
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">
-                {item.label}
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">{item.value}</p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Features grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, i) => (
+      <div className="container relative z-10 mx-auto px-6 pt-28 pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-end">
+          {/* ── Left: Text content ── */}
+          <div className="flex flex-col justify-center pb-16 lg:pb-28 lg:pr-8 relative z-20">
+            {/* Badge */}
             <motion.div
-              key={feature.title}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="group card-gradient rounded-xl border border-border/50 p-7 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary/20">
-                <feature.icon size={22} />
-              </div>
-              <h4 className="mb-2 font-display text-base font-semibold">
-                {feature.title}
-              </h4>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {feature.description}
-              </p>
+              <span
+                className="inline-block rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em]"
+                style={{
+                  color: "#f5c542",
+                  borderColor: "rgba(245,197,66,0.3)",
+                  background: "rgba(245,197,66,0.06)",
+                }}
+              >
+                Web App · Coming Soon to App Store
+              </span>
             </motion.div>
-          ))}
-        </div>
 
+            {/* Headline */}
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-6 font-display text-5xl font-bold leading-[1.06] tracking-tight text-white md:text-6xl lg:text-7xl lg:mr-[-4rem]"
+            >
+              Budget Smarter,{" "}
+              <span style={{ color: "#f5c542" }}>Not Harder</span>
+            </motion.h2>
+
+            {/* Gold divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-6 mb-5 h-px w-20 origin-left"
+              style={{ background: "linear-gradient(90deg, #f5c542 0%, transparent 100%)" }}
+            />
+
+            {/* Body copy */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="max-w-[56ch] text-base leading-relaxed md:text-lg"
+              style={{ color: "#a0aab4" }}
+            >
+              Upload your bank statements in PDF format and MyBudgetNerd
+              automatically parses and categorizes every transaction into 11
+              canonical spending groups. No bank logins, no tracking — just
+              clear financial insights you control.
+            </motion.p>
+
+            {/* Secondary copy */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              className="mt-4 max-w-[56ch] text-sm leading-relaxed"
+              style={{ color: "#6b7a88" }}
+            >
+              Built with React + FastAPI and deployed on AWS. Optional
+              AI-powered refinement uses OpenAI to improve categorization
+              accuracy — completely opt-in.
+            </motion.p>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.65 }}
+              className="mt-8"
+            >
+              <a
+                href="https://mybudgetnerd.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg px-7 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:-translate-y-0.5"
+                style={{
+                  background: "#f5c542",
+                  color: "#0d1117",
+                  boxShadow: "0 4px 20px rgba(245,197,66,0.25)",
+                }}
+              >
+                {/* Shimmer overlay */}
+                <span
+                  className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
+                  style={{
+                    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)",
+                  }}
+                />
+                <span className="relative z-10 flex items-center gap-2">
+                  Try MyBudgetNerd <ArrowRight size={16} />
+                </span>
+              </a>
+            </motion.div>
+          </div>
+
+          {/* ── Right: Phone mockup ── */}
+          <div className="relative flex justify-center lg:justify-end">
+            {/* Pulsing glow behind phone */}
+            <motion.div
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[340px] h-[500px] pointer-events-none"
+              animate={{ opacity: [0.4, 0.7, 0.4] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(245,197,66,0.12) 0%, transparent 70%)",
+              }}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="relative"
+              style={{
+                perspective: "1200px",
+              }}
+            >
+              <div
+                className="relative"
+                style={{
+                  transform: "rotateY(-3deg) rotateX(2deg)",
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                {/* Phone frame */}
+                <div
+                  className="relative w-[300px] sm:w-[320px] overflow-hidden rounded-[2.5rem]"
+                  style={{
+                    border: "3px solid #1e2a38",
+                    boxShadow:
+                      "0 40px 100px rgba(245,197,66,0.12), 0 15px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)",
+                  }}
+                >
+                  {/* Notch */}
+                  <div
+                    className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl"
+                    style={{ background: "#0d1117" }}
+                  />
+
+                  {/* Iframe container */}
+                  <div
+                    style={{
+                      width: 400,
+                      height: 750,
+                      transform: "scale(0.8)",
+                      transformOrigin: "top left",
+                    }}
+                  >
+                    <iframe
+                      src="https://mybudgetnerd.com"
+                      title="MyBudgetNerd Demo"
+                      className="h-full w-full border-0"
+                      style={{ background: "#0d1117" }}
+                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Caption below phone */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 1 }}
+                className="mt-5 text-center text-xs"
+                style={{ color: "#6b7a88" }}
+              >
+                Try the demo — tap{" "}
+                <span className="font-semibold" style={{ color: "#f5c542" }}>
+                  "View Sample"
+                </span>{" "}
+                to explore with sample data
+              </motion.p>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
