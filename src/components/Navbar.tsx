@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "next-themes";
 import logo from "@/assets/logo.png";
+import logoLight from "@/assets/logo-light.png";
 
 const navLinks = [
   { label: "Services", href: "#services" },
