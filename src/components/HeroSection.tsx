@@ -38,7 +38,7 @@ const HeroSection = () => {
           className="mx-auto max-w-4xl font-display text-5xl font-bold leading-tight tracking-tight md:text-7xl drop-shadow-2xl"
         >
           Turning Data Into{" "}
-          <span className="text-gradient drop-shadow-[0_0_20px_hsl(var(--primary)/0.4)]">Intelligent</span> Products
+          <span className="text-gradient">Intelligent</span> Products
         </motion.h1>
 
         <motion.p
