@@ -23,6 +23,7 @@ function smoothScrollTo(targetY: number, duration = 800) {
     if (!startTime) startTime = timestamp;
     const elapsed = timestamp - startTime;
     const t = Math.min(elapsed / duration, 1);
+    // cubic ease-in-out
     const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     window.scrollTo(0, startY + diff * ease);
     if (t < 1) requestAnimationFrame(step);
@@ -39,7 +40,7 @@ function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   }
   const el = document.querySelector(href);
   if (el) {
-    const top = el.getBoundingClientRect().top + window.scrollY - 72;
+    const top = el.getBoundingClientRect().top + window.scrollY - 72; // 72px offset for navbar
     smoothScrollTo(top);
   }
 }
@@ -55,6 +56,7 @@ const Navbar = () => {
     [],
   );
 
+  // Navbar is always dark, so always use the dark-mode logo
   const currentLogo = logo;
 
   return (
@@ -62,7 +64,7 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-[hsl(222,47%,8%/0.93)] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/40 after:to-transparent"
+      className="fixed top-0 left-0 right-0 z-50 bg-[hsl(222,47%,8%)] backdrop-blur-xl after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/40 after:to-transparent"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <a
@@ -80,11 +82,11 @@ const Navbar = () => {
               filter: "drop-shadow(0 0 8px hsl(38 45% 60% / 0.6))"
             }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="h-[3.3rem] w-[3.3rem] object-contain"
+            className="h-12 w-12 object-contain"
           />
-          <span className="flex items-baseline gap-1.5 leading-none">
+          <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
-            <span className="text-gradient text-[0.85rem] font-bold tracking-[0.35em] opacity-80">DATA LABS</span>
+            <span className="text-gradient text-[0.7rem] font-bold tracking-[0.48em] opacity-80">DATA LABS</span>
           </span>
         </a>
 
@@ -153,3 +155,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
