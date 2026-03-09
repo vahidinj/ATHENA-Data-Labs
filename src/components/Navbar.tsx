@@ -75,7 +75,7 @@ const Navbar = () => {
           className="flex items-center gap-3 font-display tracking-tight"
         >
           <motion.img
-            src={logo}
+            src={currentLogo}
             alt="Athena Data Labs logo"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
