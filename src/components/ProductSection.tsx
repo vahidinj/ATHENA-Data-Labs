@@ -25,18 +25,21 @@ const ProductSection = () => {
         }}
       />
 
-      {/* Ambient radial glow behind phone area */}
+      {/* Large ambient glow that spans both columns — ties them together */}
       <div
-        className="absolute top-1/2 right-[15%] -translate-y-1/3 w-[700px] h-[700px] pointer-events-none"
+        className="absolute top-1/3 left-1/2 -translate-x-1/3 -translate-y-1/4 w-[900px] h-[900px] pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.10) 0%, hsl(var(--primary) / 0.03) 40%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.07) 0%, hsl(var(--primary) / 0.02) 40%, transparent 70%)",
         }}
       />
 
       <div className="container relative z-10 mx-auto px-6 pt-28 pb-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-0 items-stretch min-h-[700px]">
           {/* ── Left: Text content ── */}
-          <div className="flex flex-col justify-center pb-16 lg:pb-28 lg:pr-8 relative z-20">
+          <div className="flex flex-col justify-center lg:pr-12 relative z-20">
+            {/* Connecting line from left to right — visual bridge */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary/20 to-primary/10 hidden lg:block" />
+
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -49,13 +52,13 @@ const ProductSection = () => {
               </span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline — overlaps toward phone */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-6 font-display text-5xl font-bold leading-[1.06] tracking-tight text-white md:text-6xl lg:text-7xl lg:mr-[-4rem]"
+              className="mt-6 font-display text-5xl font-bold leading-[1.06] tracking-tight text-white md:text-6xl lg:text-7xl lg:mr-[-5rem] relative z-30"
             >
               Financial{" "}
               <span className="text-gradient">Intelligence</span>,{" "}
@@ -93,8 +96,7 @@ const ProductSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="mt-4 max-w-[56ch] text-sm leading-relaxed"
-              style={{ color: "hsl(215, 15%, 45%)" }}
+              className="mt-4 max-w-[56ch] text-sm leading-relaxed text-muted-foreground/60"
             >
               Built with React + FastAPI and deployed on AWS. Optional
               AI-powered refinement uses OpenAI to improve categorization
@@ -134,7 +136,6 @@ const ProductSection = () => {
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold tracking-wide text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-glow)]"
               >
-                {/* Shimmer overlay */}
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                 <span className="relative z-10 flex items-center gap-2">
                   Try MyBudgetNerd <ArrowRight size={16} />
@@ -143,11 +144,11 @@ const ProductSection = () => {
             </motion.div>
           </div>
 
-          {/* ── Right: Phone mockup ── */}
-          <div className="relative flex justify-center lg:justify-end">
+          {/* ── Right: Phone mockup — stretches full height ── */}
+          <div className="relative flex items-end justify-center lg:justify-end">
             {/* Pulsing glow behind phone */}
             <motion.div
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[340px] h-[500px] pointer-events-none"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[700px] pointer-events-none"
               animate={{ opacity: [0.4, 0.7, 0.4] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               style={{
@@ -170,9 +171,9 @@ const ProductSection = () => {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* Phone frame */}
+                {/* Phone frame — taller to match left side */}
                 <div
-                  className="relative w-[300px] sm:w-[320px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
+                  className="relative w-[320px] sm:w-[340px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
                     boxShadow:
                       "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
@@ -181,17 +182,20 @@ const ProductSection = () => {
                   {/* Notch */}
                   <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
 
-                  {/* Iframe container — fill the frame completely */}
-                  <div className="w-full" style={{ height: "600px" }}>
+                  {/* Iframe — uses scale trick to render at larger res and fit the tall frame */}
+                  <div
+                    style={{
+                      width: 430,
+                      height: 930,
+                      transform: "scale(0.79)",
+                      transformOrigin: "top left",
+                    }}
+                  >
                     <iframe
                       src="https://mybudgetnerd.com"
                       title="MyBudgetNerd Demo"
                       className="h-full w-full border-0"
-                      style={{
-                        background: "hsl(213, 40%, 8%)",
-                        transform: "scale(1)",
-                        transformOrigin: "top left",
-                      }}
+                      style={{ background: "hsl(213, 40%, 8%)" }}
                       sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                       loading="lazy"
                     />
