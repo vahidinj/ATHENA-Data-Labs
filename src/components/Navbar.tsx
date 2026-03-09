@@ -82,11 +82,11 @@ const Navbar = () => {
               filter: "drop-shadow(0 0 8px hsl(38 45% 60% / 0.6))"
             }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="h-[3.3rem] w-[3.3rem] object-contain"
+            className="h-12 w-12 object-contain"
           />
-          <span className="flex items-baseline gap-2 leading-none mt-1">
+          <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
-            <span className="text-gradient text-[0.805rem] font-bold tracking-[0.48em] opacity-80">DATA LABS</span>
+            <span className="text-gradient text-[0.7rem] font-bold tracking-[0.48em] opacity-80">DATA LABS</span>
           </span>
         </a>
 
