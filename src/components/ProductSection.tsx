@@ -25,7 +25,7 @@ const ProductSection = () => {
         }}
       />
 
-      {/* Large ambient glow that spans both columns — ties them together */}
+      {/* Large ambient glow */}
       <div
         className="absolute top-1/3 left-1/2 -translate-x-1/3 -translate-y-1/4 w-[900px] h-[900px] pointer-events-none"
         style={{
@@ -33,14 +33,12 @@ const ProductSection = () => {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-6 pt-28 pb-0">
+      <div className="container relative z-10 mx-auto px-6 pt-16 pb-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 lg:gap-0 items-stretch min-h-[700px]">
           {/* ── Left: Text content ── */}
           <div className="flex flex-col justify-center lg:pr-12 relative z-20">
-            {/* Connecting line from left to right — visual bridge */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-px bg-gradient-to-r from-transparent via-primary/20 to-primary/10 hidden lg:block" />
 
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -52,7 +50,6 @@ const ProductSection = () => {
               </span>
             </motion.div>
 
-            {/* Headline — overlaps toward phone */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +62,6 @@ const ProductSection = () => {
               Simplified
             </motion.h2>
 
-            {/* Gold divider */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -74,7 +70,6 @@ const ProductSection = () => {
               className="mt-6 mb-5 h-px w-20 origin-left bg-gradient-to-r from-primary/60 to-transparent"
             />
 
-            {/* Body copy */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +85,6 @@ const ProductSection = () => {
               No bank logins, no tracking — just powerful insights you control.
             </motion.p>
 
-            {/* Secondary copy */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -103,7 +97,6 @@ const ProductSection = () => {
               accuracy — completely opt-in.
             </motion.p>
 
-            {/* Feature pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +115,6 @@ const ProductSection = () => {
               ))}
             </motion.div>
 
-            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -144,9 +136,8 @@ const ProductSection = () => {
             </motion.div>
           </div>
 
-          {/* ── Right: Phone mockup — stretches full height ── */}
+          {/* ── Right: Phone mockup ── */}
           <div className="relative flex items-end justify-center lg:justify-end">
-            {/* Pulsing glow behind phone */}
             <motion.div
               className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[700px] pointer-events-none"
               animate={{ opacity: [0.4, 0.7, 0.4] }}
@@ -171,7 +162,6 @@ const ProductSection = () => {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* Phone frame — aspect-ratio driven, no fixed height */}
                 <div
                   className="relative w-[320px] sm:w-[340px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
@@ -180,10 +170,8 @@ const ProductSection = () => {
                       "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
                   }}
                 >
-                  {/* Notch */}
                   <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
 
-                  {/* Iframe at iPhone 14 viewport, scaled to fit frame */}
                   <div
                     style={{
                       width: 390,
@@ -204,7 +192,6 @@ const ProductSection = () => {
                 </div>
               </div>
 
-              {/* Caption below phone */}
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -223,8 +210,8 @@ const ProductSection = () => {
         </div>
       </div>
 
-      {/* Bottom gradient fade back to site background */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-background pointer-events-none" />
     </section>
   );
 };

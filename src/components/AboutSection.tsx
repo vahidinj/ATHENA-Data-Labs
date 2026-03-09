@@ -21,10 +21,10 @@ const pillars = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="relative py-28">
+    <section id="about" className="relative py-16">
       <div className="absolute inset-0 bg-glow pointer-events-none animate-pulse-glow" />
       <div className="container relative mx-auto px-6">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-14 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -50, scale: 0.95 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -43,9 +43,12 @@ const AboutSection = () => {
               We combine deep technical expertise in app development with cutting-edge data science
               to deliver products that don't just work — they learn and evolve.
             </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground/80 italic border-l-2 border-primary/30 pl-4">
+              Built to defense-grade standards. Delivered at startup speed.
+            </p>
           </motion.div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-5">
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
@@ -67,6 +70,11 @@ const AboutSection = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Section divider */}
+      <div className="mx-auto mt-14 max-w-xl">
+        <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
     </section>
   );

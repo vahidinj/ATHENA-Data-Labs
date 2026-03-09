@@ -15,14 +15,14 @@ const ConsultationCta = () => {
   };
 
   return (
-    <section className="relative py-10">
+    <section className="relative py-6">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.96 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="relative overflow-hidden rounded-2xl glass border-primary/20 p-10 md:p-14 shadow-[var(--shadow-glow)]"
+          className="relative overflow-hidden rounded-2xl glass border-primary/20 p-8 md:p-12 shadow-[var(--shadow-glow)]"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10 opacity-50" />
 
@@ -32,7 +32,7 @@ const ConsultationCta = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="mb-5"
+              className="mb-4"
             >
               {/* Radial gold glow behind headline */}
               <div
@@ -43,7 +43,7 @@ const ConsultationCta = () => {
                 }}
               />
 
-              <h2 className="relative mb-4 font-display text-3xl font-bold tracking-tight md:text-4xl">
+              <h2 className="relative mb-3 font-display text-3xl font-bold tracking-tight md:text-4xl">
                 Ready to Turn Your Data Into{" "}
                 <span className="text-gradient">Insights</span>?
               </h2>
@@ -85,12 +85,17 @@ const ConsultationCta = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-5 text-sm text-muted-foreground"
+              className="mt-4 text-sm text-muted-foreground"
             >
               No commitment required · Discuss your needs · Get expert advice
             </motion.p>
           </div>
         </motion.div>
+      </div>
+
+      {/* Section divider */}
+      <div className="mx-auto mt-10 max-w-xl">
+        <div className="h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent" />
       </div>
     </section>
   );

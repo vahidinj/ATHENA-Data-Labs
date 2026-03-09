@@ -6,14 +6,14 @@ const services = [
     icon: Brain,
     title: "Data Science & ML",
     description:
-      "Predictive modeling, NLP, and machine learning solutions that give you a competitive edge.",
+      "Predictive modeling, NLP, and machine learning solutions — enterprise-grade precision, startup-ready delivery.",
     featured: false,
   },
   {
     icon: BarChart3,
     title: "Data Analytics",
     description:
-      "Transform raw data into clear, actionable dashboards and reports that drive smarter decisions.",
+      "Transform raw data into clear, actionable dashboards and reports that drive smarter decisions at any scale.",
     featured: false,
   },
   {
@@ -21,7 +21,7 @@ const services = [
     title: "Data Engineering",
     description:
       "Robust data pipelines and infrastructure to ensure your data is clean, reliable, and always ready.",
-    featured: true, // slightly taller for asymmetry
+    featured: true,
   },
   {
     icon: Code2,
@@ -48,14 +48,14 @@ const cardVariants = {
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative py-20 pb-10">
+    <section id="services" className="relative py-16 pb-8">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-14 text-center"
+          className="mb-12 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
             What We Do
@@ -94,7 +94,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Separator fade into CTA */}
-      <div className="mx-auto mt-14 max-w-xl">
+      <div className="mx-auto mt-10 max-w-xl">
         <div className="h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
       </div>
     </section>

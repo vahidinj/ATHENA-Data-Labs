@@ -2,27 +2,27 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-/* ── Animated grid background ── */
+/* ── Animated dot-grid background ── */
 const GridBackground = () => (
   <div className="absolute inset-0 overflow-hidden">
+    {/* Dot grid overlay */}
+    <motion.div
+      className="absolute inset-0"
+      style={{
+        backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.07) 1px, transparent 1px)`,
+        backgroundSize: "40px 40px",
+      }}
+      animate={{ y: [0, 40] }}
+      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+    />
     {/* Slow-moving grid lines */}
     <motion.div
       className="absolute inset-0"
       style={{
         backgroundImage: `
-          linear-gradient(to right, hsl(var(--primary) / 0.04) 1px, transparent 1px),
-          linear-gradient(to bottom, hsl(var(--primary) / 0.04) 1px, transparent 1px)
+          linear-gradient(to right, hsl(var(--primary) / 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, hsl(var(--primary) / 0.03) 1px, transparent 1px)
         `,
-        backgroundSize: "80px 80px",
-      }}
-      animate={{ y: [0, 80] }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-    />
-    {/* Accent crosshair dots at intersections */}
-    <motion.div
-      className="absolute inset-0"
-      style={{
-        backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.12) 1px, transparent 1px)`,
         backgroundSize: "80px 80px",
       }}
       animate={{ y: [0, 80] }}
@@ -31,132 +31,136 @@ const GridBackground = () => (
   </div>
 );
 
-/* ── Floating geometric accents ── */
-const FloatingAccents = () => (
-  <>
-    {/* Top-right geometric element */}
+/* ── Animated network graph visualization ── */
+const NetworkGraph = () => {
+  const nodes = [
+    { x: 50, y: 50, r: 4, delay: 0 },
+    { x: 150, y: 30, r: 3, delay: 0.3 },
+    { x: 250, y: 70, r: 5, delay: 0.6 },
+    { x: 100, y: 130, r: 3.5, delay: 0.2 },
+    { x: 200, y: 150, r: 4, delay: 0.5 },
+    { x: 300, y: 120, r: 3, delay: 0.8 },
+    { x: 80, y: 210, r: 4.5, delay: 0.4 },
+    { x: 180, y: 230, r: 3, delay: 0.7 },
+    { x: 280, y: 200, r: 4, delay: 1.0 },
+    { x: 350, y: 60, r: 3, delay: 0.9 },
+    { x: 30, y: 160, r: 2.5, delay: 1.1 },
+    { x: 330, y: 180, r: 3.5, delay: 0.1 },
+  ];
+
+  const edges = [
+    [0, 1], [1, 2], [0, 3], [3, 4], [4, 5], [2, 5],
+    [3, 6], [6, 7], [7, 8], [4, 7], [5, 8], [1, 9],
+    [2, 9], [0, 10], [10, 6], [5, 11], [8, 11], [9, 11],
+  ];
+
+  return (
     <motion.div
-      className="absolute top-32 right-[15%] hidden lg:block"
-      animate={{ rotate: 360 }}
-      transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      className="relative hidden lg:flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5, delay: 0.8 }}
     >
-      <div className="h-32 w-32 rounded-full border border-primary/10" />
-      <div className="absolute inset-4 rounded-full border border-primary/5" />
-    </motion.div>
+      <div className="relative w-[380px] h-[280px] xl:w-[420px] xl:h-[300px]">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 380 280" fill="none">
+          {/* Edges with flowing animation */}
+          {edges.map(([from, to], i) => (
+            <motion.line
+              key={`edge-${i}`}
+              x1={nodes[from].x}
+              y1={nodes[from].y}
+              x2={nodes[to].x}
+              y2={nodes[to].y}
+              stroke="hsl(var(--primary))"
+              strokeWidth="0.8"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.2 }}
+              transition={{ duration: 1.5, delay: 1 + i * 0.08, ease: "easeOut" }}
+            />
+          ))}
 
-    {/* Bottom-left geometric element */}
-    <motion.div
-      className="absolute bottom-32 left-[10%] hidden lg:block"
-      animate={{ rotate: -360 }}
-      transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-    >
-      <div className="h-24 w-24 border border-primary/8 rotate-45" />
-    </motion.div>
+          {/* Data flow particles along edges */}
+          {edges.filter((_, i) => i % 3 === 0).map(([from, to], i) => {
+            const dx = nodes[to].x - nodes[from].x;
+            const dy = nodes[to].y - nodes[from].y;
+            return (
+              <motion.circle
+                key={`particle-${i}`}
+                r="1.5"
+                fill="hsl(var(--primary))"
+                opacity="0.6"
+                animate={{
+                  cx: [nodes[from].x, nodes[from].x + dx * 0.5, nodes[to].x],
+                  cy: [nodes[from].y, nodes[from].y + dy * 0.5, nodes[to].y],
+                  opacity: [0, 0.8, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  delay: 2 + i * 1.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            );
+          })}
 
-    {/* Floating data points */}
-    {[
-      { x: "20%", y: "30%", delay: 0, size: 3 },
-      { x: "75%", y: "25%", delay: 1.5, size: 2 },
-      { x: "85%", y: "60%", delay: 3, size: 4 },
-      { x: "10%", y: "65%", delay: 2, size: 2 },
-      { x: "60%", y: "75%", delay: 4, size: 3 },
-    ].map((dot, i) => (
-      <motion.div
-        key={i}
-        className="absolute hidden lg:block rounded-full bg-primary/20"
-        style={{ left: dot.x, top: dot.y, width: dot.size, height: dot.size }}
-        animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.5, 1] }}
-        transition={{ duration: 3, delay: dot.delay, repeat: Infinity, ease: "easeInOut" }}
-      />
-    ))}
-  </>
-);
+          {/* Nodes */}
+          {nodes.map((node, i) => (
+            <g key={`node-${i}`}>
+              {/* Pulse ring */}
+              <motion.circle
+                cx={node.x}
+                cy={node.y}
+                r={node.r * 3}
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="0.5"
+                animate={{ scale: [1, 1.5, 1], opacity: [0.15, 0, 0.15] }}
+                transition={{ duration: 3, delay: node.delay + 1.5, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformOrigin: `${node.x}px ${node.y}px` }}
+              />
+              {/* Node dot */}
+              <motion.circle
+                cx={node.x}
+                cy={node.y}
+                r={node.r}
+                fill="hsl(var(--primary))"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{
+                  scale: 1,
+                  opacity: [0.4, 0.8, 0.4],
+                }}
+                transition={{
+                  scale: { duration: 0.5, delay: 1 + node.delay },
+                  opacity: { duration: 2.5, delay: 1 + node.delay, repeat: Infinity, ease: "easeInOut" },
+                }}
+                style={{ transformOrigin: `${node.x}px ${node.y}px` }}
+              />
+            </g>
+          ))}
+        </svg>
 
-/* ── Abstract data visualization ── */
-const DataVisual = () => (
-  <motion.div
-    className="relative hidden lg:flex items-center justify-center"
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 1.2, delay: 1, ease: [0.21, 0.47, 0.32, 0.98] }}
-  >
-    <div className="relative w-72 h-72 xl:w-80 xl:h-80">
-      {/* Outer ring */}
-      <motion.div
-        className="absolute inset-0 rounded-full border border-primary/15"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-      />
-      {/* Middle ring with dashes */}
-      <motion.svg className="absolute inset-4" viewBox="0 0 200 200" fill="none">
-        <motion.circle
-          cx="100" cy="100" r="90"
-          stroke="hsl(var(--primary))"
-          strokeWidth="0.5"
-          strokeDasharray="8 12"
-          strokeOpacity="0.3"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          style={{ transformOrigin: "center" }}
-        />
-      </motion.svg>
-      {/* Inner ring */}
-      <motion.div
-        className="absolute inset-12 rounded-full border border-primary/10"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-      />
-      {/* Center pulse */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div
-          className="w-3 h-3 rounded-full bg-primary/60"
-          animate={{ scale: [1, 1.4, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute w-8 h-8 rounded-full border border-primary/20"
-          animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-      {/* Data nodes on the ring */}
-      {[0, 60, 120, 180, 240, 300].map((angle, i) => {
-        const rad = (angle * Math.PI) / 180;
-        const r = 110;
-        const x = 50 + (r / 160) * 50 * Math.cos(rad);
-        const y = 50 + (r / 160) * 50 * Math.sin(rad);
-        return (
-          <motion.div
-            key={i}
-            className="absolute w-1.5 h-1.5 rounded-full bg-primary/40"
-            style={{ left: `${x}%`, top: `${y}%` }}
-            animate={{ opacity: [0.3, 0.8, 0.3], scale: [1, 1.3, 1] }}
-            transition={{ duration: 2.5, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
-          />
-        );
-      })}
-      {/* Connecting lines */}
-      <motion.svg className="absolute inset-0" viewBox="0 0 320 320" fill="none" style={{ overflow: "visible" }}>
+        {/* Labels floating near key nodes */}
         {[
-          { x1: 160, y1: 160, x2: 260, y2: 80 },
-          { x1: 160, y1: 160, x2: 60, y2: 240 },
-          { x1: 160, y1: 160, x2: 270, y2: 220 },
-        ].map((line, i) => (
-          <motion.line
+          { x: "8%", y: "10%", text: "PREDICT", delay: 2 },
+          { x: "60%", y: "18%", text: "ANALYZE", delay: 2.5 },
+          { x: "75%", y: "65%", text: "OPTIMIZE", delay: 3 },
+        ].map((label, i) => (
+          <motion.span
             key={i}
-            x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2}
-            stroke="hsl(var(--primary))"
-            strokeWidth="0.5"
-            strokeOpacity="0.15"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: 1.5 + i * 0.3, ease: "easeOut" }}
-          />
+            className="absolute text-[9px] font-display font-semibold tracking-[0.2em] text-primary/40"
+            style={{ left: label.x, top: label.y }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.5, 0] }}
+            transition={{ duration: 4, delay: label.delay, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {label.text}
+          </motion.span>
         ))}
-      </motion.svg>
-    </div>
-  </motion.div>
-);
+      </div>
+    </motion.div>
+  );
+};
 
 const HeroSection = () => {
   return (
@@ -164,8 +168,24 @@ const HeroSection = () => {
       {/* Deep layered background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.06),transparent_60%)]" />
+
+      {/* Noise texture overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+        }}
+      />
+
       <GridBackground />
-      <FloatingAccents />
+
+      {/* Radial gold glow behind headline area */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.06) 0%, transparent 65%)",
+        }}
+      />
 
       <div className="container relative z-10 mx-auto px-6 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
@@ -188,7 +208,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="font-display text-5xl font-bold leading-[1.08] tracking-tight md:text-6xl lg:text-7xl"
+              className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
             >
               Turning Data Into{" "}
               <span className="text-gradient">Intelligent</span>{" "}
@@ -209,8 +229,8 @@ const HeroSection = () => {
               transition={{ duration: 0.7, delay: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="max-w-lg text-base text-muted-foreground md:text-lg leading-relaxed mx-auto lg:mx-0"
             >
-              We design data science models, analytics platforms, and production-grade SaaS
-              applications that transform raw data into decision engines.
+              Enterprise-grade data science and analytics platforms, delivered at startup speed.
+              We build production-ready SaaS applications that transform raw data into decision engines.
             </motion.p>
 
             <motion.div
@@ -234,9 +254,14 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right: Abstract data visualization */}
-          <DataVisual />
+          {/* Right: Animated network graph */}
+          <NetworkGraph />
         </div>
+      </div>
+
+      {/* Bottom section divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="mx-auto max-w-4xl h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
     </section>
   );
