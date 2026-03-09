@@ -3,10 +3,10 @@ import { Code2, BarChart3, Brain, Database } from "lucide-react";
 
 const services = [
   {
-    icon: Code2,
-    title: "SaaS Development",
+    icon: Brain,
+    title: "Data Science & ML",
     description:
-      "End-to-end design and development of scalable, cloud-native SaaS platforms tailored to your business model.",
+      "Predictive modeling, NLP, and machine learning solutions that give you a competitive edge.",
   },
   {
     icon: BarChart3,
@@ -15,16 +15,16 @@ const services = [
       "Transform raw data into clear, actionable dashboards and reports that drive smarter decisions.",
   },
   {
-    icon: Brain,
-    title: "Data Science & ML",
-    description:
-      "Predictive modeling, NLP, and machine learning solutions that give you a competitive edge.",
-  },
-  {
     icon: Database,
     title: "Data Engineering",
     description:
       "Robust data pipelines and infrastructure to ensure your data is clean, reliable, and always ready.",
+  },
+  {
+    icon: Code2,
+    title: "SaaS Development",
+    description:
+      "End-to-end design and development of scalable, cloud-native SaaS platforms tailored to your business model.",
   },
 ];
 
