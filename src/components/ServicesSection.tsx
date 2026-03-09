@@ -6,25 +6,25 @@ const services = [
     icon: Brain,
     title: "Data Science & ML",
     description:
-      "Predictive modeling, NLP, and machine learning solutions that give you a competitive edge.",
+      "Predictive modeling, NLP, and machine learning solutions — enterprise-grade rigor with startup-ready delivery speed.",
   },
   {
     icon: BarChart3,
     title: "Data Analytics",
     description:
-      "Transform raw data into clear, actionable dashboards and reports that drive smarter decisions.",
+      "Transform raw data into clear, actionable dashboards and reports that drive smarter decisions at any scale.",
   },
   {
     icon: Database,
     title: "Data Engineering",
     description:
-      "Robust data pipelines and infrastructure to ensure your data is clean, reliable, and always ready.",
+      "Robust data pipelines and infrastructure to ensure your data is clean, reliable, and always production-ready.",
   },
   {
     icon: Code2,
     title: "SaaS Development",
     description:
-      "End-to-end design and development of scalable, cloud-native SaaS platforms tailored to your business model.",
+      "End-to-end design and development of scalable, cloud-native SaaS platforms — from MVP to enterprise deployment.",
   },
 ];
 
@@ -44,14 +44,14 @@ const cardVariants = {
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative py-28">
+    <section id="services" className="relative py-16">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
             What We Do

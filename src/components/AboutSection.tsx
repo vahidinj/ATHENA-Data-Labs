@@ -21,10 +21,10 @@ const pillars = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="relative py-28">
+    <section id="about" className="relative py-16">
       <div className="absolute inset-0 bg-glow pointer-events-none animate-pulse-glow" />
       <div className="container relative mx-auto px-6">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -50, scale: 0.95 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -34,7 +34,7 @@ const AboutSection = () => {
             <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
               Why Athena
             </p>
-            <h2 className="mb-6 font-display text-4xl font-bold tracking-tight md:text-5xl">
+            <h2 className="mb-5 font-display text-4xl font-bold tracking-tight md:text-5xl">
               Strategy Meets{" "}
               <span className="text-gradient">Execution</span>
             </h2>
@@ -43,9 +43,12 @@ const AboutSection = () => {
               We combine deep technical expertise in app development with cutting-edge data science
               to deliver products that don't just work — they learn and evolve.
             </p>
+            <p className="mt-4 text-base font-medium text-primary/90 italic">
+              Built to defense-grade standards. Delivered at startup speed.
+            </p>
           </motion.div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-5">
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
