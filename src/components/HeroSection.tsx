@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -6,170 +5,190 @@ import { ArrowRight } from "lucide-react";
 /* ── Animated dot-grid background ── */
 const GridBackground = () => (
   <div className="absolute inset-0 overflow-hidden">
+    {/* Dot grid overlay */}
     <motion.div
       className="absolute inset-0"
       style={{
-        backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.05) 1px, transparent 1px)`,
-        backgroundSize: "50px 50px",
+        backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.07) 1px, transparent 1px)`,
+        backgroundSize: "40px 40px",
       }}
-      animate={{ y: [0, 50] }}
-      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      animate={{ y: [0, 40] }}
+      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
     />
+    {/* Slow-moving grid lines */}
     <motion.div
       className="absolute inset-0"
       style={{
         backgroundImage: `
-          linear-gradient(to right, hsl(var(--primary) / 0.02) 1px, transparent 1px),
-          linear-gradient(to bottom, hsl(var(--primary) / 0.02) 1px, transparent 1px)
+          linear-gradient(to right, hsl(var(--primary) / 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, hsl(var(--primary) / 0.03) 1px, transparent 1px)
         `,
-        backgroundSize: "100px 100px",
+        backgroundSize: "80px 80px",
       }}
-      animate={{ y: [0, 100] }}
-      transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      animate={{ y: [0, 80] }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
     />
   </div>
 );
 
-/* ── Flowing particle wave visualization (full-width background) ── */
-const ParticleWaveBackground = () => {
-  const { particles, connections, rows, cols } = useMemo(() => {
-    const pts: { x: number; y: number; r: number; delay: number; baseY: number }[] = [];
-    const numCols = 32;
-    const numRows = 12;
-    const w = 1400;
-    const h = 800;
-    const spacingX = w / (numCols - 1);
-    const spacingY = h / (numRows - 1);
+/* ── Animated network graph visualization ── */
+const NetworkGraph = () => {
+  // Generate nodes along a proper Möbius strip surface using parametric equations
+  // u goes around the strip, v goes across the width
+  const mobiusNodes: { x: number; y: number; r: number; delay: number }[] = [];
+  const stepsU = 36; // around the loop
+  const stepsV = 3;  // across the strip width (center + 2 edges)
+  const cx = 300, cy = 230;
+  const R = 160; // major radius
+  const stripW = 45; // half-width of the strip
 
-    for (let row = 0; row < numRows; row++) {
-      for (let col = 0; col < numCols; col++) {
-        const x = col * spacingX;
-        const baseY = row * spacingY;
-        const waveOffset = Math.sin((col / numCols) * Math.PI * 3) * 40;
-        const y = baseY + waveOffset;
-        const distFromCenter = Math.abs(row - numRows / 2) / (numRows / 2);
-        const r = 1.2 + (1 - distFromCenter) * 2;
-        pts.push({
-          x: Math.round(x),
-          y: Math.round(y),
-          r,
-          delay: (col / numCols) * 2 + (row / numRows) * 0.5,
-          baseY: Math.round(baseY),
-        });
+  for (let ui = 0; ui < stepsU; ui++) {
+    for (let vi = 0; vi < stepsV; vi++) {
+      const u = (ui / stepsU) * Math.PI * 2;
+      const v = ((vi / (stepsV - 1)) - 0.5) * 2 * stripW; // -stripW to +stripW
+      const halfU = u / 2;
+      
+      // 3D Möbius parametric equations
+      const x3d = (R + v * Math.cos(halfU)) * Math.cos(u);
+      const y3d = (R + v * Math.cos(halfU)) * Math.sin(u);
+      const z3d = v * Math.sin(halfU);
+      
+      // Project 3D → 2D with slight perspective tilt
+      const tiltX = 0.15; // tilt around X axis for depth
+      const projY = y3d * Math.cos(tiltX) - z3d * Math.sin(tiltX);
+      const projZ = y3d * Math.sin(tiltX) + z3d * Math.cos(tiltX);
+      const perspective = 600 / (600 + projZ * 0.3);
+      
+      const px = cx + x3d * perspective * 0.85;
+      const py = cy + projY * perspective * 0.55;
+      
+      mobiusNodes.push({
+        x: Math.round(px),
+        y: Math.round(py),
+        r: 2 + (vi === 1 ? 1.5 : 0.8) + perspective * 0.8,
+        delay: (ui / stepsU) * 2,
+      });
+    }
+  }
+
+  // Build mesh edges: along strip and across strip
+  const edges: number[][] = [];
+  for (let ui = 0; ui < stepsU; ui++) {
+    const nextU = (ui + 1) % stepsU;
+    for (let vi = 0; vi < stepsV; vi++) {
+      const idx = ui * stepsV + vi;
+      // Connect along the strip (u direction)
+      edges.push([idx, nextU * stepsV + vi]);
+      // Connect across the strip (v direction)
+      if (vi < stepsV - 1) {
+        edges.push([idx, idx + 1]);
+      }
+      // Diagonal mesh connections
+      if (vi < stepsV - 1) {
+        edges.push([idx, nextU * stepsV + vi + 1]);
       }
     }
-
-    const conns: number[][] = [];
-    for (let row = 0; row < numRows; row++) {
-      for (let col = 0; col < numCols; col++) {
-        const idx = row * numCols + col;
-        if (col < numCols - 1) conns.push([idx, idx + 1]);
-        if (row < numRows - 1) conns.push([idx, idx + numCols]);
-        if (col < numCols - 1 && row < numRows - 1 && (col + row) % 4 === 0) {
-          conns.push([idx, idx + numCols + 1]);
-        }
-      }
-    }
-
-    return { particles: pts, connections: conns, rows: numRows, cols: numCols };
-  }, []);
+  }
 
   return (
     <motion.div
-      className="absolute inset-0 overflow-hidden pointer-events-none"
+      className="relative hidden lg:flex items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2, delay: 0.5 }}
+      transition={{ duration: 1.5, delay: 0.8 }}
     >
-      <svg 
-        className="absolute inset-0 w-full h-full" 
-        viewBox="0 0 1400 800" 
-        preserveAspectRatio="xMidYMid slice"
-        fill="none"
-      >
-        {/* Connection lines */}
-        {connections.map(([from, to], i) => (
-          <motion.line
-            key={`e-${i}`}
-            x1={particles[from].x}
-            y1={particles[from].y}
-            x2={particles[to].x}
-            y2={particles[to].y}
-            stroke="hsl(var(--primary))"
-            strokeWidth="0.3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.06 }}
-            transition={{ duration: 1, delay: 0.5 + i * 0.001 }}
-          />
-        ))}
-
-        {/* Flowing energy waves — subtle static lines */}
-        {[0, 1, 2, 3].map((waveIdx) => {
-          const row = Math.floor(rows / 2) - 2 + waveIdx;
-          const points = Array.from({ length: cols }, (_, col) => {
-            const idx = row * cols + col;
-            return `${particles[idx].x},${particles[idx].y}`;
-          }).join(" ");
-          return (
-            <motion.polyline
-              key={`wave-${waveIdx}`}
-              points={points}
-              fill="none"
+      <div className="relative w-[560px] h-[440px] xl:w-[600px] xl:h-[460px]">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 600 460" fill="none">
+          {/* Edges with flowing animation */}
+          {edges.map(([from, to], i) => (
+            <motion.line
+              key={`edge-${i}`}
+              x1={mobiusNodes[from].x}
+              y1={mobiusNodes[from].y}
+              x2={mobiusNodes[to].x}
+              y2={mobiusNodes[to].y}
               stroke="hsl(var(--primary))"
-              strokeWidth={waveIdx === 1 || waveIdx === 2 ? "0.8" : "0.4"}
+              strokeWidth="0.6"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: waveIdx === 1 || waveIdx === 2 ? 0.18 : 0.08 }}
-              transition={{ duration: 4, delay: 0.8 + waveIdx * 0.3, ease: "easeOut" }}
+              animate={{ pathLength: 1, opacity: 0.15 }}
+              transition={{ duration: 1.5, delay: 1 + i * 0.04, ease: "easeOut" }}
             />
-          );
-        })}
+          ))}
 
-        {/* Traveling particles — fewer and slower */}
-        {[0, 1, 2].map((pIdx) => {
-          const row = Math.floor(rows / 2) + (pIdx % 2 === 0 ? 0 : -1);
-          const waypoints = Array.from({ length: cols }, (_, col) => {
-            const idx = row * cols + col;
-            return particles[idx];
-          });
-          return (
-            <motion.circle
-              key={`flow-${pIdx}`}
-              r="2"
-              fill="hsl(var(--primary))"
-              animate={{
-                cx: waypoints.map((p) => p.x),
-                cy: waypoints.map((p) => p.y),
-                opacity: [0, 0.5, 0.5, 0.5, 0],
-              }}
-              transition={{
-                duration: 12,
-                delay: pIdx * 4,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          );
-        })}
+          {/* Data flow particles along edges */}
+          {edges.filter((_, i) => i % 4 === 0).map(([from, to], i) => {
+            const dx = mobiusNodes[to].x - mobiusNodes[from].x;
+            const dy = mobiusNodes[to].y - mobiusNodes[from].y;
+            return (
+              <motion.circle
+                key={`particle-${i}`}
+                r="1.5"
+                fill="hsl(var(--primary))"
+                opacity="0.6"
+                animate={{
+                  cx: [mobiusNodes[from].x, mobiusNodes[from].x + dx * 0.5, mobiusNodes[to].x],
+                  cy: [mobiusNodes[from].y, mobiusNodes[from].y + dy * 0.5, mobiusNodes[to].y],
+                  opacity: [0, 0.8, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  delay: 2 + i * 0.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            );
+          })}
 
-        {/* Particle dots — very subtle breathing */}
-        {particles.map((p, i) => (
-          <motion.circle
-            key={`p-${i}`}
-            cx={p.x}
-            r={p.r}
-            fill="hsl(var(--primary))"
-            initial={{ cy: p.y, opacity: 0 }}
-            animate={{
-              cy: [p.y, p.y - 4, p.y + 4, p.y],
-              opacity: [0.12, 0.25, 0.12],
-            }}
-            transition={{
-              cy: { duration: 10, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 8, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
-            }}
-          />
+          {/* Nodes */}
+          {mobiusNodes.map((node, i) => (
+            <g key={`node-${i}`}>
+              <motion.circle
+                cx={node.x}
+                cy={node.y}
+                r={node.r * 2.5}
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth="0.4"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.1, 0, 0.1] }}
+                transition={{ duration: 3, delay: node.delay + 1.5, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformOrigin: `${node.x}px ${node.y}px` }}
+              />
+              <motion.circle
+                cx={node.x}
+                cy={node.y}
+                r={node.r}
+                fill="hsl(var(--primary))"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: [0.4, 0.8, 0.4] }}
+                transition={{
+                  scale: { duration: 0.5, delay: 1 + node.delay },
+                  opacity: { duration: 2.5, delay: 1 + node.delay, repeat: Infinity, ease: "easeInOut" },
+                }}
+                style={{ transformOrigin: `${node.x}px ${node.y}px` }}
+              />
+            </g>
+          ))}
+        </svg>
+
+        {/* Labels floating near key nodes */}
+        {[
+          { x: "8%", y: "10%", text: "PREDICT", delay: 2 },
+          { x: "60%", y: "18%", text: "ANALYZE", delay: 2.5 },
+          { x: "75%", y: "65%", text: "OPTIMIZE", delay: 3 },
+        ].map((label, i) => (
+          <motion.span
+            key={i}
+            className="absolute text-[9px] font-display font-semibold tracking-[0.2em] text-primary/40"
+            style={{ left: label.x, top: label.y }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.5, 0] }}
+            transition={{ duration: 4, delay: label.delay, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {label.text}
+          </motion.span>
         ))}
-      </svg>
+      </div>
     </motion.div>
   );
 };
@@ -179,7 +198,7 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Deep layered background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.06),transparent_60%)]" />
 
       {/* Noise texture overlay */}
       <div
@@ -191,81 +210,84 @@ const HeroSection = () => {
 
       <GridBackground />
 
-      {/* Particle wave as full background */}
-      <ParticleWaveBackground />
-
       {/* Radial gold glow behind headline area */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] pointer-events-none"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.08) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.06) 0%, transparent 65%)",
         }}
       />
 
-      {/* Text content - centered on top of particle wave */}
-      <div className="container relative z-10 mx-auto px-6 py-8 pb-16 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="flex items-center gap-3 justify-center mb-6"
-        >
-          <div className="h-px w-8 bg-primary/50" />
-          <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-            Data Science · Analytics · SaaS
-          </p>
-          <div className="h-px w-8 bg-primary/50" />
-        </motion.div>
+      <div className="container relative z-10 mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
+          {/* Left: Text content */}
+          <div className="text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="flex items-center gap-3 justify-center lg:justify-start mb-8"
+            >
+              <div className="h-px w-8 bg-primary/50" />
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                Data Science · Analytics · SaaS
+              </p>
+              <div className="h-px w-8 bg-primary/50" />
+            </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="font-display font-bold leading-[1.08] tracking-tight mx-auto max-w-4xl"
-          style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
-        >
-          Turning Data Into
-          <br />
-          <span className="text-gradient">Intelligent</span> Products
-        </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 30, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
+            >
+              Turning Data Into{" "}
+              <span className="text-gradient">Intelligent</span>{" "}
+              Products
+            </motion.h1>
 
-        {/* Gold divider */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mt-6 mb-6 h-px w-24 bg-gradient-to-r from-transparent via-primary/60 to-transparent mx-auto"
-        />
+            {/* Gold divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="mt-6 mb-6 h-px w-24 bg-gradient-to-r from-primary/60 to-transparent origin-left mx-auto lg:mx-0"
+            />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="max-w-2xl text-base text-muted-foreground md:text-lg leading-relaxed mx-auto"
-        >
-          Enterprise-grade data science and analytics platforms, delivered at startup speed.
-          We build production-ready SaaS applications that transform raw data into decision engines.
-        </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="max-w-lg text-base text-muted-foreground md:text-lg leading-relaxed mx-auto lg:mx-0"
+            >
+              Enterprise-grade data science and analytics platforms, delivered at startup speed.
+              We build production-ready SaaS applications that transform raw data into decision engines.
+            </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row justify-center"
-        >
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-            <Button variant="hero" size="lg" asChild>
-              <a href="#contact">
-                Start a Project <ArrowRight className="ml-1" size={18} />
-              </a>
-            </Button>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-            <Button variant="heroOutline" size="lg" asChild>
-              <a href="#services">Explore Services</a>
-            </Button>
-          </motion.div>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 1, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:justify-start sm:justify-center"
+            >
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Button variant="hero" size="lg" asChild>
+                  <a href="#contact">
+                    Start a Project <ArrowRight className="ml-1" size={18} />
+                  </a>
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Button variant="heroOutline" size="lg" asChild>
+                  <a href="#services">Explore Services</a>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Right: Animated network graph */}
+          <NetworkGraph />
+        </div>
       </div>
 
       {/* Bottom section divider */}
