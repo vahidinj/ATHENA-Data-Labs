@@ -214,7 +214,7 @@ const FloatingWave = () => {
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative flex items-center justify-center overflow-hidden pt-16" style={{ minHeight: "calc(100vh - 0px)" }}>
       {/* Layered background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
       {/* Noise texture overlay */}
@@ -228,12 +228,7 @@ const HeroSection = () => {
       />
       <GridBackground />
 
-      {/* Subtle ambient data graphics */}
-      <FloatingScatter />
-      <FloatingBarChart />
-      <FloatingWave />
-
-      <div className="container relative z-10 mx-auto px-6 py-16">
+      <div className="container relative z-10 mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
           {/* Left: Text content */}
           <div className="text-center lg:text-left">
@@ -300,8 +295,16 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right: Animated network graph */}
-          <NetworkGraph />
+          {/* Right: All graphics contained here */}
+          <div className="relative hidden lg:block overflow-hidden" style={{ width: 420, height: 340 }}>
+            <NetworkGraph />
+            {/* Scatter — top-right area */}
+            <FloatingScatter style={{ position: "absolute", top: "5%", right: "2%" }} />
+            {/* Bar chart — bottom-right area */}
+            <FloatingBarChart style={{ position: "absolute", bottom: "5%", right: "8%" }} />
+            {/* Wave — bottom-left area */}
+            <FloatingWave style={{ position: "absolute", bottom: "2%", left: "2%" }} />
+          </div>
         </div>
       </div>
     </section>
