@@ -75,22 +75,22 @@ const NetworkGraph = () => {
           {edges.map(([from, to], i) => (
             <motion.line
               key={`edge-${i}`}
-              x1={nodes[from].x}
-              y1={nodes[from].y}
-              x2={nodes[to].x}
-              y2={nodes[to].y}
+              x1={mobiusNodes[from].x}
+              y1={mobiusNodes[from].y}
+              x2={mobiusNodes[to].x}
+              y2={mobiusNodes[to].y}
               stroke="hsl(var(--primary))"
-              strokeWidth="0.8"
+              strokeWidth="0.6"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.2 }}
-              transition={{ duration: 1.5, delay: 1 + i * 0.08, ease: "easeOut" }}
+              animate={{ pathLength: 1, opacity: 0.15 }}
+              transition={{ duration: 1.5, delay: 1 + i * 0.04, ease: "easeOut" }}
             />
           ))}
 
           {/* Data flow particles along edges */}
-          {edges.filter((_, i) => i % 3 === 0).map(([from, to], i) => {
-            const dx = nodes[to].x - nodes[from].x;
-            const dy = nodes[to].y - nodes[from].y;
+          {edges.filter((_, i) => i % 4 === 0).map(([from, to], i) => {
+            const dx = mobiusNodes[to].x - mobiusNodes[from].x;
+            const dy = mobiusNodes[to].y - mobiusNodes[from].y;
             return (
               <motion.circle
                 key={`particle-${i}`}
@@ -98,13 +98,13 @@ const NetworkGraph = () => {
                 fill="hsl(var(--primary))"
                 opacity="0.6"
                 animate={{
-                  cx: [nodes[from].x, nodes[from].x + dx * 0.5, nodes[to].x],
-                  cy: [nodes[from].y, nodes[from].y + dy * 0.5, nodes[to].y],
+                  cx: [mobiusNodes[from].x, mobiusNodes[from].x + dx * 0.5, mobiusNodes[to].x],
+                  cy: [mobiusNodes[from].y, mobiusNodes[from].y + dy * 0.5, mobiusNodes[to].y],
                   opacity: [0, 0.8, 0],
                 }}
                 transition={{
                   duration: 3,
-                  delay: 2 + i * 1.2,
+                  delay: 2 + i * 0.8,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
@@ -113,31 +113,26 @@ const NetworkGraph = () => {
           })}
 
           {/* Nodes */}
-          {nodes.map((node, i) => (
+          {mobiusNodes.map((node, i) => (
             <g key={`node-${i}`}>
-              {/* Pulse ring */}
               <motion.circle
                 cx={node.x}
                 cy={node.y}
-                r={node.r * 3}
+                r={node.r * 2.5}
                 fill="none"
                 stroke="hsl(var(--primary))"
-                strokeWidth="0.5"
-                animate={{ scale: [1, 1.5, 1], opacity: [0.15, 0, 0.15] }}
+                strokeWidth="0.4"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.1, 0, 0.1] }}
                 transition={{ duration: 3, delay: node.delay + 1.5, repeat: Infinity, ease: "easeInOut" }}
                 style={{ transformOrigin: `${node.x}px ${node.y}px` }}
               />
-              {/* Node dot */}
               <motion.circle
                 cx={node.x}
                 cy={node.y}
                 r={node.r}
                 fill="hsl(var(--primary))"
                 initial={{ scale: 0, opacity: 0 }}
-                animate={{
-                  scale: 1,
-                  opacity: [0.4, 0.8, 0.4],
-                }}
+                animate={{ scale: 1, opacity: [0.4, 0.8, 0.4] }}
                 transition={{
                   scale: { duration: 0.5, delay: 1 + node.delay },
                   opacity: { duration: 2.5, delay: 1 + node.delay, repeat: Infinity, ease: "easeInOut" },
