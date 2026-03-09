@@ -33,33 +33,61 @@ const GridBackground = () => (
 
 /* ── Animated network graph visualization ── */
 const NetworkGraph = () => {
-  // Generate nodes along a Möbius strip path
+  // Generate nodes along a proper Möbius strip surface using parametric equations
+  // u goes around the strip, v goes across the width
   const mobiusNodes: { x: number; y: number; r: number; delay: number }[] = [];
-  const nodeCount = 28;
-  const cx = 250, cy = 185;
-  const a = 180, b = 80; // strip radii
+  const stepsU = 36; // around the loop
+  const stepsV = 3;  // across the strip width (center + 2 edges)
+  const cx = 300, cy = 230;
+  const R = 160; // major radius
+  const stripW = 45; // half-width of the strip
 
-  for (let i = 0; i < nodeCount; i++) {
-    const t = (i / nodeCount) * Math.PI * 2;
-    const halfT = t / 2;
-    // Möbius strip parametric: twist the strip by half-turn
-    const w = (i % 2 === 0 ? 1 : -1) * 18; // offset from center line
-    const px = cx + (a + w * Math.cos(halfT)) * Math.cos(t) * 0.55;
-    const py = cy + (b + w * Math.cos(halfT)) * Math.sin(t) + w * Math.sin(halfT) * 0.4;
-    mobiusNodes.push({
-      x: Math.round(px),
-      y: Math.round(py),
-      r: 2.5 + (i % 3) * 1.2,
-      delay: (i / nodeCount) * 1.5,
-    });
+  for (let ui = 0; ui < stepsU; ui++) {
+    for (let vi = 0; vi < stepsV; vi++) {
+      const u = (ui / stepsU) * Math.PI * 2;
+      const v = ((vi / (stepsV - 1)) - 0.5) * 2 * stripW; // -stripW to +stripW
+      const halfU = u / 2;
+      
+      // 3D Möbius parametric equations
+      const x3d = (R + v * Math.cos(halfU)) * Math.cos(u);
+      const y3d = (R + v * Math.cos(halfU)) * Math.sin(u);
+      const z3d = v * Math.sin(halfU);
+      
+      // Project 3D → 2D with slight perspective tilt
+      const tiltX = 0.15; // tilt around X axis for depth
+      const projY = y3d * Math.cos(tiltX) - z3d * Math.sin(tiltX);
+      const projZ = y3d * Math.sin(tiltX) + z3d * Math.cos(tiltX);
+      const perspective = 600 / (600 + projZ * 0.3);
+      
+      const px = cx + x3d * perspective * 0.85;
+      const py = cy + projY * perspective * 0.55;
+      
+      mobiusNodes.push({
+        x: Math.round(px),
+        y: Math.round(py),
+        r: 2 + (vi === 1 ? 1.5 : 0.8) + perspective * 0.8,
+        delay: (ui / stepsU) * 2,
+      });
+    }
   }
 
-  // Connect sequential nodes + cross-connections for mesh look
+  // Build mesh edges: along strip and across strip
   const edges: number[][] = [];
-  for (let i = 0; i < nodeCount; i++) {
-    edges.push([i, (i + 1) % nodeCount]);
-    edges.push([i, (i + 2) % nodeCount]);
-    if (i % 3 === 0) edges.push([i, (i + Math.floor(nodeCount / 2)) % nodeCount]);
+  for (let ui = 0; ui < stepsU; ui++) {
+    const nextU = (ui + 1) % stepsU;
+    for (let vi = 0; vi < stepsV; vi++) {
+      const idx = ui * stepsV + vi;
+      // Connect along the strip (u direction)
+      edges.push([idx, nextU * stepsV + vi]);
+      // Connect across the strip (v direction)
+      if (vi < stepsV - 1) {
+        edges.push([idx, idx + 1]);
+      }
+      // Diagonal mesh connections
+      if (vi < stepsV - 1) {
+        edges.push([idx, nextU * stepsV + vi + 1]);
+      }
+    }
   }
 
   return (
@@ -69,8 +97,8 @@ const NetworkGraph = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5, delay: 0.8 }}
     >
-      <div className="relative w-[480px] h-[380px] xl:w-[520px] xl:h-[400px]">
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 370" fill="none">
+      <div className="relative w-[560px] h-[440px] xl:w-[600px] xl:h-[460px]">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 600 460" fill="none">
           {/* Edges with flowing animation */}
           {edges.map(([from, to], i) => (
             <motion.line
