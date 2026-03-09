@@ -14,12 +14,11 @@ const Footer = () => {
           <motion.img 
             src={currentLogo} 
             alt="Athena Data Labs logo" 
-            className="h-10 w-10 object-contain drop-shadow-[0_0_6px_hsl(38,45%,60%,0.3)]"
+            className="h-10 w-10 object-contain"
             whileHover={{ 
-              rotate: [0, -5, 5, 0],
-              filter: "drop-shadow(0 0 8px hsl(38 45% 60% / 0.6))"
+              filter: "drop-shadow(0 0 2px hsl(38 55% 50% / 0.8))"
             }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
           />
           <span className="flex flex-col leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
