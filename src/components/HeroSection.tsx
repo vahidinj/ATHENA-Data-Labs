@@ -9,23 +9,23 @@ const GridBackground = () => (
     <motion.div
       className="absolute inset-0"
       style={{
-        backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.07) 1px, transparent 1px)`,
-        backgroundSize: "40px 40px",
+        backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.05) 1px, transparent 1px)`,
+        backgroundSize: "50px 50px",
       }}
-      animate={{ y: [0, 40] }}
-      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+      animate={{ y: [0, 50] }}
+      transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
     />
     <motion.div
       className="absolute inset-0"
       style={{
         backgroundImage: `
-          linear-gradient(to right, hsl(var(--primary) / 0.03) 1px, transparent 1px),
-          linear-gradient(to bottom, hsl(var(--primary) / 0.03) 1px, transparent 1px)
+          linear-gradient(to right, hsl(var(--primary) / 0.02) 1px, transparent 1px),
+          linear-gradient(to bottom, hsl(var(--primary) / 0.02) 1px, transparent 1px)
         `,
-        backgroundSize: "80px 80px",
+        backgroundSize: "100px 100px",
       }}
-      animate={{ y: [0, 80] }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      animate={{ y: [0, 100] }}
+      transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
     />
   </div>
 );
