@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
@@ -83,7 +84,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -94,6 +95,7 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
           <Button variant="heroOutline" size="sm" asChild>
             <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
               Get Started
@@ -129,6 +131,10 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <div className="flex items-center justify-between pt-1">
+              <span className="text-sm font-medium text-muted-foreground">Theme</span>
+              <ThemeToggle />
+            </div>
             <Button variant="heroOutline" size="sm" asChild>
               <a href="#contact" onClick={(e) => handleClick(e, "#contact")}>
                 Get Started
@@ -142,3 +148,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
