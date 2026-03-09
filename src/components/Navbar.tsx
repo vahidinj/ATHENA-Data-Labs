@@ -64,7 +64,7 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-[hsl(222,47%,8%/0.82)] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/40 after:to-transparent"
+      className="fixed top-0 left-0 right-0 z-50 bg-[hsl(222,47%,8%/0.1)] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/40 after:to-transparent"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <a
