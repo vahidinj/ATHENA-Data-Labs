@@ -99,6 +99,10 @@
     --shadow-glow: 0 0 30px -5px hsl(38 45% 60% / 0.25);
     --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.4);
 
+    --glass-bg: hsl(213 35% 14% / 0.5);
+    --glass-border: hsl(213 20% 30% / 0.3);
+    --glass-blur: 16px;
+
     --sidebar-background: 213 35% 11%;
     --sidebar-foreground: 210 20% 92%;
     --sidebar-primary: 38 45% 60%;
