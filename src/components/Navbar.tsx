@@ -95,7 +95,7 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              className="text-sm font-medium text-white/70 transition-colors hover:text-primary"
             >
               {link.label}
             </a>
