@@ -210,7 +210,7 @@ const FounderSection = () => {
         </motion.div>
 
         {/* Education, Certifications, Publications */}
-        <div className="mb-14 grid gap-6 md:grid-cols-3">
+        <div className="mb-6 grid gap-6 md:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
