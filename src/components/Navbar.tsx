@@ -62,7 +62,7 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-[hsl(222,47%,8%/0.85)] backdrop-blur-xl after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/40 after:to-transparent"
+      className="fixed top-0 left-0 right-0 z-50 bg-[hsl(222,47%,8%/0.5)] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-primary/40 after:to-transparent"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <a
@@ -84,7 +84,7 @@ const Navbar = () => {
           />
           <span className="flex items-baseline gap-1.5 leading-none">
             <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
-            <span className="text-gradient text-[0.65rem] font-bold tracking-[0.35em] opacity-80">DATA LABS</span>
+            <span className="text-gradient text-[0.85rem] font-bold tracking-[0.35em] opacity-80">DATA LABS</span>
           </span>
         </a>
 
