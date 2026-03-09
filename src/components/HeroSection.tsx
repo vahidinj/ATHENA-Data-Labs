@@ -247,7 +247,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="font-display font-bold leading-[1.05] tracking-tight"
-              style={{ fontSize: 'clamp(3rem, 5vw, 5rem)' }}
+              style={{ fontSize: 'clamp(3.5rem, 5.5vw, 6rem)' }}
             >
               Turning Data Into<br />
               <span className="text-gradient">Intelligent</span> Products
