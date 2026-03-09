@@ -131,7 +131,7 @@ const FounderSection = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="card-gradient rounded-xl border border-border/50 p-6 text-center"
+                className="glass rounded-xl p-6 text-center border-l-[3px] border-l-transparent transition-all duration-300 hover:border-l-primary hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.2)]"
               >
                 <div className="mx-auto mb-3 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
                   <stat.icon size={22} />
@@ -163,7 +163,7 @@ const FounderSection = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
-                className="card-gradient rounded-xl border border-border/50 p-6"
+                className="glass rounded-xl p-6 border-l-[3px] border-l-transparent transition-all duration-300 hover:border-l-primary hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.2)]"
               >
                 <h4 className="font-display text-lg font-semibold">{item.title}</h4>
                 <p className="mt-1 text-sm font-medium text-primary">{item.role}</p>
@@ -177,14 +177,13 @@ const FounderSection = () => {
 
         {/* Education, Certifications, Publications */}
         <div className="mb-20 grid gap-6 md:grid-cols-3">
-          {/* Education */}
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="card-gradient rounded-xl border border-border/50 p-6"
+            className="glass rounded-xl p-6 border-l-[3px] border-l-transparent transition-all duration-300 hover:border-l-primary hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.2)]"
           >
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
               <GraduationCap size={22} />
@@ -200,14 +199,13 @@ const FounderSection = () => {
             </div>
           </motion.div>
 
-          {/* Certifications */}
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="card-gradient rounded-xl border border-border/50 p-6"
+            className="glass rounded-xl p-6 border-l-[3px] border-l-transparent transition-all duration-300 hover:border-l-primary hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.2)]"
           >
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
               <BadgeCheck size={22} />
@@ -220,14 +218,13 @@ const FounderSection = () => {
             </ul>
           </motion.div>
 
-          {/* Publications */}
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="card-gradient rounded-xl border border-border/50 p-6"
+            className="glass rounded-xl p-6 border-l-[3px] border-l-transparent transition-all duration-300 hover:border-l-primary hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.2)]"
           >
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
               <FileText size={22} />
@@ -248,7 +245,7 @@ const FounderSection = () => {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
           whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-          className="mx-auto max-w-3xl rounded-xl border border-primary/20 card-gradient p-8 text-center"
+          className="mx-auto max-w-3xl rounded-xl border border-primary/20 glass p-8 text-center"
         >
           <div className="mx-auto mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
             <Brain size={24} />
