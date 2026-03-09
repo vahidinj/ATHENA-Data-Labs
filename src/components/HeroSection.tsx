@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -5,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 /* ── Animated dot-grid background ── */
 const GridBackground = () => (
   <div className="absolute inset-0 overflow-hidden">
-    {/* Dot grid overlay */}
     <motion.div
       className="absolute inset-0"
       style={{
@@ -15,7 +15,6 @@ const GridBackground = () => (
       animate={{ y: [0, 40] }}
       transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
     />
-    {/* Slow-moving grid lines */}
     <motion.div
       className="absolute inset-0"
       style={{
@@ -31,151 +30,156 @@ const GridBackground = () => (
   </div>
 );
 
-/* ── Animated network graph visualization ── */
-const NetworkGraph = () => {
-  // Generate nodes along a proper Möbius strip surface using parametric equations
-  // u goes around the strip, v goes across the width
-  const mobiusNodes: { x: number; y: number; r: number; delay: number }[] = [];
-  const stepsU = 36; // around the loop
-  const stepsV = 3;  // across the strip width (center + 2 edges)
-  const cx = 300, cy = 230;
-  const R = 160; // major radius
-  const stripW = 45; // half-width of the strip
+/* ── Flowing particle wave visualization ── */
+const ParticleWave = () => {
+  const { particles, connections } = useMemo(() => {
+    const pts: { x: number; y: number; r: number; delay: number; baseY: number }[] = [];
+    const cols = 24;
+    const rows = 8;
+    const w = 700;
+    const h = 500;
+    const spacingX = w / (cols - 1);
+    const spacingY = h / (rows - 1);
 
-  for (let ui = 0; ui < stepsU; ui++) {
-    for (let vi = 0; vi < stepsV; vi++) {
-      const u = (ui / stepsU) * Math.PI * 2;
-      const v = ((vi / (stepsV - 1)) - 0.5) * 2 * stripW; // -stripW to +stripW
-      const halfU = u / 2;
-      
-      // 3D Möbius parametric equations
-      const x3d = (R + v * Math.cos(halfU)) * Math.cos(u);
-      const y3d = (R + v * Math.cos(halfU)) * Math.sin(u);
-      const z3d = v * Math.sin(halfU);
-      
-      // Project 3D → 2D with slight perspective tilt
-      const tiltX = 0.15; // tilt around X axis for depth
-      const projY = y3d * Math.cos(tiltX) - z3d * Math.sin(tiltX);
-      const projZ = y3d * Math.sin(tiltX) + z3d * Math.cos(tiltX);
-      const perspective = 600 / (600 + projZ * 0.3);
-      
-      const px = cx + x3d * perspective * 0.85;
-      const py = cy + projY * perspective * 0.55;
-      
-      mobiusNodes.push({
-        x: Math.round(px),
-        y: Math.round(py),
-        r: 2 + (vi === 1 ? 1.5 : 0.8) + perspective * 0.8,
-        delay: (ui / stepsU) * 2,
-      });
-    }
-  }
-
-  // Build mesh edges: along strip and across strip
-  const edges: number[][] = [];
-  for (let ui = 0; ui < stepsU; ui++) {
-    const nextU = (ui + 1) % stepsU;
-    for (let vi = 0; vi < stepsV; vi++) {
-      const idx = ui * stepsV + vi;
-      // Connect along the strip (u direction)
-      edges.push([idx, nextU * stepsV + vi]);
-      // Connect across the strip (v direction)
-      if (vi < stepsV - 1) {
-        edges.push([idx, idx + 1]);
-      }
-      // Diagonal mesh connections
-      if (vi < stepsV - 1) {
-        edges.push([idx, nextU * stepsV + vi + 1]);
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const x = col * spacingX;
+        const baseY = row * spacingY;
+        // Sine wave offset based on column position
+        const waveOffset = Math.sin((col / cols) * Math.PI * 2.5) * 30;
+        const y = baseY + waveOffset;
+        // Particles near the center wave peak are larger/brighter
+        const distFromCenter = Math.abs(row - rows / 2) / (rows / 2);
+        const r = 1.5 + (1 - distFromCenter) * 2;
+        pts.push({
+          x: Math.round(x),
+          y: Math.round(y),
+          r,
+          delay: (col / cols) * 2 + (row / rows) * 0.5,
+          baseY: Math.round(baseY),
+        });
       }
     }
-  }
+
+    // Build connections: horizontal + vertical + some diagonals
+    const conns: number[][] = [];
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const idx = row * cols + col;
+        // Horizontal
+        if (col < cols - 1) conns.push([idx, idx + 1]);
+        // Vertical
+        if (row < rows - 1) conns.push([idx, idx + cols]);
+        // Diagonal (sparse)
+        if (col < cols - 1 && row < rows - 1 && (col + row) % 3 === 0) {
+          conns.push([idx, idx + cols + 1]);
+        }
+      }
+    }
+
+    return { particles: pts, connections: conns };
+  }, []);
 
   return (
     <motion.div
       className="relative hidden lg:flex items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, delay: 0.8 }}
+      transition={{ duration: 1.5, delay: 0.6 }}
     >
-      <div className="relative w-[560px] h-[440px] xl:w-[600px] xl:h-[460px]">
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 600 460" fill="none">
-          {/* Edges with flowing animation */}
-          {edges.map(([from, to], i) => (
+      <div className="relative w-[650px] h-[480px] xl:w-[700px] xl:h-[500px]">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 700 500" fill="none">
+          {/* Connection lines */}
+          {connections.map(([from, to], i) => (
             <motion.line
-              key={`edge-${i}`}
-              x1={mobiusNodes[from].x}
-              y1={mobiusNodes[from].y}
-              x2={mobiusNodes[to].x}
-              y2={mobiusNodes[to].y}
+              key={`e-${i}`}
+              x1={particles[from].x}
+              y1={particles[from].y}
+              x2={particles[to].x}
+              y2={particles[to].y}
               stroke="hsl(var(--primary))"
-              strokeWidth="0.6"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.15 }}
-              transition={{ duration: 1.5, delay: 1 + i * 0.04, ease: "easeOut" }}
+              strokeWidth="0.4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.08 }}
+              transition={{ duration: 1, delay: 0.5 + i * 0.002 }}
             />
           ))}
 
-          {/* Data flow particles along edges */}
-          {edges.filter((_, i) => i % 4 === 0).map(([from, to], i) => {
-            const dx = mobiusNodes[to].x - mobiusNodes[from].x;
-            const dy = mobiusNodes[to].y - mobiusNodes[from].y;
+          {/* Flowing energy waves — bright lines traveling horizontally */}
+          {[0, 1, 2].map((waveIdx) => {
+            const row = Math.floor(rows / 2) - 1 + waveIdx;
+            const cols = 24;
+            const points = Array.from({ length: cols }, (_, col) => {
+              const idx = row * cols + col;
+              return `${particles[idx].x},${particles[idx].y}`;
+            }).join(" ");
+            return (
+              <motion.polyline
+                key={`wave-${waveIdx}`}
+                points={points}
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth={waveIdx === 1 ? "1.5" : "0.8"}
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: waveIdx === 1 ? 0.4 : 0.2 }}
+                transition={{ duration: 2.5, delay: 0.8 + waveIdx * 0.3, ease: "easeOut" }}
+              />
+            );
+          })}
+
+          {/* Traveling particles along the center wave */}
+          {[0, 1, 2, 3, 4].map((pIdx) => {
+            const row = Math.floor(rows / 2);
+            const cols = 24;
+            const waypoints = Array.from({ length: cols }, (_, col) => {
+              const idx = row * cols + col;
+              return particles[idx];
+            });
             return (
               <motion.circle
-                key={`particle-${i}`}
-                r="1.5"
+                key={`flow-${pIdx}`}
+                r="3"
                 fill="hsl(var(--primary))"
-                opacity="0.6"
                 animate={{
-                  cx: [mobiusNodes[from].x, mobiusNodes[from].x + dx * 0.5, mobiusNodes[to].x],
-                  cy: [mobiusNodes[from].y, mobiusNodes[from].y + dy * 0.5, mobiusNodes[to].y],
-                  opacity: [0, 0.8, 0],
+                  cx: waypoints.map((p) => p.x),
+                  cy: waypoints.map((p) => p.y),
+                  opacity: [0, 0.9, 0.9, 0.9, 0],
                 }}
                 transition={{
-                  duration: 3,
-                  delay: 2 + i * 0.8,
+                  duration: 5,
+                  delay: pIdx * 1.8,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: "linear",
                 }}
               />
             );
           })}
 
-          {/* Nodes */}
-          {mobiusNodes.map((node, i) => (
-            <g key={`node-${i}`}>
-              <motion.circle
-                cx={node.x}
-                cy={node.y}
-                r={node.r * 2.5}
-                fill="none"
-                stroke="hsl(var(--primary))"
-                strokeWidth="0.4"
-                animate={{ scale: [1, 1.4, 1], opacity: [0.1, 0, 0.1] }}
-                transition={{ duration: 3, delay: node.delay + 1.5, repeat: Infinity, ease: "easeInOut" }}
-                style={{ transformOrigin: `${node.x}px ${node.y}px` }}
-              />
-              <motion.circle
-                cx={node.x}
-                cy={node.y}
-                r={node.r}
-                fill="hsl(var(--primary))"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: [0.4, 0.8, 0.4] }}
-                transition={{
-                  scale: { duration: 0.5, delay: 1 + node.delay },
-                  opacity: { duration: 2.5, delay: 1 + node.delay, repeat: Infinity, ease: "easeInOut" },
-                }}
-                style={{ transformOrigin: `${node.x}px ${node.y}px` }}
-              />
-            </g>
+          {/* Particle dots with wave animation */}
+          {particles.map((p, i) => (
+            <motion.circle
+              key={`p-${i}`}
+              cx={p.x}
+              r={p.r}
+              fill="hsl(var(--primary))"
+              initial={{ cy: p.baseY, opacity: 0 }}
+              animate={{
+                cy: [p.y, p.y - 15, p.y + 15, p.y],
+                opacity: [0.2, 0.6, 0.2],
+              }}
+              transition={{
+                cy: { duration: 6, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
+                opacity: { duration: 4, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
+              }}
+            />
           ))}
         </svg>
 
-        {/* Labels floating near key nodes */}
+        {/* Labels */}
         {[
-          { x: "8%", y: "10%", text: "PREDICT", delay: 2 },
-          { x: "60%", y: "18%", text: "ANALYZE", delay: 2.5 },
-          { x: "75%", y: "65%", text: "OPTIMIZE", delay: 3 },
+          { x: "5%", y: "15%", text: "PREDICT", delay: 2 },
+          { x: "42%", y: "8%", text: "ANALYZE", delay: 2.5 },
+          { x: "80%", y: "20%", text: "OPTIMIZE", delay: 3 },
         ].map((label, i) => (
           <motion.span
             key={i}
@@ -193,9 +197,11 @@ const NetworkGraph = () => {
   );
 };
 
+const rows = 8;
+
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
       {/* Deep layered background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.06),transparent_60%)]" />
@@ -212,21 +218,21 @@ const HeroSection = () => {
 
       {/* Radial gold glow behind headline area */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] pointer-events-none"
+        className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] pointer-events-none"
         style={{
           background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.06) 0%, transparent 65%)",
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
+      <div className="container relative z-10 mx-auto px-6 py-8 pb-12">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
           {/* Left: Text content */}
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left flex-1 min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="flex items-center gap-3 justify-center lg:justify-start mb-8"
+              className="flex items-center gap-3 justify-center lg:justify-start mb-6"
             >
               <div className="h-px w-8 bg-primary/50" />
               <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary">
@@ -239,9 +245,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
+              className="font-display font-bold leading-[1.05] tracking-tight"
+              style={{ fontSize: "clamp(3rem, 5vw, 5rem)" }}
             >
               Turning Data Into{" "}
+              <br className="hidden sm:block" />
               <span className="text-gradient">Intelligent</span>{" "}
               Products
             </motion.h1>
@@ -251,7 +259,7 @@ const HeroSection = () => {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="mt-6 mb-6 h-px w-24 bg-gradient-to-r from-primary/60 to-transparent origin-left mx-auto lg:mx-0"
+              className="mt-5 mb-5 h-px w-24 bg-gradient-to-r from-primary/60 to-transparent origin-left mx-auto lg:mx-0"
             />
 
             <motion.p
@@ -268,7 +276,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 1, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:justify-start sm:justify-center"
+              className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start sm:justify-center"
             >
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Button variant="hero" size="lg" asChild>
@@ -285,8 +293,8 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right: Animated network graph */}
-          <NetworkGraph />
+          {/* Right: Flowing particle wave */}
+          <ParticleWave />
         </div>
       </div>
 
