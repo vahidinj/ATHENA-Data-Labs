@@ -210,7 +210,7 @@ const FounderSection = () => {
         </motion.div>
 
         {/* Education, Certifications, Publications */}
-        <div className="mb-14 grid gap-6 md:grid-cols-3">
+        <div className="mb-6 grid gap-6 md:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -295,7 +295,7 @@ const FounderSection = () => {
       </div>
 
       {/* Section divider */}
-      <div className="mx-auto mt-14 max-w-xl">
+      <div className="mx-auto mt-8 max-w-xl">
         <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
     </section>
