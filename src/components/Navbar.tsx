@@ -47,7 +47,6 @@ function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
