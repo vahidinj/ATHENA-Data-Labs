@@ -167,12 +167,7 @@ const ProductSection = () => {
                   <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
 
                   <div
-                    style={{
-                      width: 390,
-                      height: 844,
-                      transform: "scale(0.87)",
-                      transformOrigin: "top left",
-                    }}
+                    className="w-[390px] h-[844px] origin-top-left scale-[0.72] sm:scale-[0.82] lg:scale-[0.87]"
                   >
                     <iframe
                       src="https://mybudgetnerd.com"
