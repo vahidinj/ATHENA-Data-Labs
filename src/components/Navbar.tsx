@@ -59,7 +59,8 @@ const Navbar = () => {
     [],
   );
 
-  const currentLogo = resolvedTheme === "light" ? logoLight : logo;
+  // Navbar is always dark, so always use the dark-mode logo
+  const currentLogo = logo;
 
   return (
     <motion.nav
