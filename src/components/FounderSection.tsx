@@ -158,10 +158,11 @@ const FounderSection = () => {
             {career.map((item, i) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                whileHover={{ x: 5, transition: { duration: 0.2 } }}
                 className="card-gradient rounded-xl border border-border/50 p-6"
               >
                 <h4 className="font-display text-lg font-semibold">{item.title}</h4>
