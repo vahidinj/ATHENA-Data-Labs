@@ -73,7 +73,7 @@ const NetworkGraph = () => {
       transition={{ duration: 1.5, delay: 0.8 }}
     >
       <div className="relative w-[480px] h-[380px] xl:w-[520px] xl:h-[400px]">
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 380 280" fill="none">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 370" fill="none">
           {/* Edges with flowing animation */}
           {edges.map(([from, to], i) => (
             <motion.line
