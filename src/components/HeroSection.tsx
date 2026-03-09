@@ -132,7 +132,7 @@ const FloatingBarChart = () => {
   );
 };
 
-/* ── Subtle scatter plot (top-left) ── */
+/* ── Subtle scatter plot ── */
 const FloatingScatter = () => {
   const points = [
     { cx: 8, cy: 35 }, { cx: 18, cy: 28 }, { cx: 25, cy: 32 },
@@ -141,16 +141,13 @@ const FloatingScatter = () => {
   ];
   return (
     <motion.div
-      className="absolute top-[18%] left-[3%] hidden lg:block"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, delay: 3 }}
     >
       <svg viewBox="0 0 80 45" className="w-[80px]" fill="none">
-        {/* Axis lines */}
         <line x1="4" y1="40" x2="76" y2="40" stroke="hsl(var(--primary))" strokeWidth="0.4" strokeOpacity="0.1" />
         <line x1="4" y1="5" x2="4" y2="40" stroke="hsl(var(--primary))" strokeWidth="0.4" strokeOpacity="0.1" />
-        {/* Data points */}
         {points.map((p, i) => (
           <motion.circle
             key={i}
@@ -162,7 +159,6 @@ const FloatingScatter = () => {
             transition={{ duration: 0.5, delay: 3.2 + i * 0.12 }}
           />
         ))}
-        {/* Regression line */}
         <motion.line
           x1="6" y1="36" x2="72" y2="10"
           stroke="hsl(var(--primary))"
