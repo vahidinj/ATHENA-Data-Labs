@@ -47,8 +47,8 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl"
         >
-          We build high-performance SaaS applications and unlock actionable insights
-          through advanced data science and analytics.
+          We apply advanced data science and analytics to unlock actionable insights—and build
+          high-performance SaaS applications to deliver them.
         </motion.p>
 
         <motion.div
