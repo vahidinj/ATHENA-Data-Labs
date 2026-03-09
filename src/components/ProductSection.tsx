@@ -153,17 +153,11 @@ const ProductSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="relative"
-              style={{ perspective: "1200px" }}
             >
-              <div
-                className="relative"
-                style={{
-                  transform: "rotateY(-3deg) rotateX(2deg)",
-                  transformStyle: "preserve-3d",
-                }}
-              >
+              {/* No tilt on mobile, subtle tilt on desktop */}
+              <div className="relative lg:[transform:rotateY(-3deg)_rotateX(2deg)] lg:[transform-style:preserve-3d] lg:[perspective:1200px]">
                 <div
-                  className="relative w-[320px] sm:w-[340px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
+                  className="relative w-[280px] sm:w-[320px] lg:w-[340px] mx-auto overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
                   style={{
                     aspectRatio: "9 / 19.5",
                     boxShadow:
@@ -173,12 +167,7 @@ const ProductSection = () => {
                   <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
 
                   <div
-                    style={{
-                      width: 390,
-                      height: 844,
-                      transform: "scale(0.87)",
-                      transformOrigin: "top left",
-                    }}
+                    className="w-[390px] h-[844px] origin-top-left scale-[0.72] sm:scale-[0.82] lg:scale-[0.87]"
                   >
                     <iframe
                       src="https://mybudgetnerd.com"
