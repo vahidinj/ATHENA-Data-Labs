@@ -103,7 +103,7 @@ const ParticleWaveBackground = () => {
           />
         ))}
 
-        {/* Flowing energy waves — bright lines traveling horizontally */}
+        {/* Flowing energy waves — subtle static lines */}
         {[0, 1, 2, 3].map((waveIdx) => {
           const row = Math.floor(rows / 2) - 2 + waveIdx;
           const points = Array.from({ length: cols }, (_, col) => {
@@ -116,16 +116,16 @@ const ParticleWaveBackground = () => {
               points={points}
               fill="none"
               stroke="hsl(var(--primary))"
-              strokeWidth={waveIdx === 1 || waveIdx === 2 ? "1.2" : "0.6"}
+              strokeWidth={waveIdx === 1 || waveIdx === 2 ? "0.8" : "0.4"}
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: waveIdx === 1 || waveIdx === 2 ? 0.25 : 0.12 }}
-              transition={{ duration: 3, delay: 0.8 + waveIdx * 0.2, ease: "easeOut" }}
+              animate={{ pathLength: 1, opacity: waveIdx === 1 || waveIdx === 2 ? 0.18 : 0.08 }}
+              transition={{ duration: 4, delay: 0.8 + waveIdx * 0.3, ease: "easeOut" }}
             />
           );
         })}
 
-        {/* Traveling particles along the center waves */}
-        {[0, 1, 2, 3, 4, 5].map((pIdx) => {
+        {/* Traveling particles — fewer and slower */}
+        {[0, 1, 2].map((pIdx) => {
           const row = Math.floor(rows / 2) + (pIdx % 2 === 0 ? 0 : -1);
           const waypoints = Array.from({ length: cols }, (_, col) => {
             const idx = row * cols + col;
@@ -134,16 +134,16 @@ const ParticleWaveBackground = () => {
           return (
             <motion.circle
               key={`flow-${pIdx}`}
-              r="2.5"
+              r="2"
               fill="hsl(var(--primary))"
               animate={{
                 cx: waypoints.map((p) => p.x),
                 cy: waypoints.map((p) => p.y),
-                opacity: [0, 0.8, 0.8, 0.8, 0],
+                opacity: [0, 0.5, 0.5, 0.5, 0],
               }}
               transition={{
-                duration: 6,
-                delay: pIdx * 1.5,
+                duration: 12,
+                delay: pIdx * 4,
                 repeat: Infinity,
                 ease: "linear",
               }}
@@ -151,21 +151,21 @@ const ParticleWaveBackground = () => {
           );
         })}
 
-        {/* Particle dots with wave animation */}
+        {/* Particle dots — very subtle breathing */}
         {particles.map((p, i) => (
           <motion.circle
             key={`p-${i}`}
             cx={p.x}
             r={p.r}
             fill="hsl(var(--primary))"
-            initial={{ cy: p.baseY, opacity: 0 }}
+            initial={{ cy: p.y, opacity: 0 }}
             animate={{
-              cy: [p.y, p.y - 12, p.y + 12, p.y],
-              opacity: [0.15, 0.4, 0.15],
+              cy: [p.y, p.y - 4, p.y + 4, p.y],
+              opacity: [0.12, 0.25, 0.12],
             }}
             transition={{
-              cy: { duration: 6, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 4, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
+              cy: { duration: 10, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
+              opacity: { duration: 8, delay: p.delay, repeat: Infinity, ease: "easeInOut" },
             }}
           />
         ))}
