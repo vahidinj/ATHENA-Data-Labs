@@ -17,114 +17,189 @@ const GridBackground = () => (
   </div>
 );
 
-/* ── Neural Network Graphic (3 layers: 3→4→2) ── */
-const NeuralNetworkGraphic = () => {
-  // Define nodes: input (3), hidden (4), output (2)
-  const inputNodes = [{ x: 20, y: 30 }, { x: 20, y: 75 }, { x: 20, y: 120 }];
-  const hiddenNodes = [{ x: 100, y: 15 }, { x: 100, y: 50 }, { x: 100, y: 85 }, { x: 100, y: 120 }];
-  const outputNodes = [{ x: 180, y: 45 }, { x: 180, y: 95 }];
-
-  // All connections
-  const connections: Array<{ x1: number; y1: number; x2: number; y2: number }> = [];
-  inputNodes.forEach((inp) => {
-    hiddenNodes.forEach((hid) => {
-      connections.push({ x1: inp.x, y1: inp.y, x2: hid.x, y2: hid.y });
-    });
-  });
-  hiddenNodes.forEach((hid) => {
-    outputNodes.forEach((out) => {
-      connections.push({ x1: hid.x, y1: hid.y, x2: out.x, y2: out.y });
-    });
-  });
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, delay: 0.5 }}
-    >
-      <svg viewBox="0 0 200 150" width="200" height="150" fill="none">
-        {/* Connections with pulsing opacity */}
-        {connections.map((c, i) => (
-          <motion.line
-            key={i}
-            x1={c.x1} y1={c.y1} x2={c.x2} y2={c.y2}
-            stroke="#f5c542"
-            strokeWidth="0.8"
-            animate={{ strokeOpacity: [0.15, 0.5, 0.15] }}
-            transition={{ duration: 3, delay: i * 0.05, repeat: Infinity, ease: "easeInOut" }}
-          />
-        ))}
-        {/* Input nodes */}
-        {inputNodes.map((n, i) => (
-          <circle key={`i${i}`} cx={n.x} cy={n.y} r="5" fill="#f5c542" fillOpacity="0.7" />
-        ))}
-        {/* Hidden nodes */}
-        {hiddenNodes.map((n, i) => (
-          <circle key={`h${i}`} cx={n.x} cy={n.y} r="5" fill="#f5c542" fillOpacity="0.7" />
-        ))}
-        {/* Output nodes */}
-        {outputNodes.map((n, i) => (
-          <circle key={`o${i}`} cx={n.x} cy={n.y} r="5" fill="#f5c542" fillOpacity="0.7" />
-        ))}
-      </svg>
-    </motion.div>
-  );
-};
-
-/* ── Scatter Plot Graphic (~20 dots, upward trend) ── */
-const ScatterPlotGraphic = () => {
-  const dots = [
-    { x: 15, y: 110, r: 3 }, { x: 25, y: 105, r: 2.5 }, { x: 30, y: 95, r: 4 },
-    { x: 40, y: 100, r: 2 }, { x: 45, y: 88, r: 3.5 }, { x: 55, y: 85, r: 2.5 },
-    { x: 60, y: 78, r: 3 }, { x: 70, y: 80, r: 4 }, { x: 75, y: 70, r: 2 },
-    { x: 85, y: 68, r: 3.5 }, { x: 90, y: 60, r: 2.5 }, { x: 100, y: 55, r: 3 },
-    { x: 110, y: 50, r: 4 }, { x: 115, y: 45, r: 2 }, { x: 125, y: 42, r: 3.5 },
-    { x: 135, y: 35, r: 2.5 }, { x: 145, y: 30, r: 3 }, { x: 155, y: 25, r: 4 },
-    { x: 160, y: 22, r: 2.5 }, { x: 170, y: 18, r: 3 },
+/* ── Main network graph (right side) — refined with hexagonal layout ── */
+const NetworkGraph = () => {
+  const nodes = [
+    { x: 80, y: 40 }, { x: 200, y: 20 }, { x: 310, y: 50 },
+    { x: 40, y: 130 }, { x: 150, y: 120 }, { x: 260, y: 110 }, { x: 350, y: 130 },
+    { x: 100, y: 210 }, { x: 220, y: 200 }, { x: 330, y: 220 },
+    { x: 160, y: 270 }, { x: 280, y: 260 },
+  ];
+  const edges = [
+    [0,1],[1,2],[0,3],[0,4],[1,4],[1,5],[2,5],[2,6],
+    [3,4],[4,5],[5,6],[3,7],[4,7],[4,8],[5,8],[5,9],[6,9],
+    [7,8],[8,9],[7,10],[8,10],[8,11],[9,11],[10,11],
   ];
 
   return (
     <motion.div
+      className="relative hidden lg:flex items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, delay: 1 }}
+      transition={{ duration: 1.5, delay: 0.8 }}
     >
-      <svg viewBox="0 0 180 130" width="180" height="130" fill="none">
-        {dots.map((d, i) => (
-          <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="#f5c542" fillOpacity="0.5" />
+      <svg viewBox="0 0 390 300" className="w-[340px] xl:w-[400px]" fill="none">
+        {/* Edges */}
+        {edges.map(([a, b], i) => (
+          <motion.line
+            key={`e-${i}`}
+            x1={nodes[a].x} y1={nodes[a].y}
+            x2={nodes[b].x} y2={nodes[b].y}
+            stroke="hsl(var(--primary))"
+            strokeWidth="0.6"
+            strokeOpacity="0.12"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 1.2, delay: 1 + i * 0.05, ease: "easeOut" }}
+          />
+        ))}
+        {/* Data flow pulses */}
+        {[0, 4, 9, 15, 20].map((edgeIdx, i) => {
+          const [a, b] = edges[edgeIdx];
+          return (
+            <motion.circle
+              key={`pulse-${i}`}
+              r="2"
+              fill="hsl(var(--primary))"
+              animate={{
+                cx: [nodes[a].x, nodes[b].x],
+                cy: [nodes[a].y, nodes[b].y],
+                opacity: [0, 0.7, 0],
+              }}
+              transition={{
+                duration: 2,
+                delay: 2 + i * 0.8,
+                repeat: Infinity,
+                repeatDelay: 4,
+                ease: "easeInOut",
+              }}
+            />
+          );
+        })}
+        {/* Nodes */}
+        {nodes.map((node, i) => (
+          <g key={`n-${i}`}>
+            <motion.circle
+              cx={node.x} cy={node.y} r="3.5"
+              fill="hsl(var(--primary))"
+              fillOpacity="0.25"
+              animate={{ fillOpacity: [0.15, 0.4, 0.15], r: [3, 4.5, 3] }}
+              transition={{ duration: 4, delay: i * 0.25, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <circle cx={node.x} cy={node.y} r="1.5" fill="hsl(var(--primary))" opacity="0.6" />
+          </g>
         ))}
       </svg>
     </motion.div>
   );
 };
 
-/* ── Bar Chart Graphic (7 bars, animated on load) ── */
-const BarChartGraphic = () => {
-  const bars = [35, 55, 40, 70, 50, 65, 45];
-  const barWidth = 18;
-  const gap = 5;
+/* ── Subtle floating bar chart ── */
+const FloatingBarChart = () => {
+  const bars = [18, 30, 22, 38, 28, 34, 20];
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2, delay: 2.5 }}
+    >
+      <svg viewBox="0 0 80 50" className="w-[90px]" fill="none">
+        {bars.map((h, i) => (
+          <motion.rect
+            key={i}
+            x={i * 11 + 2}
+            width="7"
+            rx="1"
+            fill="hsl(var(--primary))"
+            fillOpacity="0.12"
+            initial={{ y: 50, height: 0 }}
+            animate={{ y: 50 - h, height: h }}
+            transition={{ duration: 1.2, delay: 2.8 + i * 0.1, ease: "easeOut" }}
+          />
+        ))}
+        <motion.polyline
+          points="5,38 16,26 27,32 38,18 49,24 60,20 71,28"
+          stroke="hsl(var(--primary))"
+          strokeWidth="0.8"
+          strokeOpacity="0.2"
+          fill="none"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.5, delay: 3.5 }}
+        />
+      </svg>
+    </motion.div>
+  );
+};
+
+/* ── Subtle scatter plot ── */
+const FloatingScatter = () => {
+  const points = [
+    { cx: 8, cy: 35 }, { cx: 18, cy: 28 }, { cx: 25, cy: 32 },
+    { cx: 32, cy: 20 }, { cx: 40, cy: 22 }, { cx: 48, cy: 14 },
+    { cx: 55, cy: 18 }, { cx: 62, cy: 10 }, { cx: 70, cy: 12 },
+  ];
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2, delay: 3 }}
+    >
+      <svg viewBox="0 0 80 45" className="w-[80px]" fill="none">
+        <line x1="4" y1="40" x2="76" y2="40" stroke="hsl(var(--primary))" strokeWidth="0.4" strokeOpacity="0.1" />
+        <line x1="4" y1="5" x2="4" y2="40" stroke="hsl(var(--primary))" strokeWidth="0.4" strokeOpacity="0.1" />
+        {points.map((p, i) => (
+          <motion.circle
+            key={i}
+            cx={p.cx} cy={p.cy} r="1.8"
+            fill="hsl(var(--primary))"
+            fillOpacity="0.18"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 3.2 + i * 0.12 }}
+          />
+        ))}
+        <motion.line
+          x1="6" y1="36" x2="72" y2="10"
+          stroke="hsl(var(--primary))"
+          strokeWidth="0.6"
+          strokeOpacity="0.15"
+          strokeDasharray="3 3"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.5, delay: 3.8 }}
+        />
+      </svg>
+    </motion.div>
+  );
+};
+
+/* ── Subtle sine wave / signal ── */
+const FloatingWave = () => {
+  const w = 100;
+  const pts = Array.from({ length: 50 }, (_, i) => {
+    const x = (i / 49) * w;
+    const y = 20 + Math.sin(i * 0.35) * 12 + Math.sin(i * 0.15) * 5;
+    return `${x},${y}`;
+  }).join(" ");
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, delay: 1.5 }}
+      transition={{ duration: 2, delay: 3.5 }}
     >
-      <svg viewBox="0 0 160 100" width="160" height="100" fill="none">
-        {bars.map((h, i) => (
-          <motion.rect
-            key={i}
-            x={i * (barWidth + gap)}
-            width={barWidth}
-            rx="2"
-            fill="#f5c542"
-            fillOpacity="0.5"
-            initial={{ y: 100, height: 0 }}
-            animate={{ y: 100 - h, height: h }}
-            transition={{ duration: 0.8, delay: 1.8 + i * 0.1, ease: "easeOut" }}
-          />
-        ))}
+      <svg viewBox="0 0 100 40" className="w-[100px]" fill="none">
+        <motion.polyline
+          points={pts}
+          stroke="hsl(var(--primary))"
+          strokeWidth="0.8"
+          strokeOpacity="0.15"
+          fill="none"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 2, delay: 3.8, ease: "easeOut" }}
+        />
       </svg>
     </motion.div>
   );
@@ -147,7 +222,7 @@ const HeroSection = () => {
       <GridBackground />
 
       <div className="container relative z-10 mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
           {/* Left: Text content */}
           <div className="text-center lg:text-left">
             <motion.div
@@ -213,20 +288,12 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right: Graphics container — all contained in right half */}
-          <div className="relative hidden lg:block h-[500px]">
-            {/* Neural Network — top-right */}
-            <div className="absolute" style={{ top: "8%", right: "8%" }}>
-              <NeuralNetworkGraphic />
-            </div>
-            {/* Scatter Plot — middle-right */}
-            <div className="absolute" style={{ top: "42%", right: "15%" }}>
-              <ScatterPlotGraphic />
-            </div>
-            {/* Bar Chart — bottom-right */}
-            <div className="absolute" style={{ bottom: "15%", right: "8%" }}>
-              <BarChartGraphic />
-            </div>
+          {/* Right: All graphics contained here */}
+          <div className="relative hidden lg:block overflow-hidden" style={{ width: 420, height: 340 }}>
+            <NetworkGraph />
+            <div className="absolute top-[5%] right-[2%]"><FloatingScatter /></div>
+            <div className="absolute bottom-[5%] right-[8%]"><FloatingBarChart /></div>
+            <div className="absolute bottom-[2%] left-[2%]"><FloatingWave /></div>
           </div>
         </div>
       </div>
