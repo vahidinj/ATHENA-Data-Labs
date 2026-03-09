@@ -174,10 +174,10 @@ const FloatingScatter = () => {
   );
 };
 
-/* ── Subtle sine wave / signal (bottom-right) ── */
+/* ── Subtle sine wave / signal ── */
 const FloatingWave = () => {
   const w = 100;
-  const points = Array.from({ length: 50 }, (_, i) => {
+  const pts = Array.from({ length: 50 }, (_, i) => {
     const x = (i / 49) * w;
     const y = 20 + Math.sin(i * 0.35) * 12 + Math.sin(i * 0.15) * 5;
     return `${x},${y}`;
@@ -185,14 +185,13 @@ const FloatingWave = () => {
 
   return (
     <motion.div
-      className="absolute bottom-[22%] right-[4%] hidden lg:block"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, delay: 3.5 }}
     >
       <svg viewBox="0 0 100 40" className="w-[100px]" fill="none">
         <motion.polyline
-          points={points}
+          points={pts}
           stroke="hsl(var(--primary))"
           strokeWidth="0.8"
           strokeOpacity="0.15"
