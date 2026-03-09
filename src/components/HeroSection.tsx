@@ -198,7 +198,7 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-6 py-24">
+      <div className="container relative z-10 mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-center">
           {/* Left: Text content */}
           <div className="text-center lg:text-left">

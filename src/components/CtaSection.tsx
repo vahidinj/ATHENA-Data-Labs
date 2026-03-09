@@ -47,7 +47,7 @@ const CtaSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-16">
+    <section id="contact" className="relative py-10">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.95 }}

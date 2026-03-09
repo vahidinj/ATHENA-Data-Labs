@@ -295,7 +295,7 @@ const FounderSection = () => {
       </div>
 
       {/* Section divider */}
-      <div className="mx-auto mt-14 max-w-xl">
+      <div className="mx-auto mt-8 max-w-xl">
         <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
     </section>
