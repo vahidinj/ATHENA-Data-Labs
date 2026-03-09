@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, TrendingUp, DollarSign, Clock, Brain, BarChart3, GraduationCap, FileText, BadgeCheck, Github } from "lucide-react";
+import { TrendingUp, DollarSign, Clock, Brain, BarChart3, GraduationCap, FileText, BadgeCheck, Github } from "lucide-react";
 
 const stats = [
   { icon: DollarSign, value: "$1.5B", label: "Cost estimate support for major contract decisions" },
@@ -53,7 +53,7 @@ const publications = [
 
 const FounderSection = () => {
   return (
-    <section id="founder" className="relative py-28">
+    <section id="founder" className="relative py-16">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -61,7 +61,7 @@ const FounderSection = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
             Founder
@@ -84,42 +84,66 @@ const FounderSection = () => {
           </div>
         </motion.div>
 
-        {/* Bio */}
+        {/* Pull quote */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mx-auto mb-12 max-w-3xl"
+        >
+          <blockquote className="relative text-center">
+            <div className="absolute left-0 top-0 font-display text-6xl leading-none text-primary/20">"</div>
+            <p className="px-8 pt-4 font-display text-xl font-semibold leading-relaxed tracking-tight text-foreground md:text-2xl">
+              War refugee. Marine sergeant. Defense analyst.{" "}
+              <span className="text-gradient">Now building the tools he wished he had.</span>
+            </p>
+            <div className="absolute right-0 bottom-0 font-display text-6xl leading-none text-primary/20 rotate-180">"</div>
+          </blockquote>
+        </motion.div>
+
+        {/* Bio — two column editorial layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mx-auto mb-20 max-w-3xl space-y-5 text-center"
+          className="mx-auto mb-16 max-w-4xl grid gap-8 md:grid-cols-2"
         >
-          <p className="text-lg leading-relaxed text-muted-foreground">
-            Vahidin Jupic founded Athena Data Labs to build decision-grade analytics software—tools
-            that prioritize precision, transparency, and user control.
-          </p>
-          <p className="leading-relaxed text-muted-foreground">
-            A war refugee who enlisted in the Marine Corps to serve the nation that gave him a second
-            chance, Vahidin brings over a decade of operations research and advanced analytics
-            experience supporting defense programs. His work has informed multi-billion-dollar
-            decisions, uncovered substantial cost efficiencies, and earned the Achievement Medal for
-            Civilian Service.
-          </p>
-          <p className="leading-relaxed text-muted-foreground">
-            He holds a Master of Science in Physics from Wayne State University, where he conducted
-            published research in relativistic heavy-ion collision dynamics using advanced
-            mathematical modeling and Python simulations. His engineering work spans forecasting,
-            statistical modeling, machine learning, and cloud-deployed analytics platforms.
-          </p>
+          <div>
+            <p className="text-lg leading-[1.8] text-muted-foreground">
+              Vahidin Jupic founded Athena Data Labs to build decision-grade analytics software—tools
+              that prioritize precision, transparency, and user control.
+            </p>
+            <p className="mt-5 text-lg leading-[1.8] text-muted-foreground">
+              A war refugee who enlisted in the Marine Corps to serve the nation that gave him a second
+              chance, Vahidin brings over a decade of operations research and advanced analytics
+              experience supporting defense programs.
+            </p>
+          </div>
+          <div>
+            <p className="text-lg leading-[1.8] text-muted-foreground">
+              His work has informed multi-billion-dollar
+              decisions, uncovered substantial cost efficiencies, and earned the Achievement Medal for
+              Civilian Service.
+            </p>
+            <p className="mt-5 text-lg leading-[1.8] text-muted-foreground">
+              He holds a Master of Science in Physics from Wayne State University, where he conducted
+              published research in relativistic heavy-ion collision dynamics using advanced
+              mathematical modeling and Python simulations.
+            </p>
+          </div>
         </motion.div>
 
-        {/* Impact Stats */}
+        {/* Impact Stats — dramatic editorial numbers */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-20"
+          className="mb-16"
         >
-          <h3 className="mb-10 text-center font-display text-2xl font-bold tracking-tight">
+          <h3 className="mb-8 text-center font-display text-2xl font-bold tracking-tight">
             Impact Snapshot
           </h3>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -136,47 +160,57 @@ const FounderSection = () => {
                 <div className="mx-auto mb-3 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
                   <stat.icon size={22} />
                 </div>
-                <p className="font-display text-2xl font-bold text-gradient">{stat.value}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+                <p className="font-display text-4xl font-extrabold text-gradient md:text-5xl">{stat.value}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Career Highlights */}
+        {/* Career Highlights with timeline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-20"
+          className="mb-16"
         >
-          <h3 className="mb-10 text-center font-display text-2xl font-bold tracking-tight">
+          <h3 className="mb-8 text-center font-display text-2xl font-bold tracking-tight">
             Career Highlights
           </h3>
-          <div className="mx-auto max-w-3xl space-y-6">
-            {career.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, x: -30, scale: 0.95 }}
-                whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-                whileHover={{ x: 5, transition: { duration: 0.2 } }}
-                className="glass rounded-xl p-6 border-l-[3px] border-l-transparent transition-all duration-300 hover:border-l-primary hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.2)]"
-              >
-                <h4 className="font-display text-lg font-semibold">{item.title}</h4>
-                <p className="mt-1 text-sm font-medium text-primary">{item.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
+          <div className="mx-auto max-w-3xl relative">
+            {/* Gold timeline line */}
+            <div className="absolute left-[18px] top-4 bottom-4 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
+            
+            <div className="space-y-5">
+              {career.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                  className="relative pl-10"
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-[13px] top-6 w-[11px] h-[11px] rounded-full border-2 border-primary bg-background" />
+                  
+                  <div className="glass rounded-xl p-6 border-l-[3px] border-l-transparent transition-all duration-300 hover:border-l-primary hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.2)]">
+                    <h4 className="font-display text-lg font-semibold">{item.title}</h4>
+                    <p className="mt-1 text-sm font-medium text-primary">{item.role}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
         {/* Education, Certifications, Publications */}
-        <div className="mb-20 grid gap-6 md:grid-cols-3">
+        <div className="mb-14 grid gap-6 md:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -251,13 +285,18 @@ const FounderSection = () => {
             <Brain size={24} />
           </div>
           <h3 className="mb-4 font-display text-2xl font-bold tracking-tight">Core Expertise</h3>
-          <p className="leading-relaxed text-muted-foreground">
+          <p className="text-lg leading-relaxed text-muted-foreground">
             Decision intelligence across forecasting, cost modeling, and analytics
             engineering—built in Python and SQL with modern ML tooling when it adds measurable
             value. Delivered through validation-first workflows, clear documentation, and
             production-ready deployment.
           </p>
         </motion.div>
+      </div>
+
+      {/* Section divider */}
+      <div className="mx-auto mt-14 max-w-xl">
+        <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
     </section>
   );

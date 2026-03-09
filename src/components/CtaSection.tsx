@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle } from "lucide-react";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -38,7 +38,6 @@ const CtaSection = () => {
       return;
     }
 
-    // Build mailto with form data
     const subject = encodeURIComponent(`New inquiry from ${result.data.name}`);
     const body = encodeURIComponent(
       `Name: ${result.data.name}\nEmail: ${result.data.email}\n\n${result.data.message}`
@@ -48,14 +47,14 @@ const CtaSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-28">
+    <section id="contact" className="relative py-16">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mx-auto max-w-3xl rounded-2xl border border-border/50 card-gradient p-10 md:p-16 shadow-[var(--shadow-card)]"
+          className="mx-auto max-w-3xl rounded-2xl border border-border/50 card-gradient p-10 md:p-14 shadow-[var(--shadow-card)]"
         >
           <div className="text-center">
             <h2 className="mb-4 font-display text-3xl font-bold tracking-tight md:text-4xl">
