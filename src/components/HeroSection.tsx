@@ -33,37 +33,34 @@ const GridBackground = () => (
 
 /* ── Animated network graph visualization ── */
 const NetworkGraph = () => {
-  const nodes = [
-    { x: 60, y: 40, r: 4.5, delay: 0 },
-    { x: 160, y: 20, r: 3.5, delay: 0.3 },
-    { x: 280, y: 55, r: 5.5, delay: 0.6 },
-    { x: 110, y: 120, r: 4, delay: 0.2 },
-    { x: 220, y: 140, r: 4.5, delay: 0.5 },
-    { x: 340, y: 110, r: 3.5, delay: 0.8 },
-    { x: 80, y: 220, r: 5, delay: 0.4 },
-    { x: 200, y: 250, r: 3.5, delay: 0.7 },
-    { x: 320, y: 220, r: 4.5, delay: 1.0 },
-    { x: 400, y: 50, r: 3.5, delay: 0.9 },
-    { x: 30, y: 160, r: 3, delay: 1.1 },
-    { x: 380, y: 180, r: 4, delay: 0.1 },
-    { x: 140, y: 310, r: 3, delay: 0.35 },
-    { x: 260, y: 330, r: 4, delay: 0.65 },
-    { x: 420, y: 270, r: 3.5, delay: 0.85 },
-    { x: 450, y: 140, r: 3, delay: 1.2 },
-    { x: 180, y: 80, r: 2.5, delay: 0.45 },
-    { x: 350, y: 300, r: 3, delay: 0.95 },
-    { x: 40, y: 290, r: 2.5, delay: 1.15 },
-    { x: 470, y: 220, r: 3, delay: 0.55 },
-  ];
+  // Generate nodes along a Möbius strip path
+  const mobiusNodes: { x: number; y: number; r: number; delay: number }[] = [];
+  const nodeCount = 28;
+  const cx = 250, cy = 185;
+  const a = 180, b = 80; // strip radii
 
-  const edges = [
-    [0, 1], [1, 2], [0, 3], [3, 4], [4, 5], [2, 5],
-    [3, 6], [6, 7], [7, 8], [4, 7], [5, 8], [1, 9],
-    [2, 9], [0, 10], [10, 6], [5, 11], [8, 11], [9, 11],
-    [6, 12], [7, 13], [12, 13], [8, 14], [13, 14], [11, 15],
-    [9, 15], [1, 16], [16, 4], [14, 17], [13, 17], [6, 18],
-    [12, 18], [15, 19], [14, 19], [5, 15], [10, 3],
-  ];
+  for (let i = 0; i < nodeCount; i++) {
+    const t = (i / nodeCount) * Math.PI * 2;
+    const halfT = t / 2;
+    // Möbius strip parametric: twist the strip by half-turn
+    const w = (i % 2 === 0 ? 1 : -1) * 18; // offset from center line
+    const px = cx + (a + w * Math.cos(halfT)) * Math.cos(t) * 0.55;
+    const py = cy + (b + w * Math.cos(halfT)) * Math.sin(t) + w * Math.sin(halfT) * 0.4;
+    mobiusNodes.push({
+      x: Math.round(px),
+      y: Math.round(py),
+      r: 2.5 + (i % 3) * 1.2,
+      delay: (i / nodeCount) * 1.5,
+    });
+  }
+
+  // Connect sequential nodes + cross-connections for mesh look
+  const edges: number[][] = [];
+  for (let i = 0; i < nodeCount; i++) {
+    edges.push([i, (i + 1) % nodeCount]);
+    edges.push([i, (i + 2) % nodeCount]);
+    if (i % 3 === 0) edges.push([i, (i + Math.floor(nodeCount / 2)) % nodeCount]);
+  }
 
   return (
     <motion.div
