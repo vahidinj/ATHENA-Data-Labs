@@ -239,11 +239,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
+              className="font-display font-bold leading-[1.05] tracking-tight"
+              style={{ fontSize: 'clamp(3rem, 5vw, 5rem)' }}
             >
-              Turning Data Into{" "}
-              <span className="text-gradient">Intelligent</span>{" "}
-              Products
+              Turning Data Into<br />
+              <span className="text-gradient">Intelligent</span> Products
             </motion.h1>
 
             {/* Gold divider */}
