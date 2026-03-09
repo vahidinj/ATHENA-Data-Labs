@@ -94,12 +94,11 @@ const NetworkGraph = () => {
   );
 };
 
-/* ── Subtle floating bar chart (bottom-left) ── */
+/* ── Subtle floating bar chart ── */
 const FloatingBarChart = () => {
   const bars = [18, 30, 22, 38, 28, 34, 20];
   return (
     <motion.div
-      className="absolute bottom-[15%] left-[6%] hidden lg:block opacity-0"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, delay: 2.5 }}
@@ -118,7 +117,6 @@ const FloatingBarChart = () => {
             transition={{ duration: 1.2, delay: 2.8 + i * 0.1, ease: "easeOut" }}
           />
         ))}
-        {/* Trend line */}
         <motion.polyline
           points="5,38 16,26 27,32 38,18 49,24 60,20 71,28"
           stroke="hsl(var(--primary))"
@@ -134,7 +132,7 @@ const FloatingBarChart = () => {
   );
 };
 
-/* ── Subtle scatter plot (top-left) ── */
+/* ── Subtle scatter plot ── */
 const FloatingScatter = () => {
   const points = [
     { cx: 8, cy: 35 }, { cx: 18, cy: 28 }, { cx: 25, cy: 32 },
@@ -143,16 +141,13 @@ const FloatingScatter = () => {
   ];
   return (
     <motion.div
-      className="absolute top-[18%] left-[3%] hidden lg:block"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, delay: 3 }}
     >
       <svg viewBox="0 0 80 45" className="w-[80px]" fill="none">
-        {/* Axis lines */}
         <line x1="4" y1="40" x2="76" y2="40" stroke="hsl(var(--primary))" strokeWidth="0.4" strokeOpacity="0.1" />
         <line x1="4" y1="5" x2="4" y2="40" stroke="hsl(var(--primary))" strokeWidth="0.4" strokeOpacity="0.1" />
-        {/* Data points */}
         {points.map((p, i) => (
           <motion.circle
             key={i}
@@ -164,7 +159,6 @@ const FloatingScatter = () => {
             transition={{ duration: 0.5, delay: 3.2 + i * 0.12 }}
           />
         ))}
-        {/* Regression line */}
         <motion.line
           x1="6" y1="36" x2="72" y2="10"
           stroke="hsl(var(--primary))"
@@ -180,10 +174,10 @@ const FloatingScatter = () => {
   );
 };
 
-/* ── Subtle sine wave / signal (bottom-right) ── */
+/* ── Subtle sine wave / signal ── */
 const FloatingWave = () => {
   const w = 100;
-  const points = Array.from({ length: 50 }, (_, i) => {
+  const pts = Array.from({ length: 50 }, (_, i) => {
     const x = (i / 49) * w;
     const y = 20 + Math.sin(i * 0.35) * 12 + Math.sin(i * 0.15) * 5;
     return `${x},${y}`;
@@ -191,14 +185,13 @@ const FloatingWave = () => {
 
   return (
     <motion.div
-      className="absolute bottom-[22%] right-[4%] hidden lg:block"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2, delay: 3.5 }}
     >
       <svg viewBox="0 0 100 40" className="w-[100px]" fill="none">
         <motion.polyline
-          points={points}
+          points={pts}
           stroke="hsl(var(--primary))"
           strokeWidth="0.8"
           strokeOpacity="0.15"
@@ -214,7 +207,7 @@ const FloatingWave = () => {
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative flex items-center justify-center overflow-hidden pt-16" style={{ minHeight: "calc(100vh - 0px)" }}>
       {/* Layered background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
       {/* Noise texture overlay */}
@@ -228,12 +221,7 @@ const HeroSection = () => {
       />
       <GridBackground />
 
-      {/* Subtle ambient data graphics */}
-      <FloatingScatter />
-      <FloatingBarChart />
-      <FloatingWave />
-
-      <div className="container relative z-10 mx-auto px-6 py-16">
+      <div className="container relative z-10 mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
           {/* Left: Text content */}
           <div className="text-center lg:text-left">
@@ -300,8 +288,13 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right: Animated network graph */}
-          <NetworkGraph />
+          {/* Right: All graphics contained here */}
+          <div className="relative hidden lg:block overflow-hidden" style={{ width: 420, height: 340 }}>
+            <NetworkGraph />
+            <div className="absolute top-[5%] right-[2%]"><FloatingScatter /></div>
+            <div className="absolute bottom-[5%] right-[8%]"><FloatingBarChart /></div>
+            <div className="absolute bottom-[2%] left-[2%]"><FloatingWave /></div>
+          </div>
         </div>
       </div>
     </section>
