@@ -292,8 +292,8 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right: Animated network graph */}
-          <NetworkGraph />
+          {/* Right: Multi-graphic data visualization */}
+          <DataVisualizationComposition />
         </div>
       </div>
 
