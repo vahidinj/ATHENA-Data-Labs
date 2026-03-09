@@ -6,13 +6,19 @@ import { ArrowRight } from "lucide-react";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-30"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      {/* Layered background with depth */}
+      <div className="absolute inset-0">
+        {/* Base image layer */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        {/* Animated gradient glow */}
+        <div className="absolute inset-0 bg-glow animate-pulse-glow" />
+        {/* Radial gradient for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_100%)]" />
+      </div>
 
       <div className="container relative z-10 mx-auto px-6 py-24 text-center">
         <motion.div
