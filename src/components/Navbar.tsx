@@ -3,9 +3,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
-import { useTheme } from "next-themes";
 import logo from "@/assets/logo.png";
-import logoLight from "@/assets/logo-light.png";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -49,7 +47,6 @@ function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { resolvedTheme } = useTheme();
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -59,7 +56,8 @@ const Navbar = () => {
     [],
   );
 
-  const currentLogo = resolvedTheme === "light" ? logoLight : logo;
+  // Navbar is always dark, so always use the dark-mode logo
+  const currentLogo = logo;
 
   return (
     <motion.nav
