@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
 
-## Project info
+# Athena Data Labs
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Unlock the Power of Data for Your Business**
 
-## How can I edit this code?
+Athena Data Labs empowers organizations to make smarter, faster decisions with cutting-edge data solutions. Whether you’re a startup or an enterprise, our platform helps you transform raw data into actionable insights—no technical expertise required.
 
-There are several ways of editing your application.
+## Why Choose Athena Data Labs?
 
-**Use Lovable**
+- **Instant Insights:** Get answers from your data in seconds, not days.
+- **No-Code Simplicity:** Our intuitive interface lets anyone explore, analyze, and visualize data—no coding needed.
+- **Seamless Collaboration:** Work together in real time and share results effortlessly.
+- **Secure & Reliable:** Enterprise-grade security and robust infrastructure you can trust.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Get Started Today
 
-Changes made via Lovable will be committed automatically to this repo.
+Ready to experience the future of data-driven decision making?
 
-**Use your preferred IDE**
+👉 [Try Athena Data Labs Now](https://athenadatalabs.com)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## For Developers
 
-Follow these steps:
+Want to contribute or customize Athena Data Labs? You can edit and deploy the code in several ways:
+
+### 1. Use Lovable
+
+Visit [Athena Data Labs](https://athenadatalabs.com) and start prompting. Changes made via Lovable are automatically committed to this repo.
+
+### 2. Use Your Preferred IDE
+
+Clone this repo and push changes—updates will be reflected in Lovable. You’ll need Node.js & npm ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 3. Edit Directly in GitHub
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Use the GitHub web editor or Codespaces for instant online editing and deployment.
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Built With
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
+- Vite  
+- TypeScript  
+- React  
+- shadcn-ui  
 - Tailwind CSS
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+**Athena Data Labs – Data, Simplified.**
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
