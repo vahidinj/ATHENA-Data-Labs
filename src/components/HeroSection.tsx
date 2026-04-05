@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { scrollToSectionById } from "@/lib/scroll";
 
 /* ── Animated dot-grid background ── */
 const GridBackground = () => (
@@ -176,14 +177,28 @@ const HeroSection = () => {
             >
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Button variant="hero" size="lg" asChild>
-                  <a href="#contact">
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSectionById("contact");
+                    }}
+                  >
                     Start a Project <ArrowRight className="ml-1" size={18} />
                   </a>
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Button variant="heroOutline" size="lg" asChild>
-                  <a href="#services">Explore Services</a>
+                  <a
+                    href="#services"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSectionById("services");
+                    }}
+                  >
+                    Explore Services
+                  </a>
                 </Button>
               </motion.div>
             </motion.div>

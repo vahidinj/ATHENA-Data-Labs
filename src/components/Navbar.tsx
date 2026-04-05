@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
+import { scrollToSectionById, scrollToTop } from "@/lib/scroll";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
@@ -13,36 +14,14 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-/** Eased scroll — cubic ease-in-out over ~800ms */
-function smoothScrollTo(targetY: number, duration = 800) {
-  const startY = window.scrollY;
-  const diff = targetY - startY;
-  let startTime: number | null = null;
-
-  function step(timestamp: number) {
-    if (!startTime) startTime = timestamp;
-    const elapsed = timestamp - startTime;
-    const t = Math.min(elapsed / duration, 1);
-    // cubic ease-in-out
-    const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    window.scrollTo(0, startY + diff * ease);
-    if (t < 1) requestAnimationFrame(step);
-  }
-
-  requestAnimationFrame(step);
-}
-
 function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   e.preventDefault();
   if (href === "#") {
-    smoothScrollTo(0);
+    scrollToTop();
     return;
   }
-  const el = document.querySelector(href);
-  if (el) {
-    const top = el.getBoundingClientRect().top + window.scrollY - 72; // 72px offset for navbar
-    smoothScrollTo(top);
-  }
+
+  scrollToSectionById(href);
 }
 
 const Navbar = () => {
@@ -85,9 +64,9 @@ const Navbar = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="h-12 w-12 object-contain"
           />
-          <span className="flex flex-col leading-none">
-            <span className="text-gradient text-xl font-bold tracking-[0.2em]">ATHENA</span>
-            <span className="text-gradient text-[0.7rem] font-bold tracking-[0.48em] opacity-80">DATA LABS</span>
+          <span className="inline-flex items-baseline gap-2 whitespace-nowrap font-bold">
+            <span className="text-gradient text-lg tracking-[0.14em] sm:text-xl">ATHENA</span>
+            <span className="text-gradient text-[0.96em] tracking-[0.14em]">DATA LABS</span>
           </span>
         </a>
 

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
+import { scrollToSectionById } from "@/lib/scroll";
 
 const ConsultationCta = () => {
   const handleBookConsultation = () => {
@@ -59,7 +60,13 @@ const ConsultationCta = () => {
                 Book Free Consultation
                 <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={18} />
               </Button>
-              <a href="#contact">
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSectionById("contact");
+                }}
+              >
                 <Button variant="heroOutline" size="lg">
                   Send a Message
                 </Button>

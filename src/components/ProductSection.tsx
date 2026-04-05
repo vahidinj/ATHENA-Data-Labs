@@ -131,7 +131,7 @@ const ProductSection = () => {
           {/* Right: Phone mockup */}
           <div className="relative flex items-end justify-center lg:justify-end">
             <motion.div
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[700px] pointer-events-none"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[320px] h-[560px] sm:w-[400px] sm:h-[700px] pointer-events-none"
               animate={{ opacity: [0.4, 0.7, 0.4] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               style={{
@@ -144,32 +144,24 @@ const ProductSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="relative"
-              style={{ perspective: "1200px" }}
+              className="relative w-[340px]"
             >
               <div
-                className="relative"
-                style={{ transform: "rotateY(-3deg) rotateX(2deg)", transformStyle: "preserve-3d" }}
+                className="w-full overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
+                style={{
+                  aspectRatio: "9 / 19.5",
+                  boxShadow: "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
+                }}
               >
-                <div
-                  className="relative w-[320px] sm:w-[340px] overflow-hidden rounded-[2.5rem] border-[3px] border-border/30"
-                  style={{
-                    aspectRatio: "9 / 19.5",
-                    boxShadow: "0 40px 100px hsl(var(--primary) / 0.12), 0 15px 40px hsl(0 0% 0% / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.05)",
-                  }}
-                >
-                  <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
-                  <div style={{ width: 390, height: 844, transform: "scale(0.87)", transformOrigin: "top left" }}>
-                    <iframe
-                      src="https://mybudgetnerd.com"
-                      title="MyBudgetNerd Demo"
-                      className="h-full w-full border-0"
-                      style={{ background: "hsl(213, 40%, 8%)" }}
-                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
+                <div className="absolute left-1/2 top-0 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[hsl(213,40%,6%)]" />
+                <iframe
+                  src="https://mybudgetnerd.com"
+                  title="MyBudgetNerd Demo"
+                  className="h-full w-full border-0"
+                  style={{ background: "hsl(213, 40%, 8%)", display: "block" }}
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                  loading="lazy"
+                />
               </div>
 
               <motion.p

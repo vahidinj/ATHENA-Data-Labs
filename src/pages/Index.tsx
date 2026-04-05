@@ -1,13 +1,17 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import SectionDivider from "@/components/SectionDivider";
 import ServicesSection from "@/components/ServicesSection";
 import ConsultationCta from "@/components/ConsultationCta";
-import AboutSection from "@/components/AboutSection";
-import ProductSection from "@/components/ProductSection";
-import FounderSection from "@/components/FounderSection";
-import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
+
+const ProductSection = lazy(() => import("@/components/ProductSection"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const FounderSection = lazy(() => import("@/components/FounderSection"));
+const CtaSection = lazy(() => import("@/components/CtaSection"));
+
+const SectionFallback = () => <div className="h-24" aria-hidden="true" />;
 
 const Index = () => {
   return (
@@ -19,13 +23,21 @@ const Index = () => {
       <SectionDivider />
       <ConsultationCta />
       <SectionDivider />
-      <ProductSection />
+      <Suspense fallback={<SectionFallback />}>
+        <ProductSection />
+      </Suspense>
       <SectionDivider />
-      <AboutSection />
+      <Suspense fallback={<SectionFallback />}>
+        <AboutSection />
+      </Suspense>
       <SectionDivider />
-      <FounderSection />
+      <Suspense fallback={<SectionFallback />}>
+        <FounderSection />
+      </Suspense>
       <SectionDivider />
-      <CtaSection />
+      <Suspense fallback={<SectionFallback />}>
+        <CtaSection />
+      </Suspense>
       <Footer />
     </div>
   );
