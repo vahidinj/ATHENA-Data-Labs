@@ -20,28 +20,38 @@ Ready to experience the future of data-driven decision making?
 
 ---
 
+
 ## For Developers
 
-Want to contribute or customize Athena Data Labs? You can edit and deploy the code in several ways:
+Interested in contributing or customizing Athena Data Labs? Here’s how you can get started:
 
-### 1. Use Lovable
+### Local Development
 
-Visit [Athena Data Labs](https://athenadatalabs.com) and start prompting. Changes made via Lovable are automatically committed to this repo.
+1. **Clone the repository:**
+	```sh
+	git clone <YOUR_GIT_URL>
+	cd <YOUR_PROJECT_NAME>
+	```
+2. **Install dependencies:**
+	```sh
+	npm install
+	```
+3. **Start the development server:**
+	```sh
+	npm run dev
+	```
 
-### 2. Use Your Preferred IDE
+### Online Editing
 
-Clone this repo and push changes—updates will be reflected in Lovable. You’ll need Node.js & npm ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)).
+You can also use the GitHub web editor or Codespaces for instant online editing and deployment.
 
-```sh
-git clone <YOUR_GIT_URL>
-cd <YOUR_PROJECT_NAME>
-npm i
-npm run dev
-```
+---
 
-### 3. Edit Directly in GitHub
+## Contributors
 
-Use the GitHub web editor or Codespaces for instant online editing and deployment.
+- Lovable (platform integration)
+  
+---
 
 ---
 
