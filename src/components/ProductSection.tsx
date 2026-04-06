@@ -82,16 +82,27 @@ const ProductSection = () => {
               transition={{ duration: 0.6, delay: 0.55 }}
               className="mt-3 max-w-[56ch] text-sm leading-relaxed text-muted-foreground/60"
             >
-              Built with React + FastAPI and deployed on AWS with an AI-assisted
-              refinement layer. Next in the product showcase: an operations
-              dashboard demonstrating real-time analytics and executive reporting.
+              Built with React + FastAPI and deployed on AWS (Amplify + Elastic
+              Beanstalk) with optional AI-assisted refinement. PDFs are processed
+              in memory by default and categorization supports both rule-based and
+              AI-enhanced workflows.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="mt-2 max-w-[56ch] text-xs leading-relaxed text-muted-foreground/60"
+            >
+              Current release stage: external TestFlight. App Store target: May 2026.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.65 }}
               className="mt-5 flex flex-wrap gap-3"
             >
               {features.map((f) => (

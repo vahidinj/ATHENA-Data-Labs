@@ -16,10 +16,10 @@ const career = [
       "Developed cost models and budget forecasts impacting multi-billion-dollar Army programs including the Stryker combat system. Led data validation processes for contract deliverables, earning the Achievement Medal for Civilian Service. Identified $31M in long-term savings through alternative system analysis. Created software for spent plan analysis and congressional review visualizations.",
   },
   {
-    title: "NeuralNetwork App",
-    role: "Personal Project · Streamlit + Python",
+    title: "ANN Builder Studio",
+    role: "Capability Showcase · Streamlit + Python",
     description:
-      "Designed an interactive Streamlit application for building and training artificial neural networks — featuring data exploration, hyperparameter tuning, model evaluation, and prediction export.",
+      "Built an interactive neural network studio for CSV upload, exploratory visualization, architecture tuning, training workflows, model evaluation, and prediction export.",
   },
   {
     title: "Wayne State University",
@@ -80,14 +80,6 @@ const FounderSection = () => {
               className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
             >
               <Github size={16} /> GitHub
-            </a>
-            <a
-              href="https://github.com/Athena-Data-Labs/ANN_builder_app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-            >
-              <Brain size={16} /> ANN Builder Showcase
             </a>
           </div>
         </motion.div>

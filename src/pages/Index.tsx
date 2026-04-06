@@ -7,6 +7,7 @@ import ConsultationCta from "@/components/ConsultationCta";
 import Footer from "@/components/Footer";
 
 const ProductSection = lazy(() => import("@/components/ProductSection"));
+const LabsSection = lazy(() => import("@/components/LabsSection"));
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const FounderSection = lazy(() => import("@/components/FounderSection"));
 const CtaSection = lazy(() => import("@/components/CtaSection"));
@@ -25,6 +26,10 @@ const Index = () => {
       <SectionDivider />
       <Suspense fallback={<SectionFallback />}>
         <ProductSection />
+      </Suspense>
+      <SectionDivider />
+      <Suspense fallback={<SectionFallback />}>
+        <LabsSection />
       </Suspense>
       <SectionDivider />
       <Suspense fallback={<SectionFallback />}>
