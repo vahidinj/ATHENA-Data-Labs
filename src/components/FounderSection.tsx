@@ -64,15 +64,15 @@ const FounderSection = () => {
           className="mb-12 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
-            Founder
+            Leadership
           </p>
           <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            Vahidin Jupic, <span className="text-gradient">MS</span>
+            Founder & <span className="text-gradient">Technical Lead</span>
           </h2>
           <p className="mt-2 text-lg text-muted-foreground">
-            Founder, Athena Data Labs
+            Athena Data Labs
           </p>
-          <div className="mt-3 flex justify-center">
+          <div className="mt-3 flex flex-wrap justify-center gap-3">
             <a
               href="https://github.com/vahidinj"
               target="_blank"
@@ -80,6 +80,14 @@ const FounderSection = () => {
               className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
             >
               <Github size={16} /> GitHub
+            </a>
+            <a
+              href="https://github.com/Athena-Data-Labs/ANN_builder_app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+            >
+              <Brain size={16} /> ANN Builder Showcase
             </a>
           </div>
         </motion.div>
@@ -174,7 +182,7 @@ const FounderSection = () => {
           className="mb-16"
         >
           <h3 className="mb-8 text-center font-display text-2xl font-bold tracking-tight">
-            Career Highlights
+            Experience Highlights
           </h3>
           <div className="mx-auto max-w-3xl relative">
             {/* Gold timeline line */}
@@ -220,7 +228,7 @@ const FounderSection = () => {
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
               <GraduationCap size={22} />
             </div>
-            <h4 className="mb-4 font-display text-lg font-semibold">Education</h4>
+              <h4 className="mb-4 font-display text-lg font-semibold">Academic Foundation</h4>
             <div className="space-y-3">
               {education.map((ed) => (
                 <div key={ed.degree}>
@@ -242,7 +250,7 @@ const FounderSection = () => {
             <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3 text-primary">
               <BadgeCheck size={22} />
             </div>
-            <h4 className="mb-4 font-display text-lg font-semibold">Certifications</h4>
+              <h4 className="mb-4 font-display text-lg font-semibold">Professional Certifications</h4>
             <ul className="space-y-2">
               {certifications.map((cert) => (
                 <li key={cert} className="text-sm text-muted-foreground">{cert}</li>

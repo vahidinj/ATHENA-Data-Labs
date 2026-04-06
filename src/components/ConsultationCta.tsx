@@ -5,9 +5,9 @@ import { scrollToSectionById } from "@/lib/scroll";
 
 const ConsultationCta = () => {
   const handleBookConsultation = () => {
-    const subject = encodeURIComponent("Free Consultation Request");
+    const subject = encodeURIComponent("Project Inquiry");
     const body = encodeURIComponent(
-      "Hi, I'd like to schedule a free consultation to discuss my project.\n\nBest time to reach me:\n\nBrief description of my needs:"
+      "Hi Athena Data Labs, I'd like to discuss a project.\n\nCompany:\nTimeline:\nBudget range:\nProject goals:\n"
     );
     window.open(`mailto:info@athenadatalabs.com?subject=${subject}&body=${body}`, "_self");
   };
@@ -36,11 +36,11 @@ const ConsultationCta = () => {
                 <Calendar size={32} />
               </div>
               <h2 className="mb-3 font-display text-3xl font-bold tracking-tight md:text-4xl">
-                Ready to Turn Your Data Into{" "}
-                <span className="text-gradient">Insights</span>?
+                Ready to Deliver Your Next{" "}
+                <span className="text-gradient">Data Product</span>?
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-                Schedule a free 30-minute consultation to discuss your data challenges and explore how we can help you unlock actionable intelligence.
+                Share your goals by email and we will respond with a practical next-step plan for scope, timeline, and delivery.
               </p>
             </motion.div>
 
@@ -57,7 +57,7 @@ const ConsultationCta = () => {
                 onClick={handleBookConsultation}
                 className="group"
               >
-                Book Free Consultation
+                Email Project Inquiry
                 <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={18} />
               </Button>
               <a
@@ -80,7 +80,7 @@ const ConsultationCta = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="mt-5 text-sm text-muted-foreground"
             >
-              No commitment required · Discuss your needs · Get expert advice
+              Email-first workflow · Clear scope discussion · Practical delivery guidance
             </motion.p>
           </div>
         </motion.div>

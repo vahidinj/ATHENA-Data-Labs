@@ -39,12 +39,12 @@ const AboutSection = () => {
               <span className="text-gradient">Execution</span>
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Athena Data Labs was founded on the belief that great software starts with great data.
-              We combine deep technical expertise in app development with cutting-edge data science
-              to deliver products that don't just work — they learn and evolve.
+              Athena Data Labs is built to deliver decision-grade software through
+              disciplined engineering, practical machine learning, and clear product
+              execution from concept to production.
             </p>
             <p className="mt-4 text-base font-medium text-primary/90 italic">
-              Built to defense-grade standards. Delivered at startup speed.
+              Calm, confident delivery. Defense-informed rigor.
             </p>
           </motion.div>
 

@@ -164,9 +164,9 @@ const HeroSection = () => {
               transition={{ duration: 0.7, delay: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="max-w-lg text-base text-muted-foreground md:text-lg leading-relaxed mx-auto lg:mx-0"
             >
-              We design and deliver production-ready data products, from ML-powered
-              applications to analytics platforms, so teams can move from raw data
-              to confident decisions faster.
+              We deliver full-stack data science products, from ML-powered
+              applications to analytics dashboards, so teams can move from raw data
+              to confident decisions with calm, reliable execution.
             </motion.p>
 
             <motion.div
