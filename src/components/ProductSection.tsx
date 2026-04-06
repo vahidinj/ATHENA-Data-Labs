@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, BrainCircuit, ScanSearch, TrendingUp } from "lucide-react";
 
 const features = [
-  { icon: ScanSearch, label: "Anomaly Detection" },
-  { icon: TrendingUp, label: "Forecasting" },
-  { icon: BrainCircuit, label: "ML Categorization" },
+  { icon: ScanSearch, label: "Automated Statement Parsing" },
+  { icon: TrendingUp, label: "Forecasting Engine" },
+  { icon: BrainCircuit, label: "ML Categorization Pipeline" },
 ];
 
 const ProductSection = () => {
@@ -38,7 +38,7 @@ const ProductSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-                Web App · Coming Soon to App Store
+                Product Showcase · Live Capability Demo
               </span>
             </motion.div>
 
@@ -49,9 +49,8 @@ const ProductSection = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mt-5 font-display text-5xl font-bold leading-[1.06] tracking-tight text-white md:text-6xl lg:text-7xl lg:mr-[-5rem] relative z-30"
             >
-              Financial{" "}
-              <span className="text-gradient">Intelligence</span>,{" "}
-              Simplified
+              Proof of
+              <span className="text-gradient"> Delivery</span>
             </motion.h2>
 
             <motion.div
@@ -69,12 +68,11 @@ const ProductSection = () => {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="max-w-[56ch] text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              MyBudgetNerd is a financial intelligence platform that automatically
-              parses bank statements, categorizes transactions into 11 spending
-              groups, and delivers machine learning engines for{" "}
+              MyBudgetNerd demonstrates how we deliver production data products:
+              statement ingestion, intelligent transaction classification, and
+              decision-ready machine learning features including{" "}
               <span className="text-primary font-medium">anomaly detection</span> and{" "}
-              <span className="text-primary font-medium">spending forecasts</span>.
-              No bank logins, no tracking — just powerful insights you control.
+              <span className="text-primary font-medium">forecasting</span>.
             </motion.p>
 
             <motion.p
@@ -84,9 +82,9 @@ const ProductSection = () => {
               transition={{ duration: 0.6, delay: 0.55 }}
               className="mt-3 max-w-[56ch] text-sm leading-relaxed text-muted-foreground/60"
             >
-              Built with React + FastAPI and deployed on AWS. Optional
-              AI-powered refinement uses OpenAI to improve categorization
-              accuracy — completely opt-in.
+              Built with React + FastAPI and deployed on AWS with an AI-assisted
+              refinement layer. Next in the product showcase: an operations
+              dashboard demonstrating real-time analytics and executive reporting.
             </motion.p>
 
             <motion.div
@@ -122,7 +120,7 @@ const ProductSection = () => {
               >
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                 <span className="relative z-10 flex items-center gap-2">
-                  Try MyBudgetNerd <ArrowRight size={16} />
+                  View MyBudgetNerd Demo <ArrowRight size={16} />
                 </span>
               </a>
             </motion.div>
@@ -171,9 +169,9 @@ const ProductSection = () => {
                 transition={{ duration: 0.6, delay: 1 }}
                 className="mt-4 text-center text-xs text-muted-foreground"
               >
-                Try the demo — tap{" "}
+                Explore the demo — tap{" "}
                 <span className="font-semibold text-primary">"View Sample"</span>{" "}
-                to explore with sample data
+                to review delivery quality with sample data
               </motion.p>
             </motion.div>
           </div>

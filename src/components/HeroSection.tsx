@@ -135,7 +135,7 @@ const HeroSection = () => {
             >
               <div className="h-px w-8 bg-primary/50" />
               <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                Data Science · Analytics · SaaS
+                Product Delivery · Data Science · SaaS
               </p>
               <div className="h-px w-8 bg-primary/50" />
             </motion.div>
@@ -146,7 +146,7 @@ const HeroSection = () => {
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="font-display text-5xl font-bold leading-[1.06] tracking-tight sm:text-6xl lg:text-7xl"
             >
-              Turning Data Into{" "}
+              Building Data Into{" "}
               <span className="text-gradient">Intelligent</span>{" "}
               Products
             </motion.h1>
@@ -164,9 +164,9 @@ const HeroSection = () => {
               transition={{ duration: 0.7, delay: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="max-w-lg text-base text-muted-foreground md:text-lg leading-relaxed mx-auto lg:mx-0"
             >
-              Enterprise-grade data science models and startup-ready SaaS platforms
-              that transform raw data into decision engines — built for precision at scale
-              and speed to market.
+              We design and deliver production-ready data products, from ML-powered
+              applications to analytics platforms, so teams can move from raw data
+              to confident decisions faster.
             </motion.p>
 
             <motion.div
@@ -184,7 +184,7 @@ const HeroSection = () => {
                       scrollToSectionById("contact");
                     }}
                   >
-                    Start a Project <ArrowRight className="ml-1" size={18} />
+                    Talk to Us <ArrowRight className="ml-1" size={18} />
                   </a>
                 </Button>
               </motion.div>
@@ -197,7 +197,7 @@ const HeroSection = () => {
                       scrollToSectionById("services");
                     }}
                   >
-                    Explore Services
+                    See What We Deliver
                   </a>
                 </Button>
               </motion.div>

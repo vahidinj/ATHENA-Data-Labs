@@ -6,25 +6,25 @@ const services = [
     icon: Brain,
     title: "Data Science & ML",
     description:
-      "Predictive modeling, NLP, and machine learning solutions — enterprise-grade rigor with startup-ready delivery speed.",
+      "Production ML systems for prediction, anomaly detection, and intelligent automation that improve decision quality.",
   },
   {
     icon: BarChart3,
     title: "Data Analytics",
     description:
-      "Transform raw data into clear, actionable dashboards and reports that drive smarter decisions at any scale.",
+      "Executive-ready dashboards and reporting layers that turn operational data into clear performance signals.",
   },
   {
     icon: Database,
     title: "Data Engineering",
     description:
-      "Robust data pipelines and infrastructure to ensure your data is clean, reliable, and always production-ready.",
+      "Reliable ingestion, transformation, and serving pipelines designed for clean, trusted, always-available data.",
   },
   {
     icon: Code2,
     title: "SaaS Development",
     description:
-      "End-to-end design and development of scalable, cloud-native SaaS platforms — from MVP to enterprise deployment.",
+      "Cloud-native SaaS products built end-to-end, from initial architecture to secure deployment and iteration.",
   },
 ];
 
@@ -54,10 +54,10 @@ const ServicesSection = () => {
           className="mb-12 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
-            What We Do
+            What We Deliver
           </p>
           <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            Our Services
+            Delivery Capabilities
           </h2>
         </motion.div>
 
