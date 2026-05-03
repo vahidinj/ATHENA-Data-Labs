@@ -6,6 +6,8 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { scrollToSectionById, scrollToTop } from "@/lib/scroll";
 import logo from "@/assets/logo.png";
 
+const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "https://dashboard.athenadatalabs.com";
+
 const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Products", href: "#products" },
@@ -83,6 +85,11 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+          <Button variant="hero" size="sm" asChild>
+            <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
+              Dashboard
+            </a>
+          </Button>
           <Button variant="heroOutline" size="sm" asChild>
             <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
               Get Started
@@ -119,6 +126,11 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
+            <Button variant="hero" size="sm" asChild>
+              <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
+                Dashboard
+              </a>
+            </Button>
             <div className="flex items-center justify-between pt-1">
               <span className="text-sm font-medium text-muted-foreground">Theme</span>
               <ThemeToggle />

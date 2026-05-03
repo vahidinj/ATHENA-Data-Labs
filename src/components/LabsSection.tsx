@@ -5,6 +5,8 @@ import { scrollToSectionById } from "@/lib/scroll";
 import annBuilderNetworkDark from "@/assets/ann-builder-illustration-dark.svg";
 import annBuilderNetworkLight from "@/assets/ann-builder-illustration-light.svg";
 
+const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "https://dashboard.athenadatalabs.com";
+
 const LabsSection = () => {
   return (
     <section id="labs" className="relative py-16">
@@ -108,7 +110,7 @@ const LabsSection = () => {
           >
             <div className="border-b border-border/40 bg-secondary/20 p-6">
               <p className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                <LayoutDashboard size={14} /> In Development
+                <LayoutDashboard size={14} /> Live Now
               </p>
               <h3 className="mt-3 font-display text-2xl font-bold tracking-tight">Decision Dashboard Sandbox</h3>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -137,6 +139,11 @@ const LabsSection = () => {
               </div>
 
               <div className="mt-5 flex flex-wrap gap-3">
+                <Button variant="hero" size="sm" asChild>
+                  <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
+                    Open Dashboard <ExternalLink className="ml-1" size={15} />
+                  </a>
+                </Button>
                 <Button variant="heroOutline" size="sm" asChild>
                   <a
                     href="#contact"
