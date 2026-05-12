@@ -144,11 +144,9 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="font-display text-5xl font-bold leading-[1.06] tracking-tight sm:text-6xl lg:text-7xl"
+              className="font-display text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl"
             >
-              Transform Data Into{" "}
-              <span className="text-gradient">Intelligent</span>{" "}
-              Products
+              Transform Data Into <span className="text-gradient">Intelligent</span>
             </motion.h1>
 
             <motion.div
@@ -162,12 +160,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="max-w-lg text-base text-muted-foreground md:text-lg leading-relaxed mx-auto lg:mx-0"
+              className="max-w-lg text-base leading-[1.75] text-muted-foreground md:text-lg md:leading-[1.8] mx-auto lg:mx-0"
             >
-              We deliver full-stack data science products, from ML-powered
-              applications to predictive intelligence dashboards, including our live Athena
-              Intelligence Dashboard, so teams can move from raw data to confident
-              decisions with calm, reliable execution.
+              We deliver full-stack data science products, from ML-powered applications to
+              predictive intelligence dashboards. Teams move from raw data to confident decisions
+              with calm, reliable execution.
             </motion.p>
 
             <motion.div

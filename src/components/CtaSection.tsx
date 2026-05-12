@@ -57,11 +57,10 @@ const CtaSection = () => {
           className="mx-auto max-w-3xl rounded-2xl border border-border/50 card-gradient p-10 md:p-14 shadow-[var(--shadow-card)]"
         >
           <div className="text-center">
-            <h2 className="mb-4 font-display text-3xl font-bold tracking-tight md:text-4xl">
-              Ready to Move from Data to
-              <span className="text-gradient"> Confident Decisions</span>?
+            <h2 className="mb-4 font-display text-3xl font-bold leading-[1.1] tracking-tight md:text-4xl">
+              Ready to Move from Data to <span className="text-gradient">Confident Decisions?</span>
             </h2>
-            <p className="mb-7 text-muted-foreground md:text-lg">
+            <p className="mb-8 text-muted-foreground leading-relaxed md:text-lg md:leading-[1.7]">
               Let's discuss how Athena Data Labs builds your business intelligence system:
               AI-driven dashboards, predictive modeling, and autonomous agents that turn data into action.
             </p>

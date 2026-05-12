@@ -59,8 +59,9 @@ const ServicesSection = () => {
           <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
             Delivery Capabilities
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-muted-foreground md:text-lg">
-            From business intelligence dashboards to AI-driven agents, we deliver the complete decision intelligence stack so your organization moves from data to confident, fast decisions.
+          <p className="mx-auto mt-4 max-w-3xl text-muted-foreground leading-relaxed md:text-lg md:leading-[1.65]">
+            From business intelligence dashboards to AI-driven agents, we deliver the complete
+            decision intelligence stack so your organization moves from data to confident decisions.
           </p>
         </motion.div>
 
@@ -74,13 +75,13 @@ const ServicesSection = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group glass rounded-xl p-8 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)]"
+              className="group glass rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)] hover:bg-secondary/30"
             >
-              <div className="mb-5 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-colors group-hover:bg-primary/20">
+              <div className="mb-5 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
                 <service.icon size={24} />
               </div>
-              <h3 className="mb-3 font-display text-lg font-semibold">{service.title}</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <h3 className="mb-3 font-display text-lg font-semibold leading-tight">{service.title}</h3>
+              <p className="text-sm leading-[1.7] text-muted-foreground">
                 {service.description}
               </p>
             </motion.div>

@@ -38,12 +38,12 @@ const AboutSection = () => {
               Strategy Meets{" "}
               <span className="text-gradient">Execution</span>
             </h2>
-            <p className="text-lg leading-relaxed text-muted-foreground">
+            <p className="text-lg leading-[1.75] text-muted-foreground">
               Athena Data Labs delivers business intelligence systems and AI agents that turn data
               into confident decisions. We combine disciplined engineering, predictive analytics,
               and intelligent automation to move organizations from metrics to action.
             </p>
-            <p className="mt-4 text-base font-medium text-primary/90 italic">
+            <p className="mt-5 text-base font-medium text-primary/90 italic leading-relaxed">
               Decision intelligence. Built to scale. Defense-informed rigor.
             </p>
           </motion.div>
@@ -57,14 +57,14 @@ const AboutSection = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
-                className="flex gap-5 rounded-xl glass p-6"
+                className="flex gap-5 rounded-xl border border-border/50 glass p-6 transition-all duration-300 hover:border-primary/30 hover:bg-secondary/30"
               >
-                <div className="flex-shrink-0 rounded-lg bg-primary/10 p-3 text-primary">
+                <div className="flex-shrink-0 rounded-lg bg-primary/10 p-3 text-primary transition-all duration-300 group-hover:bg-primary/20">
                   <pillar.icon size={22} />
                 </div>
                 <div>
-                  <h3 className="mb-1 font-display text-base font-semibold">{pillar.title}</h3>
-                  <p className="text-sm text-muted-foreground">{pillar.description}</p>
+                  <h3 className="mb-1 font-display text-base font-semibold leading-tight">{pillar.title}</h3>
+                  <p className="text-sm leading-[1.65] text-muted-foreground">{pillar.description}</p>
                 </div>
               </motion.div>
             ))}

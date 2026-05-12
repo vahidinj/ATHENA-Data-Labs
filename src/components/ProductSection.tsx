@@ -66,7 +66,7 @@ const ProductSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="max-w-[56ch] text-base leading-relaxed text-muted-foreground md:text-lg"
+              className="max-w-[56ch] text-base leading-[1.75] text-muted-foreground md:text-lg md:leading-[1.8]"
             >
               MyBudgetNerd demonstrates how we deliver business intelligence systems:
               real-time financial analysis, intelligent transaction classification, and
@@ -81,11 +81,11 @@ const ProductSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="mt-3 max-w-[56ch] text-sm leading-relaxed text-muted-foreground/60"
+              className="mt-3 max-w-[56ch] text-sm leading-[1.7] text-muted-foreground/60"
             >
               Built with React + FastAPI and deployed on AWS (Amplify + Elastic Beanstalk).
-              Combines intelligent automation with human-in-the-loop refinement. AI agents
-              provide context-aware recommendations while users maintain full control and transparency.
+              Intelligent automation with human-in-the-loop refinement. AI agents provide
+              context-aware recommendations while maintaining user control and transparency.
             </motion.p>
 
             <motion.p
@@ -93,7 +93,7 @@ const ProductSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-2 max-w-[56ch] text-xs leading-relaxed text-muted-foreground/60"
+              className="mt-2 max-w-[56ch] text-xs leading-relaxed text-muted-foreground/70"
             >
               Current release stage: external TestFlight. App Store target: May 2026.
             </motion.p>
