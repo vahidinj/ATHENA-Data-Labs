@@ -1,4 +1,4 @@
-const PRODUCTION_DASHBOARD_URL = "https://dashboard.athenadatalabs.com";
+export const PRODUCTION_DASHBOARD_URL = "https://dashboard.athenadatalabs.com";
 
 function isTruthy(value?: string): boolean {
   if (!value) return false;
@@ -28,3 +28,6 @@ export function resolveDashboardUrl(): string {
 }
 
 export const DASHBOARD_URL = resolveDashboardUrl();
+
+// Full-app links should remain stable during website QA, so they always target production.
+export const DASHBOARD_OPEN_URL = PRODUCTION_DASHBOARD_URL;

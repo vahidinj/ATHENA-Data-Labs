@@ -1,12 +1,26 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { ArrowRight, BrainCircuit, ExternalLink, Github, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { scrollToSectionById } from "@/lib/scroll";
-import { DASHBOARD_URL } from "@/lib/dashboard";
+import { DASHBOARD_OPEN_URL, DASHBOARD_URL } from "@/lib/dashboard";
 import annBuilderNetworkDark from "@/assets/ann-builder-illustration-dark.svg";
 import annBuilderNetworkLight from "@/assets/ann-builder-illustration-light.svg";
 
 const LabsSection = () => {
+  const [previewLoaded, setPreviewLoaded] = useState(false);
+  const [showPreviewFallback, setShowPreviewFallback] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      if (!previewLoaded) {
+        setShowPreviewFallback(true);
+      }
+    }, 3500);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [previewLoaded]);
+
   return (
     <section id="labs" className="relative py-16">
       <div className="container mx-auto px-6">
@@ -125,7 +139,7 @@ const LabsSection = () => {
                     Live Dashboard Preview
                   </p>
                   <a
-                    href={DASHBOARD_URL}
+                    href={DASHBOARD_OPEN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-primary/80"
@@ -133,13 +147,36 @@ const LabsSection = () => {
                     Open Full App <ExternalLink size={13} />
                   </a>
                 </div>
-                <iframe
-                  src={DASHBOARD_URL}
-                  title="Athena Intelligence Dashboard Preview"
-                  className="h-[250px] w-full border-0"
-                  loading="lazy"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                />
+                <div className="relative">
+                  <iframe
+                    src={DASHBOARD_URL}
+                    title="Athena Intelligence Dashboard Preview"
+                    className="h-[250px] w-full border-0"
+                    loading="lazy"
+                    onLoad={() => {
+                      setPreviewLoaded(true);
+                      setShowPreviewFallback(false);
+                    }}
+                  />
+                  {showPreviewFallback && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/95 px-5 text-center">
+                      <p className="font-display text-base font-semibold text-foreground">
+                        Live Preview Unavailable in This Browser Session
+                      </p>
+                      <p className="mt-2 max-w-xs text-xs leading-relaxed text-muted-foreground">
+                        Some dashboard deployments block iframe embedding. Open the full app to explore the complete interactive experience.
+                      </p>
+                      <a
+                        href={DASHBOARD_OPEN_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80"
+                      >
+                        Open Full App <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
 
               <p className="mt-3 text-xs leading-relaxed text-muted-foreground/80">
@@ -170,7 +207,7 @@ const LabsSection = () => {
 
               <div className="mt-5 flex flex-wrap gap-3">
                 <Button variant="hero" size="sm" asChild>
-                  <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
+                  <a href={DASHBOARD_OPEN_URL} target="_blank" rel="noopener noreferrer">
                     Open Live Dashboard <ExternalLink className="ml-1" size={15} />
                   </a>
                 </Button>

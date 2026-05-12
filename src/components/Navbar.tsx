@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
-import { DASHBOARD_URL } from "@/lib/dashboard";
+import { DASHBOARD_OPEN_URL } from "@/lib/dashboard";
 import { scrollToSectionById, scrollToTop } from "@/lib/scroll";
 import logo from "@/assets/logo.png";
 
@@ -85,7 +85,7 @@ const Navbar = () => {
             </a>
           ))}
           <Button variant="hero" size="sm" asChild>
-            <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
+            <a href={DASHBOARD_OPEN_URL} target="_blank" rel="noopener noreferrer">
               Dashboard
             </a>
           </Button>
@@ -126,7 +126,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button variant="hero" size="sm" asChild>
-              <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
+              <a href={DASHBOARD_OPEN_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
                 Dashboard
               </a>
             </Button>
