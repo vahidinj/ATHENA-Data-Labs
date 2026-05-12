@@ -7,13 +7,13 @@ import { scrollToSectionById } from "@/lib/scroll";
 const GridBackground = () => (
   <div className="absolute inset-0 overflow-hidden">
     <motion.div
-      className="absolute inset-0"
+      className="absolute inset-0 will-animate"
       style={{
         backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
       }}
       animate={{ y: [0, 40] }}
-      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
     />
   </div>
 );
@@ -46,10 +46,10 @@ const NeuralNetwork = () => {
 
   return (
     <motion.div
-      className="flex items-center justify-center w-full h-full"
+      className="flex items-center justify-center w-full h-full will-animate"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5, delay: 0.8 }}
+      transition={{ duration: 1, delay: 0.5 }}
     >
       <svg viewBox="0 0 470 380" className="w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet">
         {/* Edges */}
@@ -63,7 +63,7 @@ const NeuralNetwork = () => {
             strokeOpacity="0.08"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 + i * 0.012, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.5 + i * 0.008, ease: "easeOut" }}
           />
         ))}
         {/* Data flow pulses */}
@@ -80,10 +80,10 @@ const NeuralNetwork = () => {
                 opacity: [0, 0.6, 0],
               }}
               transition={{
-                duration: 1.8,
-                delay: 2 + i * 0.7,
+                duration: 1.4,
+                delay: 1.5 + i * 0.5,
                 repeat: Infinity,
-                repeatDelay: 5,
+                repeatDelay: 4,
                 ease: "easeInOut",
               }}
             />
@@ -96,8 +96,8 @@ const NeuralNetwork = () => {
               cx={node.x} cy={node.y} r="5"
               fill="hsl(var(--primary))"
               fillOpacity="0.15"
-              animate={{ fillOpacity: [0.1, 0.35, 0.1], r: [4, 6, 4] }}
-              transition={{ duration: 3 + (i % 3), delay: i * 0.15, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ fillOpacity: [0.1, 0.3, 0.1], r: [4, 5.5, 4] }}
+              transition={{ duration: 2.5 + (i % 2), delay: i * 0.08, repeat: Infinity, ease: "easeInOut" }}
             />
             <circle cx={node.x} cy={node.y} r="2" fill="hsl(var(--primary))" opacity="0.5" />
           </g>
@@ -143,7 +143,7 @@ const HeroSection = () => {
             <motion.h1
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
               className="font-display text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl max-w-4xl mx-auto lg:mx-0"
               style={{ wordBreak: 'keep-all' }}
             >
@@ -153,14 +153,14 @@ const HeroSection = () => {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
               className="mt-5 mb-5 h-px w-24 bg-gradient-to-r from-primary/60 to-transparent origin-left mx-auto lg:mx-0"
             />
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+              transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
               className="max-w-lg text-base leading-[1.75] text-muted-foreground md:text-lg md:leading-[1.8] mx-auto lg:mx-0"
             >
               We deliver full-stack data science products, from ML-powered applications to
@@ -171,10 +171,10 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1, ease: [0.21, 0.47, 0.32, 0.98] }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
               className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start sm:justify-center"
             >
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                 <Button variant="hero" size="lg" asChild>
                   <a
                     href="#contact"
@@ -187,7 +187,7 @@ const HeroSection = () => {
                   </a>
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                 <Button variant="heroOutline" size="lg" asChild>
                   <a
                     href="#services"

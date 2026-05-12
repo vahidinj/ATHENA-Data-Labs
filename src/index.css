@@ -4,6 +4,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scrolling for all browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* GPU acceleration hints for smooth animations */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Optimize animation performance */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @layer base {
   :root {
     /* Light theme (default tokens) */

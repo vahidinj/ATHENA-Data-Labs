@@ -89,7 +89,7 @@ const FounderSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" }}
           className="mx-auto mb-14 max-w-3xl"
         >
           <blockquote className="relative border-l-4 border-primary/60 pl-8 py-4">

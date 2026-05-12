@@ -55,8 +55,8 @@ const AboutSection = () => {
                 initial={{ opacity: 0, x: 50, scale: 0.95 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-                whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                whileHover={{ x: 5, transition: { duration: 0.25 } }}
                 className="flex gap-5 rounded-xl border border-border/50 glass p-6 transition-all duration-300 hover:border-primary/30 hover:bg-secondary/30"
               >
                 <div className="flex-shrink-0 rounded-lg bg-primary/10 p-3 text-primary transition-all duration-300 group-hover:bg-primary/20">

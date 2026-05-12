@@ -53,7 +53,7 @@ const CtaSection = () => {
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="mx-auto max-w-3xl rounded-2xl border border-border/50 card-gradient p-10 md:p-14 shadow-[var(--shadow-card)]"
         >
           <div className="text-center">

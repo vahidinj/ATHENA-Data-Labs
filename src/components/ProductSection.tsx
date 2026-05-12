@@ -80,7 +80,7 @@ const ProductSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.55 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               className="mt-3 max-w-[56ch] text-sm leading-[1.7] text-muted-foreground/60"
             >
               Built with React + FastAPI and deployed on AWS (Amplify + Elastic Beanstalk).
@@ -92,7 +92,7 @@ const ProductSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
               className="mt-2 max-w-[56ch] text-xs leading-relaxed"
             >
               <span className="inline-block rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">External TestFlight</span>
@@ -103,7 +103,7 @@ const ProductSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.65 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
               className="mt-5 flex flex-wrap gap-3"
             >
               {features.map((f) => (
