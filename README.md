@@ -23,23 +23,33 @@ Ready to experience the future of data-driven decision making?
 
 ## For Developers
 
-Interested in contributing or customizing Athena Data Labs? Here’s how you can get started:
+Interested in contributing or customizing Athena Data Labs? Use the Makefile for a fast local workflow.
 
-### Local Development
+### Local Development (Recommended)
 
-1. **Clone the repository:**
+1. **Install dependencies:**
 	```sh
-	git clone <YOUR_GIT_URL>
-	cd <YOUR_PROJECT_NAME>
+	make install
 	```
-2. **Install dependencies:**
+2. **Run the website on localhost:**
 	```sh
-	npm install
+	make dev
 	```
-3. **Start the development server:**
-	```sh
-	npm run dev
+3. **Open the app:**
+	```text
+	http://localhost:5173
 	```
+
+### Useful Commands
+
+```sh
+make preview   # build + preview locally
+make build     # production build
+make lint      # run eslint
+make test      # run vitest
+```
+
+Detailed localhost testing instructions are in `LOCALHOST_TESTING.md`.
 
 ### Online Editing
 

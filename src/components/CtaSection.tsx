@@ -58,12 +58,12 @@ const CtaSection = () => {
         >
           <div className="text-center">
             <h2 className="mb-4 font-display text-3xl font-bold tracking-tight md:text-4xl">
-              Ready to Build Something{" "}
-              <span className="text-gradient">Extraordinary</span>?
+              Ready to Upgrade Your
+              <span className="text-gradient"> Decision Intelligence</span>?
             </h2>
             <p className="mb-7 text-muted-foreground md:text-lg">
-              Let's discuss how Athena Data Labs can help you turn your vision into a
-              data-powered product.
+              Let's discuss how Athena Data Labs can deliver your primary business intelligence
+              dashboard with predictive modeling and AI agent-assisted insights.
             </p>
           </div>
 
@@ -140,7 +140,7 @@ const CtaSection = () => {
 
               <div className="flex justify-center pt-2">
                 <Button variant="hero" size="lg" type="submit">
-                  Send Message <Send className="ml-1" size={18} />
+                  Book Strategy Call <Send className="ml-1" size={18} />
                 </Button>
               </div>
             </form>

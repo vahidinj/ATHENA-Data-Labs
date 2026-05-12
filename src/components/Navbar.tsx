@@ -3,10 +3,9 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
+import { DASHBOARD_URL } from "@/lib/dashboard";
 import { scrollToSectionById, scrollToTop } from "@/lib/scroll";
 import logo from "@/assets/logo.png";
-
-const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "https://dashboard.athenadatalabs.com";
 
 const navLinks = [
   { label: "Services", href: "#services" },

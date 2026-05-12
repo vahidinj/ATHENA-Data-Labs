@@ -6,13 +6,13 @@ const services = [
     icon: Brain,
     title: "Data Science & ML",
     description:
-      "Production ML systems for prediction, anomaly detection, and intelligent automation that improve decision quality.",
+      "Production ML systems for forecasting, anomaly detection, and intelligent automation that elevate decision speed and accuracy.",
   },
   {
     icon: BarChart3,
     title: "Data Analytics",
     description:
-      "Executive-ready dashboards and reporting layers that turn operational data into clear performance signals.",
+      "Executive-grade intelligence dashboards that combine KPI monitoring, predictive modeling, and AI-guided insights.",
   },
   {
     icon: Database,
@@ -24,7 +24,7 @@ const services = [
     icon: Code2,
     title: "SaaS Development",
     description:
-      "Cloud-native SaaS products built end-to-end, from initial architecture to secure deployment and iteration.",
+      "Cloud-native SaaS platforms built end-to-end, from architecture to secure deployment and enterprise-scale iteration.",
   },
 ];
 
@@ -59,6 +59,9 @@ const ServicesSection = () => {
           <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
             Delivery Capabilities
           </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-muted-foreground md:text-lg">
+            We build the complete decision intelligence stack, so your organization can run on one trusted source of truth.
+          </p>
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

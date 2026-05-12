@@ -2,10 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, BrainCircuit, ExternalLink, Github, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { scrollToSectionById } from "@/lib/scroll";
+import { DASHBOARD_URL } from "@/lib/dashboard";
 import annBuilderNetworkDark from "@/assets/ann-builder-illustration-dark.svg";
 import annBuilderNetworkLight from "@/assets/ann-builder-illustration-light.svg";
-
-const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL || "https://dashboard.athenadatalabs.com";
 
 const LabsSection = () => {
   return (
@@ -25,8 +24,8 @@ const LabsSection = () => {
             Live Demos & Product Concepts
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-muted-foreground md:text-lg">
-            Athena Labs shows how ideas become usable tools. Each demo follows a clear
-            path from data input, to model signal, to practical decision support.
+            Athena Labs showcases production-grade intelligence products. Each demo shows
+            how we transform raw data into trusted signals, predictive guidance, and executive-level action.
           </p>
         </motion.div>
 
@@ -112,36 +111,67 @@ const LabsSection = () => {
               <p className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
                 <LayoutDashboard size={14} /> Live Now
               </p>
-              <h3 className="mt-3 font-display text-2xl font-bold tracking-tight">Decision Dashboard Sandbox</h3>
+              <h3 className="mt-3 font-display text-2xl font-bold tracking-tight">Athena Intelligence Dashboard</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                A calm, executive-style interface for following trends, spotting anomalies,
-                and translating model signals into practical decisions.
+                A premium business intelligence command center built for leadership teams.
+                Unify live KPIs, predictive modeling, anomaly alerts, and AI agent-assisted analysis in one view.
               </p>
             </div>
 
             <div className="p-6">
+              <div className="overflow-hidden rounded-xl border border-border/50 bg-background/40">
+                <div className="flex items-center justify-between border-b border-border/40 bg-secondary/30 px-4 py-2">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90">
+                    Live Dashboard Preview
+                  </p>
+                  <a
+                    href={DASHBOARD_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-primary/80"
+                  >
+                    Open Full App <ExternalLink size={13} />
+                  </a>
+                </div>
+                <iframe
+                  src={DASHBOARD_URL}
+                  title="Athena Intelligence Dashboard Preview"
+                  className="h-[250px] w-full border-0"
+                  loading="lazy"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                />
+              </div>
+
+              <p className="mt-3 text-xs leading-relaxed text-muted-foreground/80">
+                Get a quick preview here, then open the full dashboard in a new tab for the complete interactive experience.
+              </p>
+
               <div className="rounded-xl border border-dashed border-primary/30 bg-primary/5 p-6">
-                <p className="font-display text-lg font-semibold text-foreground">Planned Data Story</p>
+                <p className="font-display text-lg font-semibold text-foreground">Decision Intelligence Flow</p>
                 <div className="mt-3 grid gap-3 text-sm">
                   <div>
                     <p className="font-semibold text-foreground">Input</p>
-                    <p className="text-muted-foreground">Upload-free sample data mode for immediate exploration.</p>
+                    <p className="text-muted-foreground">Operational metrics, financial trends, and customer signals unified into one executive workspace.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Insight</p>
-                    <p className="text-muted-foreground">Forecast and anomaly panels with transparent model context.</p>
+                    <p className="text-muted-foreground">Forward-looking forecasts, anomaly detection, and agent-driven narratives that explain what changed and why it matters.</p>
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Outcome</p>
-                    <p className="text-muted-foreground">Filterable KPIs and summary outputs for business decisions.</p>
+                    <p className="text-muted-foreground">Faster, higher-confidence decisions powered by transparent model context and prioritized next actions.</p>
                   </div>
                 </div>
               </div>
 
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground/80">
+                Designed to become a company&apos;s primary BI system, from board-level reporting to day-to-day operational execution.
+              </p>
+
               <div className="mt-5 flex flex-wrap gap-3">
                 <Button variant="hero" size="sm" asChild>
                   <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer">
-                    Open Dashboard <ExternalLink className="ml-1" size={15} />
+                    Open Live Dashboard <ExternalLink className="ml-1" size={15} />
                   </a>
                 </Button>
                 <Button variant="heroOutline" size="sm" asChild>
@@ -152,7 +182,7 @@ const LabsSection = () => {
                       scrollToSectionById("contact");
                     }}
                   >
-                    Request Early Access <ArrowRight className="ml-1" size={15} />
+                    Book an Executive Demo <ArrowRight className="ml-1" size={15} />
                   </a>
                 </Button>
               </div>

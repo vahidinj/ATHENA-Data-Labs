@@ -165,8 +165,9 @@ const HeroSection = () => {
               className="max-w-lg text-base text-muted-foreground md:text-lg leading-relaxed mx-auto lg:mx-0"
             >
               We deliver full-stack data science products, from ML-powered
-              applications to analytics dashboards, so teams can move from raw data
-              to confident decisions with calm, reliable execution.
+              applications to predictive intelligence dashboards, including our live Athena
+              Intelligence Dashboard, so teams can move from raw data to confident
+              decisions with calm, reliable execution.
             </motion.p>
 
             <motion.div
