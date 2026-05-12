@@ -15,7 +15,7 @@ const LabsSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] as const }}
           className="mb-10 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
@@ -35,7 +35,7 @@ const LabsSection = () => {
             initial={{ opacity: 0, y: 35, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            transition={{ duration: 0.55, ease: [0.34, 1.56, 0.64, 1] as const }}
             className="overflow-hidden rounded-2xl border border-border/50 card-gradient"
           >
             <div className="border-b border-border/40 bg-secondary/20 p-6">
@@ -185,7 +185,7 @@ const LabsSection = () => {
             initial={{ opacity: 0, y: 35, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, delay: 0.06, ease: "easeOut" }}
+            transition={{ duration: 0.55, delay: 0.06, ease: [0.34, 1.56, 0.64, 1] as const }}
             className="flex flex-col h-full overflow-hidden rounded-2xl border border-border/50 card-gradient"
           >
             <div className="border-b border-border/40 bg-secondary/20 p-6">

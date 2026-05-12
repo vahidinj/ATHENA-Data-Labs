@@ -143,7 +143,7 @@ const HeroSection = () => {
             <motion.h1
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.34, 1.56, 0.64, 1] as const }}
               className="font-display text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl max-w-4xl mx-auto lg:mx-0"
               style={{ wordBreak: 'keep-all' }}
             >
@@ -153,14 +153,14 @@ const HeroSection = () => {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.5, ease: [0.34, 1.56, 0.64, 1] as const }}
               className="mt-5 mb-5 h-px w-24 bg-gradient-to-r from-primary/60 to-transparent origin-left mx-auto lg:mx-0"
             />
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.45, ease: [0.34, 1.56, 0.64, 1] as const }}
               className="max-w-lg text-base leading-[1.75] text-muted-foreground md:text-lg md:leading-[1.8] mx-auto lg:mx-0"
             >
               We deliver full-stack data science products, from ML-powered applications to
@@ -171,7 +171,7 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.6, ease: [0.34, 1.56, 0.64, 1] as const }}
               className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start sm:justify-center"
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>

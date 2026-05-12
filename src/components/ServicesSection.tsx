@@ -38,7 +38,7 @@ const cardVariants = {
     transition: { 
       duration: 0.5, 
       delay: i * 0.08,
-      ease: "easeOut"
+      ease: [0.34, 1.56, 0.64, 1] as const
     },
   }),
 };
@@ -51,7 +51,7 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] as const }}
           className="mb-12 text-center"
         >
           <p className="mb-2 font-display text-sm font-medium uppercase tracking-[0.2em] text-primary">
@@ -75,7 +75,7 @@ const ServicesSection = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2, ease: [0.34, 1.56, 0.64, 1] as const } }}
               className="group glass rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)] hover:bg-secondary/30"
             >
               <div className="mb-5 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
