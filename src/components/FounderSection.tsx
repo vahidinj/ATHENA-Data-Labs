@@ -16,10 +16,10 @@ const career = [
       "Developed cost models and budget forecasts impacting multi-billion-dollar Army programs including the Stryker combat system. Led data validation processes for contract deliverables, earning the Achievement Medal for Civilian Service. Identified $31M in long-term savings through alternative system analysis. Created software for spent plan analysis and congressional review visualizations.",
   },
   {
-    title: "ANN Builder Studio",
-    role: "Capability Showcase · Streamlit + Python",
+    title: "MyBudgetNerd",
+    role: "Business Intelligence Product · React + FastAPI + AWS",
     description:
-      "Built an interactive neural network studio for CSV upload, exploratory visualization, architecture tuning, training workflows, model evaluation, and prediction export.",
+      "Designed and built a complete BI system demonstrating intelligent transaction classification, predictive forecasting, anomaly detection, and AI-assisted analysis. Production-deployed on AWS (Amplify + Elastic Beanstalk) with comprehensive ML pipeline and optional AI-enhanced workflows.",
   },
   {
     title: "Wayne State University",
