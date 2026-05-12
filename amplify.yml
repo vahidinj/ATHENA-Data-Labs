@@ -4,8 +4,9 @@ frontend:
     preBuild:
       commands:
         - corepack enable
+        - pnpm config set ignore-scripts false
         - rm -rf node_modules
-        - pnpm install --no-frozen-lockfile --allow-scripts
+        - pnpm install --no-frozen-lockfile
     build:
       commands:
         - pnpm run build
