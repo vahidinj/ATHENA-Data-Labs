@@ -120,43 +120,92 @@ const LabsSection = () => {
             </div>
 
             <div className="p-6">
-              <div className="overflow-hidden rounded-xl border border-border/50 bg-background/40">
-                <div className="flex items-center justify-between border-b border-border/40 bg-secondary/30 px-4 py-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90">
-                    Dashboard Snapshot
-                  </p>
+              <div className="overflow-hidden rounded-xl border border-border/50 bg-gradient-to-br from-secondary/20 to-background/40 backdrop-blur-sm">
+                {/* Header Bar */}
+                <div className="flex items-center justify-between border-b border-border/40 bg-secondary/40 px-4 py-3">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-primary/80">Command Center</p>
+                    <p className="mt-1 text-xs text-muted-foreground">Last 12 months</p>
+                  </div>
                   <a
                     href={DASHBOARD_OPEN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-primary/80"
+                    className="inline-flex items-center gap-2 rounded-lg bg-primary/20 px-3 py-1.5 text-xs font-semibold text-primary transition-all hover:bg-primary/30"
                   >
                     Open Full App <ExternalLink size={13} />
                   </a>
                 </div>
-                <div className="grid gap-3 p-4 sm:grid-cols-2">
-                  <div className="rounded-lg border border-primary/20 bg-primary/10 p-3">
-                    <p className="text-[10px] uppercase tracking-[0.12em] text-primary/90">Revenue</p>
-                    <p className="mt-1 font-display text-xl font-bold text-foreground">$23,530</p>
-                    <p className="text-xs text-emerald-400">+5.2% vs prior window</p>
+
+                {/* KPI Metrics Grid */}
+                <div className="grid grid-cols-2 gap-2 border-b border-border/30 p-4 sm:grid-cols-3 md:grid-cols-6">
+                  <div className="rounded-lg border border-border/40 bg-background/50 p-2.5">
+                    <p className="text-[9px] uppercase tracking-[0.1em] text-primary/70">Revenue</p>
+                    <p className="mt-1 font-display text-sm font-bold text-foreground">$23,530</p>
+                    <p className="text-[10px] text-emerald-500">↑ 5.2%</p>
                   </div>
-                  <div className="rounded-lg border border-primary/20 bg-primary/10 p-3">
-                    <p className="text-[10px] uppercase tracking-[0.12em] text-primary/90">Runway</p>
-                    <p className="mt-1 font-display text-xl font-bold text-foreground">43 months</p>
-                    <p className="text-xs text-foreground/70">Projected cash coverage</p>
+                  <div className="rounded-lg border border-border/40 bg-background/50 p-2.5">
+                    <p className="text-[9px] uppercase tracking-[0.1em] text-primary/70">Expenses</p>
+                    <p className="mt-1 font-display text-sm font-bold text-foreground">$12,285</p>
+                    <p className="text-[10px] text-orange-500">↑ 4.2%</p>
                   </div>
-                  <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 sm:col-span-2">
-                    <p className="text-[10px] uppercase tracking-[0.12em] text-primary/90">AI Copilot Brief</p>
-                    <p className="mt-1 text-sm text-foreground/90">
-                      Expense anomalies and client concentration are the top near-term risks. Priority actions are vendor review,
-                      spend controls, and top-client diversification planning.
-                    </p>
+                  <div className="rounded-lg border border-border/40 bg-background/50 p-2.5">
+                    <p className="text-[9px] uppercase tracking-[0.1em] text-primary/70">Net</p>
+                    <p className="mt-1 font-display text-sm font-bold text-foreground">$11,245</p>
+                    <p className="text-[10px] text-emerald-500">↑ 6.3%</p>
                   </div>
+                  <div className="rounded-lg border border-border/40 bg-background/50 p-2.5">
+                    <p className="text-[9px] uppercase tracking-[0.1em] text-primary/70">Coverage</p>
+                    <p className="mt-1 font-display text-sm font-bold text-foreground">1.92x</p>
+                    <p className="text-[10px] text-primary/60">vs 1.90x</p>
+                  </div>
+                  <div className="rounded-lg border border-border/40 bg-background/50 p-2.5">
+                    <p className="text-[9px] uppercase tracking-[0.1em] text-primary/70">Net Margin</p>
+                    <p className="mt-1 font-display text-sm font-bold text-foreground">47.8%</p>
+                    <p className="text-[10px] text-primary/60">of revenue</p>
+                  </div>
+                  <div className="rounded-lg border border-border/40 bg-background/50 p-2.5">
+                    <p className="text-[9px] uppercase tracking-[0.1em] text-primary/70">Runway</p>
+                    <p className="mt-1 font-display text-sm font-bold text-foreground">43 mo</p>
+                    <p className="text-[10px] text-primary/60">to zero</p>
+                  </div>
+                </div>
+
+                {/* Signal Alerts Section */}
+                <div className="border-b border-border/30 px-4 py-3">
+                  <p className="mb-2 text-[10px] uppercase tracking-[0.12em] text-primary/80">Signals</p>
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-2 rounded border-l-2 border-orange-500 bg-orange-500/10 p-2">
+                      <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-orange-500" />
+                      <div className="text-[11px]">
+                        <p className="font-semibold text-orange-400">Expense anomalies</p>
+                        <p className="mt-0.5 text-muted-foreground">2 unusual transactions flagged</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2 rounded border-l-2 border-amber-500 bg-amber-500/10 p-2">
+                      <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-amber-500" />
+                      <div className="text-[11px]">
+                        <p className="font-semibold text-amber-400">Client concentration</p>
+                        <p className="mt-0.5 text-muted-foreground">Top client at 41% of revenue</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* AI Copilot Section */}
+                <div className="bg-gradient-to-r from-primary/5 to-transparent p-4">
+                  <p className="inline-block rounded-full border border-primary/30 bg-primary/10 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-primary">
+                    Athena Guardian
+                  </p>
+                  <p className="mt-2 font-semibold text-foreground">CFO Intelligence Copilot</p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    Move from raw metrics to decisions with context-aware guidance. Live dashboard context, risk-first analysis, and actionable recommendations.
+                  </p>
                 </div>
               </div>
 
               <p className="mt-3 text-xs leading-relaxed text-muted-foreground/80">
-                Secure live preview will be enabled after dashboard HTTPS hardening. Open the full app now for the complete interactive experience.
+                Live-embedded preview coming soon. Open the full dashboard now to explore real-time KPI tracking, predictive modeling, anomaly detection, and AI-assisted insights.
               </p>
 
               <div className="rounded-xl border border-dashed border-primary/30 bg-primary/5 p-6">
