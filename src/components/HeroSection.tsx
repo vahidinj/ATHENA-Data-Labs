@@ -135,7 +135,7 @@ const HeroSection = () => {
             >
               <div className="h-px w-8 bg-primary/50" />
               <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary whitespace-nowrap">
-                Building Data Into Intelligent Products
+                Business Intelligence · AI Agents · Data Science
               </p>
               <div className="h-px w-8 bg-primary/50" />
             </motion.div>
