@@ -12,6 +12,9 @@ html {
 /* GPU acceleration hints for smooth animations */
 .will-animate {
   will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
 }
 
 /* Optimize animation performance */

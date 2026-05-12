@@ -41,6 +41,7 @@ const cardVariants = {
       ease: [0.34, 1.56, 0.64, 1] as const
     },
   }),
+  exit: { opacity: 1, y: 0, scale: 1 },
 };
 
 const ServicesSection = () => {
@@ -58,7 +59,7 @@ const ServicesSection = () => {
             What We Deliver
           </p>
           <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-            Delivery Capabilities
+            Delivering Capabilities
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-muted-foreground leading-relaxed md:text-lg md:leading-[1.65]">
             From business intelligence dashboards to AI-driven agents, we deliver the complete
@@ -77,6 +78,7 @@ const ServicesSection = () => {
               viewport={{ once: true, margin: "-50px" }}
               whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.2, ease: [0.34, 1.56, 0.64, 1] as const } }}
               className="group glass rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-[var(--shadow-glow)] hover:bg-secondary/30"
+              style={{ backfaceVisibility: "hidden", perspective: "1000px" }}
             >
               <div className="mb-5 inline-flex rounded-lg bg-primary/10 p-3 text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
                 <service.icon size={24} />

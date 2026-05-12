@@ -11,6 +11,8 @@ const GridBackground = () => (
       style={{
         backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px)`,
         backgroundSize: "40px 40px",
+        backfaceVisibility: "hidden",
+        perspective: 1000,
       }}
       animate={{ y: [0, 40] }}
       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -50,8 +52,9 @@ const NeuralNetwork = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 0.5 }}
+      style={{ perspective: 1000 }}
     >
-      <svg viewBox="0 0 470 380" className="w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 470 380" className="w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet" style={{ backfaceVisibility: "hidden" }}>
         {/* Edges */}
         {edges.map((edge, i) => (
           <motion.line
@@ -64,42 +67,54 @@ const NeuralNetwork = () => {
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 + i * 0.008, ease: "easeOut" }}
+            style={{ backfaceVisibility: "hidden" }}
           />
         ))}
         {/* Data flow pulses */}
         {pulseEdges.map((edgeIdx, i) => {
           const edge = edges[edgeIdx % edges.length];
           return (
-            <motion.circle
-              key={`pulse-${i}`}
-              r="2.5"
-              fill="hsl(var(--primary))"
-              animate={{
-                cx: [edge.from.x, edge.to.x],
-                cy: [edge.from.y, edge.to.y],
-                opacity: [0, 0.6, 0],
-              }}
-              transition={{
-                duration: 1.4,
-                delay: 1.5 + i * 0.5,
-                repeat: Infinity,
-                repeatDelay: 4,
-                ease: "easeInOut",
-              }}
-            />
+            <motion.g key={`pulse-${i}`} style={{ backfaceVisibility: "hidden" }}>
+              <motion.circle
+                r="2.5"
+                fill="hsl(var(--primary))"
+                animate={{
+                  cx: [edge.from.x, edge.to.x],
+                  cy: [edge.from.y, edge.to.y],
+                  opacity: [0, 0.6, 0],
+                }}
+                transition={{
+                  duration: 1.4,
+                  delay: 1.5 + i * 0.5,
+                  repeat: Infinity,
+                  repeatDelay: 4,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.g>
           );
         })}
         {/* Nodes */}
         {allNodes.map((node, i) => (
           <g key={`n-${i}`}>
-            <motion.circle
-              cx={node.x} cy={node.y} r="5"
-              fill="hsl(var(--primary))"
-              fillOpacity="0.15"
-              animate={{ fillOpacity: [0.1, 0.3, 0.1], r: [4, 5.5, 4] }}
+            <motion.g
+              animate={{ scale: [0.8, 1.1, 0.8] }}
+              transition={{ duration: 2.5 + (i % 2), delay: i * 0.08, repeat: Infinity, ease: "easeInOut" }}
+              origin={`${node.x} ${node.y}`}
+              style={{ transformOrigin: `${node.x}px ${node.y}px` }}
+            >
+              <circle cx={node.x} cy={node.y} r="5"
+                fill="hsl(var(--primary))"
+                fillOpacity="0.15"
+              />
+            </motion.g>
+            <motion.circle 
+              cx={node.x} cy={node.y} r="2" 
+              fill="hsl(var(--primary))" 
+              opacity="0.5"
+              animate={{ opacity: [0.3, 0.7, 0.3] }}
               transition={{ duration: 2.5 + (i % 2), delay: i * 0.08, repeat: Infinity, ease: "easeInOut" }}
             />
-            <circle cx={node.x} cy={node.y} r="2" fill="hsl(var(--primary))" opacity="0.5" />
           </g>
         ))}
       </svg>
