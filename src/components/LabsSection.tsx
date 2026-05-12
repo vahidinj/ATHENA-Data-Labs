@@ -30,13 +30,13 @@ const LabsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-7 lg:grid-cols-2">
+        <div className="grid gap-7 lg:grid-cols-2 items-stretch">
           <motion.article
             initial={{ opacity: 0, y: 35, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="overflow-hidden rounded-2xl border border-border/50 card-gradient"
+            className="flex flex-col h-full overflow-hidden rounded-2xl border border-border/50 card-gradient"
           >
             <div className="border-b border-border/40 bg-secondary/20 p-6">
               <p className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
@@ -49,7 +49,7 @@ const LabsSection = () => {
               </p>
             </div>
 
-            <div className="flex h-full flex-col p-6">
+            <div className="flex flex-col flex-1 p-6">
               <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80">
                 Generated Visualization
               </p>
@@ -85,8 +85,8 @@ const LabsSection = () => {
                   <p className="mt-1 text-muted-foreground">Evaluate performance, test new data, and export prediction results.</p>
                 </div>
               </div>
-
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="flex-1" />
+              <div className="mt-6 flex flex-wrap gap-3 justify-start lg:justify-start">
                 <Button variant="hero" size="sm" asChild>
                   <a href="https://vahidinj.streamlit.app" target="_blank" rel="noopener noreferrer">
                     Launch Studio <ExternalLink className="ml-1" size={15} />

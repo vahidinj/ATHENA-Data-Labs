@@ -134,8 +134,8 @@ const HeroSection = () => {
               className="flex items-center gap-3 justify-center lg:justify-start mb-6"
             >
               <div className="h-px w-8 bg-primary/50" />
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                Business Intelligence · AI Agents · Data Science
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary whitespace-nowrap">
+                Building Data Into Intelligent Products
               </p>
               <div className="h-px w-8 bg-primary/50" />
             </motion.div>
@@ -144,9 +144,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.9, delay: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="font-display text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl"
+              className="font-display text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl max-w-4xl mx-auto lg:mx-0"
+              style={{ wordBreak: 'keep-all' }}
             >
-              Transform Data Into <span className="text-gradient">Intelligent</span>
+              Transform Data Into <span className="text-gradient">Intelligent Products</span>
             </motion.h1>
 
             <motion.div
