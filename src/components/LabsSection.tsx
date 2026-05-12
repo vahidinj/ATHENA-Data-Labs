@@ -36,76 +36,6 @@ const LabsSection = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="flex flex-col h-full overflow-hidden rounded-2xl border border-border/50 card-gradient"
-          >
-            <div className="border-b border-border/40 bg-secondary/20 p-6">
-              <p className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                <BrainCircuit size={14} /> Live Now
-              </p>
-              <h3 className="mt-3 font-display text-2xl font-bold tracking-tight">ANN Builder Studio</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                A guided workspace for designing neural networks and understanding model
-                behavior through interactive visuals and prediction outputs.
-              </p>
-            </div>
-
-            <div className="flex flex-col flex-1 p-6">
-              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80">
-                Generated Visualization
-              </p>
-              <div className="relative overflow-hidden rounded-lg">
-                <img
-                  src={annBuilderNetworkLight}
-                  alt="Stylized neural network illustration for ANN Builder Studio"
-                  className="w-full rounded-lg object-cover dark:hidden"
-                  loading="lazy"
-                />
-                <img
-                  src={annBuilderNetworkDark}
-                  alt="Stylized neural network illustration for ANN Builder Studio"
-                  className="hidden w-full rounded-lg object-cover dark:block"
-                  loading="lazy"
-                />
-              </div>
-              <p className="mt-3 text-xs leading-relaxed text-muted-foreground/80">
-                Visual style preview inspired by the app's real network rendering workflow.
-              </p>
-
-              <div className="mt-5 grid gap-3 text-sm">
-                <div className="rounded-lg border-l-2 border-primary/40 bg-secondary/10 px-4 py-3">
-                  <p className="font-semibold text-foreground">Input</p>
-                  <p className="mt-1 text-muted-foreground">Upload CSV data and explore distributions, relationships, and signal quality.</p>
-                </div>
-                <div className="rounded-lg border-l-2 border-primary/40 bg-secondary/10 px-4 py-3">
-                  <p className="font-semibold text-foreground">Model</p>
-                  <p className="mt-1 text-muted-foreground">Set hidden layers, neuron counts, and training parameters in a guided flow.</p>
-                </div>
-                <div className="rounded-lg border-l-2 border-primary/40 bg-secondary/10 px-4 py-3">
-                  <p className="font-semibold text-foreground">Outcome</p>
-                  <p className="mt-1 text-muted-foreground">Evaluate performance, test new data, and export prediction results.</p>
-                </div>
-              </div>
-              <div className="flex-1" />
-              <div className="mt-6 flex flex-wrap gap-3 justify-start lg:justify-start">
-                <Button variant="hero" size="sm" asChild>
-                  <a href="https://vahidinj.streamlit.app" target="_blank" rel="noopener noreferrer">
-                    Launch Studio <ExternalLink className="ml-1" size={15} />
-                  </a>
-                </Button>
-                <Button variant="heroOutline" size="sm" asChild>
-                  <a href="https://github.com/Athena-Data-Labs/ANN_builder_app" target="_blank" rel="noopener noreferrer">
-                    View Repository <Github className="ml-1" size={15} />
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </motion.article>
-
-          <motion.article
-            initial={{ opacity: 0, y: 35, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="overflow-hidden rounded-2xl border border-border/50 card-gradient"
           >
             <div className="border-b border-border/40 bg-secondary/20 p-6">
@@ -245,6 +175,76 @@ const LabsSection = () => {
                     }}
                   >
                     Book an Executive Demo <ArrowRight className="ml-1" size={15} />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </motion.article>
+
+          <motion.article
+            initial={{ opacity: 0, y: 35, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="flex flex-col h-full overflow-hidden rounded-2xl border border-border/50 card-gradient"
+          >
+            <div className="border-b border-border/40 bg-secondary/20 p-6">
+              <p className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                <BrainCircuit size={14} /> Live Now
+              </p>
+              <h3 className="mt-3 font-display text-2xl font-bold tracking-tight">ANN Builder Studio</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                A guided workspace for designing neural networks and understanding model
+                behavior through interactive visuals and prediction outputs.
+              </p>
+            </div>
+
+            <div className="flex flex-col flex-1 p-6">
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/80">
+                Generated Visualization
+              </p>
+              <div className="relative overflow-hidden rounded-lg">
+                <img
+                  src={annBuilderNetworkLight}
+                  alt="Stylized neural network illustration for ANN Builder Studio"
+                  className="w-full rounded-lg object-cover dark:hidden"
+                  loading="lazy"
+                />
+                <img
+                  src={annBuilderNetworkDark}
+                  alt="Stylized neural network illustration for ANN Builder Studio"
+                  className="hidden w-full rounded-lg object-cover dark:block"
+                  loading="lazy"
+                />
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-muted-foreground/80">
+                Visual style preview inspired by the app's real network rendering workflow.
+              </p>
+
+              <div className="mt-5 grid gap-3 text-sm">
+                <div className="rounded-lg border-l-2 border-primary/40 bg-secondary/10 px-4 py-3">
+                  <p className="font-semibold text-foreground">Input</p>
+                  <p className="mt-1 text-muted-foreground">Upload CSV data and explore distributions, relationships, and signal quality.</p>
+                </div>
+                <div className="rounded-lg border-l-2 border-primary/40 bg-secondary/10 px-4 py-3">
+                  <p className="font-semibold text-foreground">Model</p>
+                  <p className="mt-1 text-muted-foreground">Set hidden layers, neuron counts, and training parameters in a guided flow.</p>
+                </div>
+                <div className="rounded-lg border-l-2 border-primary/40 bg-secondary/10 px-4 py-3">
+                  <p className="font-semibold text-foreground">Outcome</p>
+                  <p className="mt-1 text-muted-foreground">Evaluate performance, test new data, and export prediction results.</p>
+                </div>
+              </div>
+              <div className="flex-1" />
+              <div className="mt-6 flex flex-wrap gap-3 justify-start lg:justify-start">
+                <Button variant="hero" size="sm" asChild>
+                  <a href="https://vahidinj.streamlit.app" target="_blank" rel="noopener noreferrer">
+                    Launch Studio <ExternalLink className="ml-1" size={15} />
+                  </a>
+                </Button>
+                <Button variant="heroOutline" size="sm" asChild>
+                  <a href="https://github.com/Athena-Data-Labs/ANN_builder_app" target="_blank" rel="noopener noreferrer">
+                    View Repository <Github className="ml-1" size={15} />
                   </a>
                 </Button>
               </div>

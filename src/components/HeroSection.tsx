@@ -133,11 +133,11 @@ const HeroSection = () => {
               transition={{ duration: 0.7, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="flex items-center gap-3 justify-center lg:justify-start mb-6"
             >
-              <div className="h-px w-8 bg-primary/50" />
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary whitespace-nowrap">
+              <div className="hidden sm:block h-px w-8 bg-primary/50" />
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.25em] text-primary whitespace-normal sm:whitespace-nowrap">
                 Business Intelligence · AI Agents · Data Science
               </p>
-              <div className="h-px w-8 bg-primary/50" />
+              <div className="hidden sm:block h-px w-8 bg-primary/50" />
             </motion.div>
 
             <motion.h1
