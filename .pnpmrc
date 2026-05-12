@@ -1,0 +1,7 @@
+# pnpm configuration for CI environments
+auto-install-peers = true
+shamefully-hoist = false
+enable-pre-post-scripts = true
+
+# Allow build scripts in CI environment
+# pnpm 11.x may require additional settings
