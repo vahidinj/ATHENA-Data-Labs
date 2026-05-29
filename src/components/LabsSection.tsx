@@ -6,7 +6,7 @@ import { DASHBOARD_OPEN_URL } from "@/lib/dashboard";
 import annBuilderNetworkDark from "@/assets/ann-builder-illustration-dark.svg";
 import annBuilderNetworkLight from "@/assets/ann-builder-illustration-light.svg";
 
-const ANN_BUILDER_APP_URL = "https://athena-data-labs-ann-builder-app-srcmain-l5l6eu.streamlit.app";
+const ANN_BUILDER_APP_URL = "https://ann-builder-app.streamlit.app";
 
 const LabsSection = () => {
 
